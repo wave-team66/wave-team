@@ -143,10 +143,53 @@
   </main>
   <footer>© 2026 WAVE TEAM — CS2 ESPORTS. ALL RIGHTS RESERVED.</footer>
   
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  document.getElementById('application').addEventListener('submit', function(event) {
+  const SUPABASE_URL = 'https://hjtrnyufryxudqgvqkuo.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_q6wpqCXCpunEsIPNU2Hqjw_8Jk44FXi';
+
+  const db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const form = document.getElementById('application');
+  const message = document.getElementById('form-message');
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    document.getElementById('form-message').textContent =
-      'Форма ещё не подключена к базе. Следующим шагом подключим Supabase.';
+    submitButton.disabled = true;
+    message.textContent = 'Отправляем заявку...';
+
+    const data = new FormData(form);
+    const application = {
+      nickname: String(data.get('nickname') || '').trim(),
+      age: Number(data.get('age')),
+      rating: String(data.get('rating') || '').trim(),
+      role: String(data.get('role') || ''),
+      steam: String(data.get('steam') || '').trim(),
+      contact: String(data.get('contact') || '').trim(),
+      about: String(data.get('about') || '').trim()
+    };
+
+    try {
+      const { error } = await db
+        .from('academy_applications')
+        .insert([application]);
+
+      if (error) throw error;
+
+      message.textContent =
+        'Заявка отправлена! Спасибо за интерес к WAVE TEAM.';
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      message.textContent =
+        'Ошибка отправки. Проверь настройки Supabase.';
+    } finally {
+      submitButton.disabled = false;
+    }
   });
 </script>
