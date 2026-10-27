@@ -193,3 +193,70 @@
     }
   });
 </script>
+  
+<script>
+  function waveEscape(value) {
+    return String(value ?? '').replace(/[&<>"']/g, function (c) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[c];
+    });
+  }
+
+  async function loadWaveTeam() {
+    const teamGrid = document.querySelector('#team .grid');
+    const matchesGrid = document.querySelector('#matches .grid');
+
+    try {
+      const { data: players, error: playersError } = await db
+        .from('players')
+        .select('nickname, role, sort_order')
+        .eq('published', true)
+        .order('sort_order');
+
+      if (playersError) throw playersError;
+
+      if (players && players.length && teamGrid) {
+        teamGrid.innerHTML = players.map((player, index) => `
+          <article class="card">
+            <span class="number">${String(index + 1).padStart(2, '0')} / ${waveEscape(player.role)}</span>
+            <h3>${waveEscape(player.nickname)}</h3>
+            <p class="muted">WAVE TEAM</p>
+          </article>
+        `).join('');
+      }
+
+      const { data: matches, error: matchesError } = await db
+        .from('matches')
+        .select('opponent, score, status, match_date')
+        .eq('published', true)
+        .order('match_date', { ascending: true, nullsFirst: true });
+
+      if (matchesError) throw matchesError;
+
+      if (matches && matches.length && matchesGrid) {
+        matchesGrid.innerHTML = matches.map(match => `
+          <article class="card match">
+            <div>
+              <h3>WAVE TEAM</h3>
+              <p class="muted">VS ${waveEscape(match.opponent)}</p>
+              <p class="muted">${waveEscape(match.status)}</p>
+            </div>
+            <div class="score">${waveEscape(match.score)}</div>
+          </article>
+        `).join('');
+      }
+    } catch (error) {
+      console.error('WAVE TEAM database error:', error);
+    }
+  }
+
+  loadWaveTeam();
+</script>
+</body>
+</html>
+
