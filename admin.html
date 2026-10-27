@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WAVE TEAM — Manager</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090909;color:#eee9df;font:15px Arial,sans-serif}
+header{padding:22px 6%;border-bottom:1px solid #3b3223;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:23px;font-weight:900;letter-spacing:3px;color:#d8bd83}
+main{max-width:1000px;margin:40px auto;padding:0 18px}
+h1,h2{color:#d8bd83}
+.panel,.card{background:#121210;border:1px solid #393125;padding:22px;border-radius:8px;margin:16px 0}
+input,textarea,select{display:block;width:100%;margin:10px 0;padding:12px;background:#090909;color:#fff;border:1px solid #514634;border-radius:4px}
+textarea{min-height:80px}
+button{padding:11px 16px;background:#d8bd83;color:#111;border:0;border-radius:4px;font-weight:bold;cursor:pointer;margin:4px}
+button.secondary{background:#29251e;color:#eee9df;border:1px solid #62533b}
+button.danger{background:#4b2525;color:#fff}
+.small{color:#aaa49a;font-size:13px}
+.hidden{display:none}
+.item{border-top:1px solid #393125;padding:14px 0;overflow-wrap:anywhere}
+.actions{display:flex;gap:5px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">WAVE TEAM / MANAGER</div>
+  <a href="index.html" style="color:#d8bd83">Открыть сайт ↗</a>
+</header>
+<main>
+  <section id="login" class="panel">
+    <h1>Панель менеджера</h1>
+    <p class="small">Войди с аккаунтом, созданным в Supabase Authentication.</p>
+    <form id="login-form">
+      <input id="email" type="email" placeholder="Email менеджера" required>
+      <input id="password" type="password" placeholder="Пароль" required>
+      <button type="submit">ВОЙТИ</button>
+    </form>
+    <p id="login-message" class="small"></p>
+  </section>
+
+  <section id="dashboard" class="hidden">
+    <div class="panel">
+      <h2>Управление</h2>
+      <p class="small" id="signed-in"></p>
+      <button id="refresh" class="secondary">Обновить данные</button>
+      <button id="logout" class="secondary">Выйти</button>
+      <p id="notice" class="small" aria-live="polite"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Игроки</h2>
+      <form id="player-form">
+        <input name="nickname" placeholder="Игровой ник" required maxlength="40">
+        <input name="role" placeholder="Роль: Rifler, AWPer..." required>
+        <input name="sort_order" type="number" placeholder="Порядок: 1–5" value="1" required>
+        <button type="submit">Добавить игрока</button>
+      </form>
+      <div id="players-list"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Матчи</h2>
+      <form id="match-form">
+        <input name="opponent" placeholder="Соперник" required>
+        <input name="score" placeholder="Счёт, например 0-0" value="0-0" required>
+        <input name="status" placeholder="Статус: UPCOMING" value="UPCOMING" required>
+        <label class="small">Дата матча (необязательно)</label>
+        <input name="match_date" type="datetime-local">
+        <button type="submit">Добавить матч</button>
+      </form>
+      <div id="matches-list"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Новости</h2>
+      <form id="news-form">
+        <input name="title" placeholder="Заголовок новости" required>
+        <input name="category" placeholder="Категория" value="TEAM NEWS" required>
+        <textarea name="body" placeholder="Текст новости" required></textarea>
+        <button type="submit">Опубликовать новость</button>
+      </form>
+      <div id="news-list"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Заявки академии</h2>
+      <p class="small">Здесь отображаются заявки, отправленные посетителями сайта.</p>
+      <div id="applications-list"></div>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const db = window.supabase.createClient(
+  'https://hjtrnyufryxudqgvqkuo.supabase.co',
+  'sb_publishable_q6wpqCXCpunEsIPNU2Hqjw_8Jk44FXi'
+);
+
+const $ = id => document.getElementById(id);
+const loginSection = $('login');
+const dashboard = $('dashboard');
+
+function say(text){ $('notice').textContent = text; }
+function esc(value){
+  return String(value ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[c]);
+}
+function formData(form){
+  return Object.fromEntries(new FormData(form).entries());
+}
+function item(title, details, id, table){
+  return `<div class="item">
+    <strong>${esc(title)}</strong>
+    <p class="small">${esc(details)}</p>
+    <button class="danger" data-delete="${esc(table)}" data-id="${esc(id)}">Удалить</button>
+  </div>`;
+}
+
+async function loadData(){
+  say('Загружаем данные...');
+  const [p,m,n,a] = await Promise.all([
+    db.from('players').select('*').order('sort_order'),
+    db.from('matches').select('*').order('created_at',{ascending:false}),
+    db.from('news').select('*').order('created_at',{ascending:false}),
+    db.from('academy_applications').select('*').order('created_at',{ascending:false})
+  ]);
+
+  const result = [p,m,n,a];
+  const failed = result.find(r => r.error);
+  if(failed){
+    say('Ошибка загрузки: '+failed.error.message);
+    return;
+  }
+
+  $('players-list').innerHTML = p.data.map(x =>
+    item(x.nickname, x.role+' · порядок '+x.sort_order, x.id, 'players')
+  ).join('') || '<p class="small">Игроков пока нет.</p>';
+
+  $('matches-list').innerHTML = m.data.map(x =>
+    item(x.opponent, x.score+' · '+x.status, x.id, 'matches')
+  ).join('') || '<p class="small">Матчей пока нет.</p>';
+
+  $('news-list').innerHTML = n.data.map(x =>
+    item(x.title, x.category, x.id, 'news')
+  ).join('') || '<p class="small">Новостей пока нет.</p>';
+
+  $('applications-list').innerHTML = a.data.map(x =>
+    `<div class="item">
+      <strong>${esc(x.nickname)} · ${esc(x.age)} лет</strong>
+      <p class="small">Роль: ${esc(x.role)} · Рейтинг: ${esc(x.rating)}</p>
+      <p>Контакт: ${esc(x.contact)}</p>
+      <p>Steam: ${esc(x.steam)}</p>
+      <p>${esc(x.about)}</p>
+      <label class="small">Статус заявки</label>
+      <select data-app-status="${esc(x.id)}">
+        ${['NEW','REVIEWING','ACCEPTED','REJECTED'].map(s =>
+          `<option ${x.status===s?'selected':''}>${s}</option>`
+        ).join('')}
+      </select>
+      <button data-save-app="${esc(x.id)}">Сохранить статус</button>
+    </div>`
+  ).join('') || '<p class="small">Заявок пока нет.</p>';
+
+  say('Данные обновлены.');
+}
+
+async function checkSession(){
+  const {data:{session}} = await db.auth.getSession();
+  loginSection.classList.toggle('hidden', !!session);
+  dashboard.classList.toggle('hidden', !session);
+  if(session){
+    $('signed-in').textContent='Вход выполнен: '+session.user.email;
+    await loadData();
+  }
+}
+
+$('login-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  $('login-message').textContent='Выполняется вход...';
+  const {error} = await db.auth.signInWithPassword({
+    email:$('email').value,
+    password:$('password').value
+  });
+  if(error){
+    $('login-message').textContent='Ошибка входа: '+error.message;
+    return;
+  }
+  $('login-message').textContent='';
+  await checkSession();
+});
+
+$('logout').addEventListener('click', async () => {
+  await db.auth.signOut();
+  await checkSession();
+});
+
+$('refresh').addEventListener('click', loadData);
+
+$('player-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const d=formData(e.currentTarget);
+  const {error}=await db.from('players').insert([{
+    nickname:d.nickname.trim(), role:d.role.trim(),
+    sort_order:Number(d.sort_order), published:true
+  }]);
+  if(error){say('Ошибка: '+error.message);return;}
+  e.currentTarget.reset();
+  say('Игрок добавлен.');
+  await loadData();
+});
+
+$('match-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const d=formData(e.currentTarget);
+  const {error}=await db.from('matches').insert([{
+    opponent:d.opponent.trim(), score:d.score.trim(),
+    status:d.status.trim(),
+    match_date:d.match_date ? new Date(d.match_date).toISOString() : null,
+    published:true
+  }]);
+  if(error){say('Ошибка: '+error.message);return;}
+  e.currentTarget.reset();
+  e.currentTarget.elements.score.value='0-0';
+  e.currentTarget.elements.status.value='UPCOMING';
+  say('Матч добавлен.');
+  await loadData();
+});
+
+$('news-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const d=formData(e.currentTarget);
+  const {error}=await db.from('news').insert([{
+    title:d.title.trim(), category:d.category.trim(),
+    body:d.body.trim(), published:true
+  }]);
+  if(error){say('Ошибка: '+error.message);return;}
+  e.currentTarget.reset();
+  e.currentTarget.elements.category.value='TEAM NEWS';
+  say('Новость опубликована.');
+  await loadData();
+});
+
+document.addEventListener('click', async e => {
+  const del=e.target.closest('[data-delete]');
+  if(del){
+    const table=del.dataset.delete;
+    if(!['players','matches','news'].includes(table)) return;
+    if(!confirm('Точно удалить эту запись?')) return;
+    const {error}=await db.from(table).delete().eq('id',del.dataset.id);
+    if(error){say('Ошибка удаления: '+error.message);return;}
+    await loadData();
+  }
+
+  const save=e.target.closest('[data-save-app]');
+  if(save){
+    const id=save.dataset.saveApp;
+    const select=document.querySelector(`[data-app-status="${CSS.escape(id)}"]`);
+    const {error}=await db.from('academy_applications')
+      .update({status:select.value}).eq('id',id);
+    if(error){say('Ошибка сохранения: '+error.message);return;}
+    say('Статус заявки обновлён.');
+    await loadData();
+  }
+});
+
+db.auth.onAuthStateChange(() => {
+  setTimeout(checkSession,0);
+});
+checkSession();
+</script>
+</body>
+</html>
