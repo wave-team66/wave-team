@@ -257,6 +257,48 @@
 
   loadWaveTeam();
 </script>
+  
+async function loadWaveNews() {
+  const grid = document.getElementById('news-grid');
+  if (!grid) return;
+
+  const { data, error } = await db
+    .from('news')
+    .select('title, body, category, created_at')
+    .eq('published', true)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Ошибка загрузки новостей:', error);
+    grid.innerHTML = '<article class="card"><p>Новости временно недоступны.</p></article>';
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    grid.innerHTML = '<article class="card"><p>Скоро здесь появятся новости команды.</p></article>';
+    return;
+  }
+
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[c]);
+
+  grid.innerHTML = data.map(news => `
+    <article class="card">
+      <span class="number">${esc(news.category)}</span>
+      <h3>${esc(news.title)}</h3>
+      <p class="muted">${esc(news.body).replace(/\n/g, '<br>')}</p>
+      <p class="muted">${news.created_at ? new Date(news.created_at).toLocaleDateString('ru-RU') : ''}</p>
+    </article>
+  `).join('');
+}
+
+loadWaveNews();
+
 </body>
 </html>
 
