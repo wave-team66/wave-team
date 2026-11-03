@@ -277,7 +277,7 @@ async function loadWaveNews() {
   const { data, error } = await db
     .from('news')
     .select('title, body, category, created_at')
-    .eq('is_published', true)
+    .eq('published', true)
     .order('created_at', { ascending: false });
 
   if (error) {
