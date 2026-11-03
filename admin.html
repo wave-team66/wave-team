@@ -20,6 +20,34 @@ button.secondary{background:#29251e;color:#eee9df;border:1px solid #62533b}
 button.danger{background:#4b2525;color:#fff}
 .small{color:#aaa49a;font-size:13px}
 .hidden{display:none}
+  .stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.stat-card {
+  background: #121210;
+  border: 1px solid #514634;
+  border-radius: 8px;
+  padding: 18px;
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  color: #d8bd83;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 600px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 .item{border-top:1px solid #393125;padding:14px 0;overflow-wrap:anywhere}
 .actions{display:flex;gap:5px;flex-wrap:wrap}
 </style>
