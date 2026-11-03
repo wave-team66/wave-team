@@ -70,11 +70,16 @@
   <header>
     <a class="logo" href="#">WAVE<span class="gold">.</span></a>
     <nav>
-      <a href="#team">Состав</a>
-      <a href="#matches">Матчи</a>
-      <a href="#academy">Академия</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
+      <button class="menu-toggle" onclick="document.getElementById('mainNav').classList.toggle('open')">
+  ☰
+</button>
+
+<nav id="mainNav">
+  <a href="#team" onclick="document.getElementById('mainNav').classList.remove('open')">Состав</a>
+  <a href="#matches" onclick="document.getElementById('mainNav').classList.remove('open')">Матчи</a>
+  <a href="#academy" onclick="document.getElementById('mainNav').classList.remove('open')">Академия</a>
+  <a href="#contacts" onclick="document.getElementById('mainNav').classList.remove('open')">Контакты</a>
+</nav>
   </header>
 
   <main>
