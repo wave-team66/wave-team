@@ -64,7 +64,34 @@
       section { padding: 60px 6%; }
       h1 { letter-spacing: -3px; }
     }
-  </style>
+  </style>.menu-toggle {
+  display: none;
+  background: transparent;
+  color: #d6b875;
+  border: 1px solid #d6b875;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  #mainNav {
+    display: none;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  #mainNav.open {
+    display: flex;
+  }
+}
 </head>
 <body>
   <header>
