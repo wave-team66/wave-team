@@ -182,7 +182,10 @@ async function loadData(){
     say('Ошибка загрузки: '+failed.error.message);
     return;
   }
-
+$('players-count').textContent = p.data.length;
+$('matches-count').textContent = m.data.length;
+$('news-count').textContent = n.data.length;
+$('applications-count').textContent = a.data.length;
   $('players-list').innerHTML = p.data.map(x =>
     item(x.nickname, x.role+' · порядок '+x.sort_order, x.id, 'players')
   ).join('') || '<p class="small">Игроков пока нет.</p>';
