@@ -57,6 +57,25 @@
     textarea { min-height: 100px; resize: vertical; }
     button { cursor: pointer; font: inherit; }
     footer { padding: 30px 8%; color: #918d85; font-size: 12px; border-top: 1px solid #29251d; }
+
+    .player-card { padding:0; overflow:hidden; cursor:pointer; transition:transform .2s,border-color .2s; }
+    .player-card:hover { transform:translateY(-4px); border-color:#d8bd83; }
+    .player-photo { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:#1b1915; }
+    .player-info { padding:20px; }
+    .player-card h3 { margin:12px 0 7px; }
+    .profile-link { color:#d8bd83; font-size:12px; letter-spacing:1px; margin-top:12px; display:inline-block; }
+    .media-card { overflow:hidden; }
+    .video-frame { width:100%; aspect-ratio:16/9; border:0; display:block; background:#000; }
+    .tournament-image { width:100%; max-height:520px; object-fit:contain; display:block; background:#080808; }
+    .media-card .media-copy { padding:18px; }
+    .empty-state { color:#918d85; padding:22px; border:1px dashed #393329; }
+    .modal { position:fixed; inset:0; z-index:20; display:none; align-items:center; justify-content:center; padding:20px; background:#000d; }
+    .modal.open { display:flex; }
+    .modal-box { width:min(680px,100%); max-height:90vh; overflow:auto; background:#11110f; border:1px solid #d8bd83; padding:26px; position:relative; }
+    .modal-close { position:absolute; right:12px; top:10px; background:transparent; color:#d8bd83; border:0; font-size:26px; }
+    .modal-photo { width:100%; max-height:340px; object-fit:cover; margin:12px 0; }
+    @media(max-width:650px) { .player-info {padding:16px;} .modal-box{padding:20px;} }
+
     @media(max-width: 650px) {
       header { padding: 18px 5%; flex-wrap: wrap; gap: 15px; }
       nav { gap: 13px; flex-wrap: wrap; }
@@ -69,16 +88,14 @@
 <body>
   <header>
     <a class="logo" href="#">WAVE<span class="gold">.</span></a>
-    <nav>
-      <button class="menu-toggle" onclick="document.getElementById('mainNav').classList.toggle('open')">
-</button>
-
-<nav
-  <a href="#team">Состав</a>
-  <a href="#matches">Матчи</a>
-  <a href="#academy">Академия</a>
-  <a href="#contacts">Контакты</a>
-</nav>
+    <nav id="mainNav">
+      <a href="#team">Состав</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#tournaments">Турниры</a>
+      <a href="#matches">Матчи</a>
+      <a href="#academy">Академия</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
   </header>
 
   <main>
@@ -95,17 +112,29 @@
     <section id="team">
       <div class="section-label">01 / ROSTER</div>
       <h2>Наш <span class="gold">состав</span></h2>
-      <div class="grid">
-        <article class="card"><span class="number">01 / RIFLER</span><h3>WAVE PLAYER 1</h3><p class="muted">Основной состав</p></article>
-        <article class="card"><span class="number">02 / AWPER</span><h3>WAVE PLAYER 2</h3><p class="muted">Основной состав</p></article>
-        <article class="card"><span class="number">03 / IGL</span><h3>WAVE PLAYER 3</h3><p class="muted">Капитан</p></article>
-        <article class="card"><span class="number">04 / SUPPORT</span><h3>WAVE PLAYER 4</h3><p class="muted">Основной состав</p></article>
-        <article class="card"><span class="number">05 / LURKER</span><h3>WAVE PLAYER 5</h3><p class="muted">Основной состав</p></article>
+      <div class="grid" id="players-grid">
+        <article class="card"><p class="muted">Загрузка состава...</p></article>
+      </div>
+    </section>
+
+    <section id="highlights">
+      <div class="section-label">02 / PLAYER MOMENTS</div>
+      <h2>Player <span class="gold">highlights</span></h2>
+      <div class="grid" id="highlights-grid">
+        <article class="card"><p class="muted">Загрузка видео...</p></article>
+      </div>
+    </section>
+
+    <section id="tournaments">
+      <div class="section-label">03 / COMPETITIVE HISTORY</div>
+      <h2>Наши <span class="gold">турниры</span></h2>
+      <div class="grid" id="tournaments-grid">
+        <article class="card"><p class="muted">Загрузка турниров...</p></article>
       </div>
     </section>
 
     <section id="matches">
-      <div class="section-label">02 / MATCH CENTER</div>
+      <div class="section-label">04 / MATCH CENTER</div>
       <h2>Ближайшие <span class="gold">матчи</span></h2>
       <div class="grid">
         <article class="card match"><div><h3>WAVE TEAM</h3><p class="muted">VS TBA</p></div><div class="score">0-0</div></article>
@@ -116,7 +145,7 @@
 
     
 <section id="news">
-  <div class="section-label">03 / LATEST UPDATES</div>
+  <div class="section-label">05 / LATEST UPDATES</div>
   <h2>Новости <span class="gold">WAVE TEAM</span></h2>
 
   <div class="grid" id="news-grid">
@@ -126,7 +155,7 @@
   </div>
 </section>
 <section id="academy" class="academy">
-      <div class="section-label">03 / JOIN THE NEXT WAVE</div>
+      <div class="section-label">06 / JOIN THE NEXT WAVE</div>
       <h2>Академия <span class="gold">WAVE</span></h2>
       <p class="muted" style="margin-bottom:28px">Хочешь попасть в команду? Расскажи о себе и оставь заявку.</p>
       <form id="application">
@@ -147,7 +176,7 @@
     </section>
 
     <section id="contacts">
-      <div class="section-label">04 / CONTACT</div>
+      <div class="section-label">07 / CONTACT</div>
       <h2>Связь с <span class="gold">нами</span></h2>
       <div class="grid">
         <a class="card" href="https://t.me/cfls66" target="_blank" rel="noopener"><span class="number">TELEGRAM</span><h3>WAVE TEAM ↗</h3><p class="muted">Новости и связь</p></a>
@@ -156,6 +185,12 @@
       </div>
     </section>
   </main>
+  <div class="modal" id="player-modal" role="dialog" aria-modal="true" aria-label="Профиль игрока">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Закрыть">×</button>
+      <div id="player-modal-content"></div>
+    </div>
+  </div>
   <footer>© 2026 WAVE TEAM — CS2 ESPORTS. ALL RIGHTS RESERVED.</footer>
   
 
@@ -222,55 +257,117 @@
     });
   }
 
-  async function loadWaveTeam() {
-    const teamGrid = document.querySelector('#team .grid');
-    const matchesGrid = document.querySelector('#matches .grid');
 
+  function youtubeEmbed(url) {
     try {
-      const { data: players, error: playersError } = await db
-        .from('players')
-        .select('nickname, role, sort_order')
-        .eq('published', true)
-        .order('sort_order');
+      const u = new URL(url);
+      let id = '';
+      if (u.hostname.includes('youtu.be')) id = u.pathname.slice(1);
+      else if (u.hostname.includes('youtube.com')) id = u.searchParams.get('v') || (u.pathname.includes('/embed/') ? u.pathname.split('/embed/')[1] : '');
+      return id ? 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id.split('&')[0]) : '';
+    } catch (_) { return ''; }
+  }
 
-      if (playersError) throw playersError;
+  async function loadWaveTeam() {
+    const teamGrid = document.getElementById('players-grid');
+    const matchesGrid = document.querySelector('#matches .grid');
+    const highlightsGrid = document.getElementById('highlights-grid');
+    const tournamentsGrid = document.getElementById('tournaments-grid');
 
-      if (players && players.length && teamGrid) {
-        teamGrid.innerHTML = players.map((player, index) => `
-          <article class="card">
+    const { data: players, error: playersError } = await db
+      .from('players')
+      .select('id, nickname, role, sort_order, photo_url, bio, published')
+      .eq('published', true)
+      .order('sort_order');
+
+    if (playersError) {
+      console.error('Ошибка загрузки игроков:', playersError);
+      if (teamGrid) teamGrid.innerHTML = '<article class="card"><p class="muted">Не удалось загрузить состав. Проверьте миграцию Supabase.</p></article>';
+    } else if (teamGrid) {
+      teamGrid.innerHTML = (players || []).map((player, index) => `
+        <article class="card player-card" tabindex="0" role="button" data-player-id="${waveEscape(player.id)}">
+          ${player.photo_url ? `<img class="player-photo" src="${waveEscape(player.photo_url)}" alt="${waveEscape(player.nickname)}" loading="lazy">` : `<div class="player-photo" aria-label="Фото игрока отсутствует"></div>`}
+          <div class="player-info">
             <span class="number">${String(index + 1).padStart(2, '0')} / ${waveEscape(player.role)}</span>
             <h3>${waveEscape(player.nickname)}</h3>
             <p class="muted">WAVE TEAM</p>
-          </article>
-        `).join('');
+            <span class="profile-link">ОТКРЫТЬ ПРОФИЛЬ ↗</span>
+          </div>
+        </article>
+      `).join('') || '<div class="empty-state">Состав скоро появится.</div>';
+
+      const openProfile = (id) => {
+        const player = (players || []).find(p => String(p.id) === String(id));
+        if (!player) return;
+        document.getElementById('player-modal-content').innerHTML = `
+          <span class="number">WAVE TEAM / PLAYER PROFILE</span>
+          <h2>${waveEscape(player.nickname)}</h2>
+          ${player.photo_url ? `<img class="modal-photo" src="${waveEscape(player.photo_url)}" alt="${waveEscape(player.nickname)}">` : ''}
+          <p class="number">${waveEscape(player.role)}</p>
+          <p class="muted" style="margin-top:14px;white-space:pre-wrap">${waveEscape(player.bio || 'Профиль игрока WAVE TEAM.')}</p>
+        `;
+        document.getElementById('player-modal').classList.add('open');
+      };
+      teamGrid.querySelectorAll('[data-player-id]').forEach(card => {
+        card.addEventListener('click', () => openProfile(card.dataset.playerId));
+        card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProfile(card.dataset.playerId); } });
+      });
+    }
+
+    const { data: matches, error: matchesError } = await db
+      .from('matches').select('opponent, score, status, match_date')
+      .eq('published', true).order('match_date', { ascending: true, nullsFirst: true });
+    if (!matchesError && matches && matches.length && matchesGrid) {
+      matchesGrid.innerHTML = matches.map(match => `
+        <article class="card match"><div><h3>WAVE TEAM</h3>
+        <p class="muted">VS ${waveEscape(match.opponent)}</p>
+        <p class="muted">${waveEscape(match.status)}</p></div>
+        <div class="score">${waveEscape(match.score)}</div></article>`).join('');
+    }
+
+    const { data: highlights, error: highlightsError } = await db
+      .from('highlights').select('title, player_nickname, youtube_url, description, created_at')
+      .eq('published', true).order('created_at', { ascending: false });
+    if (highlightsGrid) {
+      if (highlightsError) {
+        console.error('Ошибка загрузки хайлайтов:', highlightsError);
+        highlightsGrid.innerHTML = '<div class="empty-state">Хайлайты пока недоступны.</div>';
+      } else {
+        highlightsGrid.innerHTML = (highlights || []).map(item => {
+          const embed = youtubeEmbed(item.youtube_url);
+          return `<article class="card media-card">
+            ${embed ? `<iframe class="video-frame" src="${embed}" title="${waveEscape(item.title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>` : ''}
+            <div class="media-copy"><span class="number">${waveEscape(item.player_nickname)}</span>
+            <h3>${waveEscape(item.title)}</h3><p class="muted">${waveEscape(item.description || '')}</p></div>
+          </article>`;
+        }).join('') || '<div class="empty-state">Видео хайлайтов скоро появятся.</div>';
       }
+    }
 
-      const { data: matches, error: matchesError } = await db
-        .from('matches')
-        .select('opponent, score, status, match_date')
-        .eq('published', true)
-        .order('match_date', { ascending: true, nullsFirst: true });
-
-      if (matchesError) throw matchesError;
-
-      if (matches && matches.length && matchesGrid) {
-        matchesGrid.innerHTML = matches.map(match => `
-          <article class="card match">
-            <div>
-              <h3>WAVE TEAM</h3>
-              <p class="muted">VS ${waveEscape(match.opponent)}</p>
-              <p class="muted">${waveEscape(match.status)}</p>
-            </div>
-            <div class="score">${waveEscape(match.score)}</div>
-          </article>
-        `).join('');
+    const { data: tournaments, error: tournamentsError } = await db
+      .from('tournaments').select('title, image_url, description, created_at')
+      .eq('published', true).order('created_at', { ascending: false });
+    if (tournamentsGrid) {
+      if (tournamentsError) {
+        console.error('Ошибка загрузки турниров:', tournamentsError);
+        tournamentsGrid.innerHTML = '<div class="empty-state">Турнирные таблицы пока недоступны.</div>';
+      } else {
+        tournamentsGrid.innerHTML = (tournaments || []).map(item => `
+          <article class="card media-card">
+            <a href="${waveEscape(item.image_url)}" target="_blank" rel="noopener">
+              <img class="tournament-image" src="${waveEscape(item.image_url)}" alt="${waveEscape(item.title)}" loading="lazy">
+            </a>
+            <div class="media-copy"><h3>${waveEscape(item.title)}</h3><p class="muted">${waveEscape(item.description || '')}</p></div>
+          </article>`).join('') || '<div class="empty-state">Турнирные таблицы скоро появятся.</div>';
       }
-    } catch (error) {
-      console.error('WAVE TEAM database error:', error);
     }
   }
 
+  document.getElementById('modal-close')?.addEventListener('click', () => document.getElementById('player-modal').classList.remove('open'));
+  document.getElementById('player-modal')?.addEventListener('click', e => { if (e.target.id === 'player-modal') e.currentTarget.classList.remove('open'); });
+
   loadWaveTeam();
+
 </script>
   
 <script>
@@ -316,4 +413,3 @@ loadWaveNews();
 </script>
 </body>
 </html>
-
