@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -215,7 +214,8 @@ button{width:100%;margin:5px 0}
 </div>
 
 <div class="panel">
-<h2>Заявки академии</h2>
+<h2>WAVE ACADEMY 2.0</h2>
+<p class="small">Полный цикл отбора: новая заявка → рассмотрение → тестирование → принятие или резерв. Принятого кандидата можно добавить в основной состав одной кнопкой.</p>
 <div id="applications-list"></div>
 </div>
 
@@ -237,6 +237,7 @@ const dashboard=$('dashboard');
 let cachedPlayers=[];
 let cachedMatches=[];
 let cachedAdjustments=[];
+let cachedApplications=[];
 
 function say(text){$('notice').textContent=text}
 
@@ -327,6 +328,7 @@ return;
 cachedPlayers=p.data||[];
 cachedMatches=m.data||[];
 cachedAdjustments=adj.data||[];
+cachedApplications=a.data||[];
 
 $('players-count').textContent=p.data.length;
 $('matches-count').textContent=m.data.length;
@@ -422,11 +424,12 @@ $('applications-list').innerHTML=a.data.map(x=>`
 <p>${esc(x.about)}</p>
 <label class="small">Статус заявки</label>
 <select data-app-status="${esc(x.id)}">
-${['NEW','REVIEWING','ACCEPTED','REJECTED'].map(s=>
-`<option ${x.status===s?'selected':''}>${s}</option>`
+${[['NEW','Новая'],['REVIEWING','На рассмотрении'],['TESTING','Тестирование'],['WAITLIST','Резерв'],['ACCEPTED','Принят'],['REJECTED','Отказ']].map(([value,label])=>
+`<option value="${value}" ${x.status===value?'selected':''}>${label}</option>`
 ).join('')}
 </select>
 <button type="button" data-save-app="${esc(x.id)}">Сохранить статус</button>
+${x.status==='ACCEPTED'?(cachedPlayers.some(p=>String(p.nickname).toLowerCase()===String(x.nickname).toLowerCase())?'<p class="small">Этот игрок уже есть в составе.</p>':`<button type="button" data-promote-app="${esc(x.id)}">Добавить в основной состав</button>`):''}
 </div>
 `).join('')||'<p class="small">Заявок пока нет.</p>';
 
@@ -698,6 +701,28 @@ await loadData();
 }catch(error){
 say('Ошибка: '+error.message);
 }
+return;
+}
+
+const promote=e.target.closest('[data-promote-app]');
+if(promote){
+const application=cachedApplications.find(x=>String(x.id)===String(promote.dataset.promoteApp));
+if(!application){say('Заявка не найдена. Обнови данные.');return}
+if(cachedPlayers.some(p=>String(p.nickname).toLowerCase()===String(application.nickname).toLowerCase())){
+say('Игрок с таким ником уже есть в составе.');return;
+}
+if(!confirm('Добавить '+application.nickname+' в основной состав WAVE TEAM?'))return;
+const nextOrder=cachedPlayers.reduce((max,p)=>Math.max(max,Number(p.sort_order)||0),0)+1;
+const {error}=await db.from('players').insert([{
+nickname:String(application.nickname||'').trim(),
+role:String(application.role||'Rifler').trim()||'Rifler',
+sort_order:nextOrder,
+bio:String(application.about||'').trim()||null,
+published:true
+}]);
+if(error){say('Ошибка добавления в состав: '+error.message);return}
+say('Кандидат добавлен в основной состав!');
+await loadData();
 return;
 }
 
