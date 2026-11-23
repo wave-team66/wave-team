@@ -43,8 +43,11 @@ h2{font-size:clamp(32px,5vw,54px);margin:14px 0 32px}
 .match{display:flex;justify-content:space-between;gap:15px;align-items:center}
 .score{color:#d8bd83;font-size:24px;font-weight:bold;white-space:nowrap}
 .match-details{border-top:1px solid #393329;margin-top:16px;padding-top:12px}
-.match-details p{margin:5px 0}
+.match-details p{margin:8px 0;overflow-wrap:anywhere}
 .match-status{display:inline-block;color:#d8bd83;border:1px solid #665333;padding:5px 9px;font-size:10px;letter-spacing:1px;margin-top:10px}
+.match-detail-label{color:#d8bd83;font-weight:bold}
+.match-lineup{background:#1b1915;border-left:2px solid #8e7446;padding:12px;margin-top:12px;white-space:pre-wrap;overflow-wrap:anywhere}
+.match-mvp{background:#211d14;border:1px solid #665333;padding:12px;margin-top:12px}
 .academy{background:#12100c;border-top:1px solid #302b21;border-bottom:1px solid #302b21}
 form{display:grid;gap:13px;max-width:600px}
 input,select,textarea{width:100%;padding:14px;color:#f4f0e8;background:#090909;border:1px solid #393329;font:inherit;outline-color:#d8bd83}
@@ -244,7 +247,7 @@ async function loadWaveTeam(){
   db.from('player_stats').select('player_id,matches_played,wins,losses,kills,deaths,assists,adr,kast,rating'),
   db.from('matches').select('mvp_player_id').eq('published',true),
   db.from('player_mvp_adjustments').select('player_id,delta'),
-  db.from('matches').select('opponent,score,status,match_date,map_name,round_score,lineup,match_url,mvp_player_id').eq('published',true).order('match_date',{ascending:true,nullsFirst:true}),
+  db.from('matches').select('opponent,score,status,match_date,map_name,round_score,lineup,mvp_player_id').eq('published',true).order('match_date',{ascending:true,nullsFirst:true}),
   db.from('highlights').select('title,player_nickname,youtube_url,description,created_at').eq('published',true).order('created_at',{ascending:false}),
   db.from('tournaments').select('title,image_url,description,created_at').eq('published',true).order('created_at',{ascending:false}),
   db.from('news').select('title,body,category,created_at').eq('published',true).order('created_at',{ascending:false})
@@ -319,7 +322,13 @@ async function loadWaveTeam(){
 
  if(!m.error&&m.data){
   $('matches-grid').innerHTML=m.data.map(x=>{
-   const link=safeUrl(x.match_url);
+   const mvpName=x.mvp_player_id
+    ?players.find(p=>String(p.id)===String(x.mvp_player_id))?.nickname||'Игрок WAVE TEAM'
+    :'';
+   const matchTime=x.match_date
+    ?new Date(x.match_date).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})
+    :'';
+
    return `<article class="card">
     <div class="match">
      <div><h3>WAVE TEAM</h3><p class="muted">VS ${esc(x.opponent)}</p></div>
@@ -327,16 +336,18 @@ async function loadWaveTeam(){
     </div>
     <span class="match-status">${esc(x.status||'MATCH')}</span>
     <div class="match-details">
-     ${x.match_date?`<p class="muted">📅 ${dateText(x.match_date)} · ${esc(new Date(x.match_date).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}))}</p>`:''}
-     ${x.map_name?`<p class="muted">🗺 Карта: ${esc(x.map_name)}</p>`:''}
-     ${x.round_score?`<p class="muted">Счёт по раундам: <strong>${esc(x.round_score)}</strong></p>`:''}
-     ${x.lineup?`<p class="muted">Состав: ${esc(x.lineup)}</p>`:''}
-     ${x.mvp_player_id?`<p class="muted">⭐ MVP матча: ${esc(players.find(p=>String(p.id)===String(x.mvp_player_id))?.nickname||'Игрок WAVE TEAM')}</p>`:''}
-     ${link?`<p style="margin-top:12px"><a class="profile-link" href="${esc(link)}" target="_blank" rel="noopener">ДЕТАЛИ МАТЧА ↗</a></p>`:''}
+     ${x.match_date?`<p class="muted">📅 ${dateText(x.match_date)}${matchTime?' · '+esc(matchTime):''}</p>`:''}
+     ${x.map_name?`<p class="muted">🗺 <span class="match-detail-label">Карта:</span> ${esc(x.map_name)}</p>`:''}
+     ${x.round_score?`<p class="muted">🎯 <span class="match-detail-label">Счёт по раундам:</span> ${esc(x.round_score)}</p>`:''}
+     ${x.lineup?`<div class="match-lineup"><p class="match-detail-label">👥 СОСТАВ WAVE TEAM</p><p class="muted">${esc(x.lineup)}</p></div>`:''}
+     ${mvpName?`<div class="match-mvp"><p class="match-detail-label">⭐ MVP МАТЧА</p><p>${esc(mvpName)}</p></div>`:''}
     </div>
    </article>`;
   }).join('')||'<div class="empty-state">Матчи скоро появятся.</div>';
- }else if(m.error){console.error('Матчи:',m.error);$('matches-grid').innerHTML='<div class="empty-state">Матчи временно недоступны.</div>'}
+ }else if(m.error){
+  console.error('Матчи:',m.error);
+  $('matches-grid').innerHTML='<div class="empty-state">Матчи временно недоступны.</div>';
+ }
 
  if(h.error){console.error('Хайлайты:',h.error);$('highlights-grid').innerHTML='<div class="empty-state">Хайлайты пока недоступны.</div>'}
  else $('highlights-grid').innerHTML=(h.data||[]).map(x=>{
