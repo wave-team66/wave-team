@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -34,189 +35,189 @@ button:disabled{opacity:.5;cursor:wait}
 .file-box{background:#0b0b09;padding:12px;border:1px solid #393125;border-radius:6px;margin:10px 0}
 a{color:#d8bd83}
 @media(max-width:600px){
- .stats{grid-template-columns:repeat(2,1fr)}
- main{margin:12px auto}
- .panel{padding:14px}
- .logo{font-size:16px}
- button{width:100%;margin:5px 0}
- .actions button{width:auto;flex:1}
+.stats{grid-template-columns:repeat(2,1fr)}
+main{margin:12px auto}
+.panel{padding:14px}
+.logo{font-size:16px}
+button{width:100%;margin:5px 0}
+.actions button{width:auto;flex:1}
 }
 </style>
 </head>
 
 <body>
 <header>
- <div class="logo">WAVE TEAM / MANAGER</div>
- <a href="index.html">Открыть сайт ↗</a>
+<div class="logo">WAVE TEAM / MANAGER</div>
+<a href="index.html">Открыть сайт ↗</a>
 </header>
 
 <main>
 
 <section id="login" class="panel">
- <h1>Панель менеджера</h1>
- <p class="small">Войди с аккаунтом Supabase.</p>
- <form id="login-form">
-  <input id="email" type="email" placeholder="Email менеджера" required>
-  <input id="password" type="password" placeholder="Пароль" required>
-  <button type="submit">ВОЙТИ</button>
- </form>
- <p id="login-message" class="small"></p>
+<h1>Панель менеджера</h1>
+<p class="small">Войди с аккаунтом Supabase.</p>
+<form id="login-form">
+<input id="email" type="email" placeholder="Email менеджера" required>
+<input id="password" type="password" placeholder="Пароль" required>
+<button type="submit">ВОЙТИ</button>
+</form>
+<p id="login-message" class="small"></p>
 </section>
 
 <section id="dashboard" class="hidden">
 
- <div class="stats">
-  <div class="stat-card"><span class="stat-number" id="players-count">0</span><span class="small">Игроки</span></div>
-  <div class="stat-card"><span class="stat-number" id="matches-count">0</span><span class="small">Матчи</span></div>
-  <div class="stat-card"><span class="stat-number" id="news-count">0</span><span class="small">Новости</span></div>
-  <div class="stat-card"><span class="stat-number" id="applications-count">0</span><span class="small">Заявки</span></div>
- </div>
+<div class="stats">
+<div class="stat-card"><span class="stat-number" id="players-count">0</span><span class="small">Игроки</span></div>
+<div class="stat-card"><span class="stat-number" id="matches-count">0</span><span class="small">Матчи</span></div>
+<div class="stat-card"><span class="stat-number" id="news-count">0</span><span class="small">Новости</span></div>
+<div class="stat-card"><span class="stat-number" id="applications-count">0</span><span class="small">Заявки</span></div>
+</div>
 
- <div class="panel">
-  <h2>Управление</h2>
-  <p class="small" id="signed-in"></p>
-  <button id="refresh" class="secondary">Обновить данные</button>
-  <button id="logout" class="secondary">Выйти</button>
-  <p id="notice" class="small" aria-live="polite"></p>
- </div>
+<div class="panel">
+<h2>Управление</h2>
+<p class="small" id="signed-in"></p>
+<button id="refresh" class="secondary">Обновить данные</button>
+<button id="logout" class="secondary">Выйти</button>
+<p id="notice" class="small" aria-live="polite"></p>
+</div>
 
- <div class="panel">
-  <h2>Игроки и аватарки</h2>
-  <form id="player-form">
-   <input name="nickname" placeholder="Игровой ник" required maxlength="40">
-   <input name="role" placeholder="Роль: Rifler, AWPer..." required>
-   <input name="sort_order" type="number" placeholder="Порядок" value="1" required>
-   <label class="small">Фотография игрока (необязательно)</label>
-   <input name="photo" type="file" accept="image/*">
-   <button type="submit">Добавить игрока</button>
-  </form>
-  <div id="players-list"></div>
- </div>
+<div class="panel">
+<h2>Игроки и аватарки</h2>
+<form id="player-form">
+<input name="nickname" placeholder="Игровой ник" required maxlength="40">
+<input name="role" placeholder="Роль: Rifler, AWPer..." required>
+<input name="sort_order" type="number" placeholder="Порядок" value="1" required>
+<label class="small">Фотография игрока (необязательно)</label>
+<input name="photo" type="file" accept="image/*">
+<button type="submit">Добавить игрока</button>
+</form>
+<div id="players-list"></div>
+</div>
 
- <div class="panel">
-  <h2>Турнирные таблицы</h2>
-  <form id="tournament-form">
-   <input name="title" placeholder="Название турнира" required>
-   <textarea name="description" placeholder="Описание турнира (необязательно)"></textarea>
-   <label class="small">Фотография турнирной таблицы</label>
-   <input name="image" type="file" accept="image/*" required>
-   <button type="submit">Загрузить турнир</button>
-  </form>
-  <div id="tournaments-list"></div>
- </div>
+<div class="panel">
+<h2>Турнирные таблицы</h2>
+<form id="tournament-form">
+<input name="title" placeholder="Название турнира" required>
+<textarea name="description" placeholder="Описание турнира (необязательно)"></textarea>
+<label class="small">Фотография турнирной таблицы</label>
+<input name="image" type="file" accept="image/*" required>
+<button type="submit">Загрузить турнир</button>
+</form>
+<div id="tournaments-list"></div>
+</div>
 
- <div class="panel">
-  <h2>Player Highlights</h2>
-  <form id="highlight-form">
-   <input name="title" placeholder="Название видео" required>
-   <input name="player_nickname" placeholder="Ник игрока" required>
-   <input name="youtube_url" type="url" placeholder="Ссылка на YouTube" required>
-   <textarea name="description" placeholder="Описание (необязательно)"></textarea>
-   <button type="submit">Добавить хайлайт</button>
-  </form>
-  <div id="highlights-list"></div>
- </div>
+<div class="panel">
+<h2>Player Highlights</h2>
+<form id="highlight-form">
+<input name="title" placeholder="Название видео" required>
+<input name="player_nickname" placeholder="Ник игрока" required>
+<input name="youtube_url" type="url" placeholder="Ссылка на YouTube" required>
+<textarea name="description" placeholder="Описание (необязательно)"></textarea>
+<button type="submit">Добавить хайлайт</button>
+</form>
+<div id="highlights-list"></div>
+</div>
 
- <div class="panel">
-  <h2>Матчи</h2>
-  <p class="small">Добавляй результаты и подробности матчей. Необязательные поля можно оставить пустыми.</p>
+<div class="panel">
+<h2>Матчи</h2>
+<p class="small">Добавляй результаты и подробности матчей. Необязательные поля можно оставить пустыми.</p>
 
-  <form id="match-form">
-   <input name="opponent" placeholder="Соперник" required>
-   <input name="score" placeholder="Итоговый счёт, например 1-0" value="0-0" required>
-   <input name="status" placeholder="Статус: UPCOMING / LIVE / FINISHED" value="UPCOMING" required>
+<form id="match-form">
+<input name="opponent" placeholder="Соперник" required>
+<input name="score" placeholder="Итоговый счёт, например 1-0" value="0-0" required>
+<input name="status" placeholder="Статус: UPCOMING / LIVE / FINISHED" value="UPCOMING" required>
 
-   <label class="small">Дата и время матча</label>
-   <input name="match_date" type="datetime-local">
+<label class="small">Дата и время матча</label>
+<input name="match_date" type="datetime-local">
 
-   <input name="map_name" placeholder="Карта: Mirage, Inferno, Ancient...">
-   <input name="round_score" placeholder="Счёт по раундам: например 13-10">
-   <textarea name="lineup" placeholder="Состав на матч: player1, player2, player3..."></textarea>
-   <input name="match_url" type="url" placeholder="Ссылка на матч / трансляцию">
+<input name="map_name" placeholder="Карта: Mirage, Inferno, Ancient...">
+<input name="round_score" placeholder="Счёт по раундам: например 13-10">
+<textarea name="lineup" placeholder="Состав на матч: player1, player2, player3..."></textarea>
 
-   <label class="small">MVP матча (необязательно)</label>
-   <select name="mvp_player_id" id="match-mvp">
-    <option value="">Без MVP</option>
-   </select>
+<label class="small">MVP матча (необязательно)</label>
+<select name="mvp_player_id" id="match-mvp">
+<option value="">Без MVP</option>
+</select>
 
-   <button type="submit">Добавить матч</button>
-  </form>
-  <div id="matches-list"></div>
- </div>
+<button type="submit">Добавить матч</button>
+</form>
 
- <div class="panel">
-  <h2>Управление MVP</h2>
-  <p class="small">Ручное добавление или снятие MVP. Это отдельный счётчик, не связанный с наградами игрока.</p>
-  <form id="mvp-form">
-   <label class="small">Игрок</label>
-   <select name="player_id" id="mvp-player" required>
-    <option value="">Выбери игрока</option>
-   </select>
-   <label class="small">Действие</label>
-   <select name="delta" required>
-    <option value="1">Добавить 1 MVP</option>
-    <option value="-1">Снять 1 MVP</option>
-   </select>
-   <input name="note" placeholder="Причина или комментарий (необязательно)">
-   <button type="submit">Сохранить изменение MVP</button>
-  </form>
-  <div id="mvp-list"></div>
- </div>
+<div id="matches-list"></div>
+</div>
 
- <div class="panel">
-  <h2>Награды игроков</h2>
-  <p class="small">Например: Игрок месяца, MVP турнира, Лучший снайпер, Игрок финала.</p>
-  <form id="award-form">
-   <label class="small">Игрок</label>
-   <select name="player_id" id="award-player" required>
-    <option value="">Выбери игрока</option>
-   </select>
-   <input name="title" placeholder="Название награды" required>
-   <textarea name="description" placeholder="Описание награды (необязательно)"></textarea>
-   <label class="small">Дата получения</label>
-   <input name="awarded_at" type="date">
-   <button type="submit">Добавить награду</button>
-  </form>
-  <div id="awards-list"></div>
- </div>
+<div class="panel">
+<h2>Управление MVP</h2>
+<p class="small">Ручное добавление или снятие MVP. Это отдельный счётчик, не связанный с наградами игрока.</p>
+<form id="mvp-form">
+<label class="small">Игрок</label>
+<select name="player_id" id="mvp-player" required>
+<option value="">Выбери игрока</option>
+</select>
+<label class="small">Действие</label>
+<select name="delta" required>
+<option value="1">Добавить 1 MVP</option>
+<option value="-1">Снять 1 MVP</option>
+</select>
+<input name="note" placeholder="Причина или комментарий (необязательно)">
+<button type="submit">Сохранить изменение MVP</button>
+</form>
+<div id="mvp-list"></div>
+</div>
 
- <div class="panel">
-  <h2>Статистика игроков</h2>
-  <p class="small">Заполняй личную статистику игрока. Значения вводятся вручную.</p>
-  <form id="stats-form">
-   <label class="small">Игрок</label>
-   <select name="player_id" id="stats-player" required>
-    <option value="">Выбери игрока</option>
-   </select>
-   <input name="matches_played" type="number" min="0" placeholder="Сыграно матчей" value="0" required>
-   <input name="wins" type="number" min="0" placeholder="Победы" value="0" required>
-   <input name="losses" type="number" min="0" placeholder="Поражения" value="0" required>
-   <input name="kills" type="number" min="0" placeholder="Убийства" value="0" required>
-   <input name="deaths" type="number" min="0" placeholder="Смерти" value="0" required>
-   <input name="assists" type="number" min="0" placeholder="Ассисты" value="0" required>
-   <input name="adr" type="number" min="0" step="0.01" placeholder="ADR" value="0" required>
-   <input name="kast" type="number" min="0" max="100" step="0.01" placeholder="KAST (%)" value="0" required>
-   <input name="rating" type="number" min="0" step="0.01" placeholder="Rating" value="0" required>
-   <button type="submit">Сохранить статистику</button>
-  </form>
-  <div id="stats-list"></div>
- </div>
+<div class="panel">
+<h2>Награды игроков</h2>
+<p class="small">Например: Игрок месяца, MVP турнира, Лучший снайпер, Игрок финала.</p>
+<form id="award-form">
+<label class="small">Игрок</label>
+<select name="player_id" id="award-player" required>
+<option value="">Выбери игрока</option>
+</select>
+<input name="title" placeholder="Название награды" required>
+<textarea name="description" placeholder="Описание награды (необязательно)"></textarea>
+<label class="small">Дата получения</label>
+<input name="awarded_at" type="date">
+<button type="submit">Добавить награду</button>
+</form>
+<div id="awards-list"></div>
+</div>
 
- <div class="panel">
-  <h2>Новости</h2>
-  <form id="news-form">
-   <input name="title" placeholder="Заголовок новости" required>
-   <input name="category" placeholder="Категория" value="TEAM NEWS" required>
-   <textarea name="body" placeholder="Текст новости" required></textarea>
-   <button type="submit">Опубликовать новость</button>
-  </form>
-  <div id="news-list"></div>
- </div>
+<div class="panel">
+<h2>Статистика игроков</h2>
+<p class="small">Заполняй личную статистику игрока. Значения вводятся вручную.</p>
+<form id="stats-form">
+<label class="small">Игрок</label>
+<select name="player_id" id="stats-player" required>
+<option value="">Выбери игрока</option>
+</select>
+<input name="matches_played" type="number" min="0" placeholder="Сыграно матчей" value="0" required>
+<input name="wins" type="number" min="0" placeholder="Победы" value="0" required>
+<input name="losses" type="number" min="0" placeholder="Поражения" value="0" required>
+<input name="kills" type="number" min="0" placeholder="Убийства" value="0" required>
+<input name="deaths" type="number" min="0" placeholder="Смерти" value="0" required>
+<input name="assists" type="number" min="0" placeholder="Ассисты" value="0" required>
+<input name="adr" type="number" min="0" step="0.01" placeholder="ADR" value="0" required>
+<input name="kast" type="number" min="0" max="100" step="0.01" placeholder="KAST (%)" value="0" required>
+<input name="rating" type="number" min="0" step="0.01" placeholder="Rating" value="0" required>
+<button type="submit">Сохранить статистику</button>
+</form>
+<div id="stats-list"></div>
+</div>
 
- <div class="panel">
-  <h2>Заявки академии</h2>
-  <div id="applications-list"></div>
- </div>
+<div class="panel">
+<h2>Новости</h2>
+<form id="news-form">
+<input name="title" placeholder="Заголовок новости" required>
+<input name="category" placeholder="Категория" value="TEAM NEWS" required>
+<textarea name="body" placeholder="Текст новости" required></textarea>
+<button type="submit">Опубликовать новость</button>
+</form>
+<div id="news-list"></div>
+</div>
+
+<div class="panel">
+<h2>Заявки академии</h2>
+<div id="applications-list"></div>
+</div>
 
 </section>
 </main>
@@ -225,8 +226,8 @@ a{color:#d8bd83}
 
 <script>
 const db=window.supabase.createClient(
- 'https://hjtrnyufryxudqgvqkuo.supabase.co',
- 'sb_publishable_q6wpqCXCpunEsIPNU2Hqjw_8Jk44FXi'
+'https://hjtrnyufryxudqgvqkuo.supabase.co',
+'sb_publishable_q6wpqCXCpunEsIPNU2Hqjw_8Jk44FXi'
 );
 
 const $=id=>document.getElementById(id);
@@ -240,396 +241,512 @@ let cachedAdjustments=[];
 function say(text){$('notice').textContent=text}
 
 function esc(value){
- return String(value??'').replace(/[&<>"']/g,c=>({
-  '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
- })[c]);
+return String(value??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+})[c]);
 }
 
 function formData(form){
- return Object.fromEntries(new FormData(form).entries());
+return Object.fromEntries(new FormData(form).entries());
 }
 
 function playerName(id){
- const player=cachedPlayers.find(p=>String(p.id)===String(id));
- return player?player.nickname:'Неизвестный игрок';
+const player=cachedPlayers.find(p=>String(p.id)===String(id));
+return player?player.nickname:'Неизвестный игрок';
 }
 
 function playerOptions(selected=''){
- return '<option value="">Выбери игрока</option>'+cachedPlayers.map(p=>
-  `<option value="${esc(p.id)}" ${String(p.id)===String(selected)?'selected':''}>${esc(p.nickname)}</option>`
- ).join('');
+return '<option value="">Выбери игрока</option>'+cachedPlayers.map(p=>
+`<option value="${esc(p.id)}" ${String(p.id)===String(selected)?'selected':''}>${esc(p.nickname)}</option>`
+).join('');
 }
 
 function fillPlayerSelects(){
- ['match-mvp','mvp-player','award-player','stats-player'].forEach(id=>{
-  const select=$(id);
-  const oldValue=select.value;
-  select.innerHTML=playerOptions(oldValue);
- });
+['match-mvp','mvp-player','award-player','stats-player'].forEach(id=>{
+const select=$(id);
+const oldValue=select.value;
+select.innerHTML=playerOptions(oldValue);
+});
 }
 
 function mvpTotal(playerId){
- const fromMatches=cachedMatches.filter(m=>String(m.mvp_player_id)===String(playerId)).length;
- const manual=cachedAdjustments
-  .filter(x=>String(x.player_id)===String(playerId))
-  .reduce((sum,x)=>sum+Number(x.delta),0);
- return Math.max(0,fromMatches+manual);
+const fromMatches=cachedMatches.filter(m=>String(m.mvp_player_id)===String(playerId)).length;
+const manual=cachedAdjustments
+.filter(x=>String(x.player_id)===String(playerId))
+.reduce((sum,x)=>sum+Number(x.delta),0);
+return Math.max(0,fromMatches+manual);
 }
 
 async function uploadImage(file,folder){
- if(!file)throw new Error('Выбери фотографию.');
- if(!file.type.startsWith('image/'))throw new Error('Нужен файл изображения.');
- if(file.size>10*1024*1024)throw new Error('Фотография должна быть меньше 10 МБ.');
+if(!file)throw new Error('Выбери фотографию.');
+if(!file.type.startsWith('image/'))throw new Error('Нужен файл изображения.');
+if(file.size>10*1024*1024)throw new Error('Фотография должна быть меньше 10 МБ.');
 
- const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
- const path=folder+'/'+Date.now()+'_'+safeName;
+const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+const path=folder+'/'+Date.now()+'_'+safeName;
 
- const {error}=await db.storage.from('wave-media').upload(path,file,{
-  cacheControl:'3600',upsert:false
- });
- if(error)throw error;
+const {error}=await db.storage.from('wave-media').upload(path,file,{
+cacheControl:'3600',upsert:false
+});
+if(error)throw error;
 
- const {data}=db.storage.from('wave-media').getPublicUrl(path);
- return data.publicUrl;
+const {data}=db.storage.from('wave-media').getPublicUrl(path);
+return data.publicUrl;
 }
 
 function item(title,details,id,table){
- return `<div class="item">
-  <strong>${esc(title)}</strong>
-  <p class="small">${esc(details)}</p>
-  <button class="danger" data-delete="${esc(table)}" data-id="${esc(id)}">Удалить</button>
- </div>`;
+return `<div class="item">
+<strong>${esc(title)}</strong>
+<p class="small">${esc(details)}</p>
+<button class="danger" data-delete="${esc(table)}" data-id="${esc(id)}">Удалить</button>
+</div>`;
 }
 
 async function loadData(){
- say('Загружаем данные...');
+say('Загружаем данные...');
 
- const [p,m,n,a,h,t,aw,adj,st]=await Promise.all([
-  db.from('players').select('*').order('sort_order'),
-  db.from('matches').select('*').order('created_at',{ascending:false}),
-  db.from('news').select('*').order('created_at',{ascending:false}),
-  db.from('academy_applications').select('*').order('created_at',{ascending:false}),
-  db.from('highlights').select('*').order('created_at',{ascending:false}),
-  db.from('tournaments').select('*').order('created_at',{ascending:false}),
-  db.from('player_awards').select('*').order('awarded_at',{ascending:false}),
-  db.from('player_mvp_adjustments').select('*').order('created_at',{ascending:false}),
-  db.from('player_stats').select('*')
- ]);
+const [p,m,n,a,h,t,aw,adj,st]=await Promise.all([
+db.from('players').select('*').order('sort_order'),
+db.from('matches').select('*').order('created_at',{ascending:false}),
+db.from('news').select('*').order('created_at',{ascending:false}),
+db.from('academy_applications').select('*').order('created_at',{ascending:false}),
+db.from('highlights').select('*').order('created_at',{ascending:false}),
+db.from('tournaments').select('*').order('created_at',{ascending:false}),
+db.from('player_awards').select('*').order('awarded_at',{ascending:false}),
+db.from('player_mvp_adjustments').select('*').order('created_at',{ascending:false}),
+db.from('player_stats').select('*')
+]);
 
- const failed=[p,m,n,a,h,t,aw,adj,st].find(r=>r.error);
- if(failed){
-  say('Ошибка загрузки: '+failed.error.message);
-  console.error(failed.error);
-  return;
- }
+const failed=[p,m,n,a,h,t,aw,adj,st].find(r=>r.error);
+if(failed){
+say('Ошибка загрузки: '+failed.error.message);
+console.error(failed.error);
+return;
+}
 
- cachedPlayers=p.data||[];
- cachedMatches=m.data||[];
- cachedAdjustments=adj.data||[];
+cachedPlayers=p.data||[];
+cachedMatches=m.data||[];
+cachedAdjustments=adj.data||[];
 
- $('players-count').textContent=p.data.length;
- $('matches-count').textContent=m.data.length;
- $('news-count').textContent=n.data.length;
- $('applications-count').textContent=a.data.length;
+$('players-count').textContent=p.data.length;
+$('matches-count').textContent=m.data.length;
+$('news-count').textContent=n.data.length;
+$('applications-count').textContent=a.data.length;
 
- fillPlayerSelects();
+fillPlayerSelects();
 
- $('players-list').innerHTML=p.data.map(x=>`
-  <div class="item">
-   <strong>${esc(x.nickname)}</strong>
-   <p class="small">${esc(x.role)} · порядок ${esc(x.sort_order)}</p>
-   <p class="small">MVP: <strong>${mvpTotal(x.id)}</strong></p>
-   ${x.photo_url?`<img class="preview" src="${esc(x.photo_url)}" alt="Аватар игрока">`:'<p class="small">Аватар пока не добавлен</p>'}
-   <div class="file-box">
-    <label class="small">Выбрать аватарку из галереи</label>
-    <input type="file" accept="image/*" data-player-file="${esc(x.id)}">
-    <button type="button" data-upload-player="${esc(x.id)}">Загрузить аватарку</button>
-   </div>
-   <button type="button" class="danger" data-delete="players" data-id="${esc(x.id)}">Удалить игрока</button>
-  </div>
- `).join('')||'<p class="small">Игроков пока нет.</p>';
+$('players-list').innerHTML=p.data.map(x=>`
+<div class="item">
+<strong>${esc(x.nickname)}</strong>
+<p class="small">${esc(x.role)} · порядок ${esc(x.sort_order)}</p>
+<p class="small">MVP: <strong>${mvpTotal(x.id)}</strong></p>
+${x.photo_url?`<img class="preview" src="${esc(x.photo_url)}" alt="Аватар игрока">`:'<p class="small">Аватар пока не добавлен</p>'}
+<div class="file-box">
+<label class="small">Выбрать аватарку из галереи</label>
+<input type="file" accept="image/*" data-player-file="${esc(x.id)}">
+<button type="button" data-upload-player="${esc(x.id)}">Загрузить аватарку</button>
+</div>
+<button type="button" class="danger" data-delete="players" data-id="${esc(x.id)}">Удалить игрока</button>
+</div>
+`).join('')||'<p class="small">Игроков пока нет.</p>';
 
- $('matches-list').innerHTML=m.data.map(x=>`
-  <div class="item">
-   <strong>${esc(x.opponent)}</strong>
-   <p class="small">${esc(x.score)} · ${esc(x.status)}</p>
-   <p class="small">Дата: ${esc(x.match_date||'Не указана')}</p>
-   <p class="small">Карта: ${esc(x.map_name||'Не указана')}</p>
-   <p class="small">Счёт по раундам: ${esc(x.round_score||'Не указан')}</p>
-   <p class="small">Состав: ${esc(x.lineup||'Не указан')}</p>
-   <p class="small">MVP матча: ${x.mvp_player_id?esc(playerName(x.mvp_player_id)):'Не выбран'}</p>
-   ${x.match_url?`<p><a href="${esc(x.match_url)}" target="_blank" rel="noopener">Открыть матч ↗</a></p>`:''}
-   <button type="button" class="danger" data-delete="matches" data-id="${esc(x.id)}">Удалить</button>
-  </div>
- `).join('')||'<p class="small">Матчей пока нет.</p>';
+$('matches-list').innerHTML=m.data.map(x=>`
+<div class="item">
+<strong>${esc(x.opponent)}</strong>
+<p class="small">${esc(x.score)} · ${esc(x.status)}</p>
+<p class="small">Дата: ${esc(x.match_date||'Не указана')}</p>
+<p class="small">Карта: ${esc(x.map_name||'Не указана')}</p>
+<p class="small">Счёт по раундам: ${esc(x.round_score||'Не указан')}</p>
+<p class="small">Состав: ${esc(x.lineup||'Не указан')}</p>
+<p class="small">MVP матча: ${x.mvp_player_id?esc(playerName(x.mvp_player_id)):'Не выбран'}</p>
+<button type="button" class="danger" data-delete="matches" data-id="${esc(x.id)}">Удалить</button>
+</div>
+`).join('')||'<p class="small">Матчей пока нет.</p>';
 
- $('mvp-list').innerHTML=cachedPlayers.map(x=>`
-  <div class="item">
-   <strong>${esc(x.nickname)}</strong>
-   <p class="small">Всего MVP: <strong>${mvpTotal(x.id)}</strong></p>
-  </div>
- `).join('')||'<p class="small">Игроков пока нет.</p>';
+$('mvp-list').innerHTML=cachedPlayers.map(x=>`
+<div class="item">
+<strong>${esc(x.nickname)}</strong>
+<p class="small">Всего MVP: <strong>${mvpTotal(x.id)}</strong></p>
+</div>
+`).join('')||'<p class="small">Игроков пока нет.</p>';
 
- $('awards-list').innerHTML=aw.data.map(x=>`
-  <div class="item">
-   <strong>${esc(x.title)}</strong>
-   <p class="small">Игрок: ${esc(playerName(x.player_id))}</p>
-   <p class="small">Дата: ${esc(x.awarded_at||'Не указана')}</p>
-   <p>${esc(x.description||'')}</p>
-   <button type="button" class="danger" data-delete="player_awards" data-id="${esc(x.id)}">Удалить награду</button>
-  </div>
- `).join('')||'<p class="small">Наград пока нет.</p>';
+$('awards-list').innerHTML=aw.data.map(x=>`
+<div class="item">
+<strong>${esc(x.title)}</strong>
+<p class="small">Игрок: ${esc(playerName(x.player_id))}</p>
+<p class="small">Дата: ${esc(x.awarded_at||'Не указана')}</p>
+<p>${esc(x.description||'')}</p>
+<button type="button" class="danger" data-delete="player_awards" data-id="${esc(x.id)}">Удалить награду</button>
+</div>
+`).join('')||'<p class="small">Наград пока нет.</p>';
 
- $('stats-list').innerHTML=st.data.map(x=>`
-  <div class="item">
-   <strong>${esc(playerName(x.player_id))}</strong>
-   <p class="small">
-    Матчи: ${esc(x.matches_played)} · Победы: ${esc(x.wins)} · Поражения: ${esc(x.losses)}<br>
-    K/D/A: ${esc(x.kills)} / ${esc(x.deaths)} / ${esc(x.assists)}<br>
-    ADR: ${esc(x.adr)} · KAST: ${esc(x.kast)}% · Rating: ${esc(x.rating)}
-   </p>
-  </div>
- `).join('')||'<p class="small">Статистика пока не заполнена.</p>';
+$('stats-list').innerHTML=st.data.map(x=>`
+<div class="item">
+<strong>${esc(playerName(x.player_id))}</strong>
+<p class="small">
+Матчи: ${esc(x.matches_played)} · Победы: ${esc(x.wins)} · Поражения: ${esc(x.losses)}<br>
+K/D/A: ${esc(x.kills)} / ${esc(x.deaths)} / ${esc(x.assists)}<br>
+ADR: ${esc(x.adr)} · KAST: ${esc(x.kast)}% · Rating: ${esc(x.rating)}
+</p>
+</div>
+`).join('')||'<p class="small">Статистика пока не заполнена.</p>';
 
- $('news-list').innerHTML=n.data.map(x=>
-  item(x.title,x.category,x.id,'news')
- ).join('')||'<p class="small">Новостей пока нет.</p>';
+$('news-list').innerHTML=n.data.map(x=>
+item(x.title,x.category,x.id,'news')
+).join('')||'<p class="small">Новостей пока нет.</p>';
 
- $('highlights-list').innerHTML=h.data.map(x=>`
-  <div class="item">
-   <strong>${esc(x.title)}</strong>
-   <p class="small">${esc(x.player_nickname)}</p>
-   <p><a href="${esc(x.youtube_url)}" target="_blank" rel="noopener">Открыть видео ↗</a></p>
-   <button type="button" class="danger" data-delete="highlights" data-id="${esc(x.id)}">Удалить</button>
-  </div>
- `).join('')||'<p class="small">Хайлайтов пока нет.</p>';
+$('highlights-list').innerHTML=h.data.map(x=>`
+<div class="item">
+<strong>${esc(x.title)}</strong>
+<p class="small">${esc(x.player_nickname)}</p>
+<p><a href="${esc(x.youtube_url)}" target="_blank" rel="noopener">Открыть видео ↗</a></p>
+<button type="button" class="danger" data-delete="highlights" data-id="${esc(x.id)}">Удалить</button>
+</div>
+`).join('')||'<p class="small">Хайлайтов пока нет.</p>';
 
- $('tournaments-list').innerHTML=t.data.map(x=>`
-  <div class="item">
-   <strong>${esc(x.title)}</strong>
-   <p class="small">${esc(x.description||'')}</p>
-   ${x.image_url?`<img class="preview" src="${esc(x.image_url)}" alt="Турнирная таблица">`:''}
-   <button type="button" class="danger" data-delete="tournaments" data-id="${esc(x.id)}">Удалить турнир</button>
-  </div>
- `).join('')||'<p class="small">Турниров пока нет.</p>';
+$('tournaments-list').innerHTML=t.data.map(x=>`
+<div class="item">
+<strong>${esc(x.title)}</strong>
+<p class="small">${esc(x.description||'')}</p>
+${x.image_url?`<img class="preview" src="${esc(x.image_url)}" alt="Турнирная таблица">`:''}
+<button type="button" class="danger" data-delete="tournaments" data-id="${esc(x.id)}">Удалить турнир</button>
+</div>
+`).join('')||'<p class="small">Турниров пока нет.</p>';
 
- $('applications-list').innerHTML=a.data.map(x=>`
-  <div class="item">
-   <strong>${esc(x.nickname)} · ${esc(x.age)} лет</strong>
-   <p class="small">Роль: ${esc(x.role)} · Рейтинг: ${esc(x.rating)}</p>
-   <p>Контакт: ${esc(x.contact)}</p>
-   <p>Steam: ${esc(x.steam)}</p>
-   <p>${esc(x.about)}</p>
-   <label class="small">Статус заявки</label>
-   <select data-app-status="${esc(x.id)}">
-    ${['NEW','REVIEWING','ACCEPTED','REJECTED'].map(s=>
-     `<option ${x.status===s?'selected':''}>${s}</option>`
-    ).join('')}
-   </select>
-   <button type="button" data-save-app="${esc(x.id)}">Сохранить статус</button>
-  </div>
- `).join('')||'<p class="small">Заявок пока нет.</p>';
+$('applications-list').innerHTML=a.data.map(x=>`
+<div class="item">
+<strong>${esc(x.nickname)} · ${esc(x.age)} лет</strong>
+<p class="small">Роль: ${esc(x.role)} · Рейтинг: ${esc(x.rating)}</p>
+<p>Контакт: ${esc(x.contact)}</p>
+<p>Steam: ${esc(x.steam)}</p>
+<p>${esc(x.about)}</p>
+<label class="small">Статус заявки</label>
+<select data-app-status="${esc(x.id)}">
+${['NEW','REVIEWING','ACCEPTED','REJECTED'].map(s=>
+`<option ${x.status===s?'selected':''}>${s}</option>`
+).join('')}
+</select>
+<button type="button" data-save-app="${esc(x.id)}">Сохранить статус</button>
+</div>
+`).join('')||'<p class="small">Заявок пока нет.</p>';
 
- say('Данные обновлены.');
+say('Данные обновлены.');
 }
 
 async function checkSession(){
- const {data:{session},error}=await db.auth.getSession();
- if(error){$('login-message').textContent=error.message;return}
- loginSection.classList.toggle('hidden',!!session);
- dashboard.classList.toggle('hidden',!session);
- if(session){
-  $('signed-in').textContent='Вход выполнен: '+session.user.email;
-  await loadData();
- }
+const {data:{session},error}=await db.auth.getSession();
+if(error){$('login-message').textContent=error.message;return}
+
+loginSection.classList.toggle('hidden',!!session);
+dashboard.classList.toggle('hidden',!session);
+
+if(session){
+$('signed-in').textContent='Вход выполнен: '+session.user.email;
+await loadData();
+}
 }
 
 $('login-form').addEventListener('submit',async e=>{
- e.preventDefault();
- $('login-message').textContent='Выполняется вход...';
- const {error}=await db.auth.signInWithPassword({
-  email:$('email').value,
-  password:$('password').value
- });
- if(error){$('login-message').textContent='Ошибка входа: '+error.message;return}
- $('login-message').textContent='';
- await checkSession();
+e.preventDefault();
+$('login-message').textContent='Выполняется вход...';
+
+const {error}=await db.auth.signInWithPassword({
+email:$('email').value,
+password:$('password').value
+});
+
+if(error){
+$('login-message').textContent='Ошибка входа: '+error.message;
+return;
+}
+
+$('login-message').textContent='';
+await checkSession();
 });
 
 $('logout').addEventListener('click',async()=>{
- await db.auth.signOut();
- await checkSession();
+await db.auth.signOut();
+await checkSession();
 });
 
 $('refresh').addEventListener('click',loadData);
 
 $('player-form').addEventListener('submit',async e=>{
- e.preventDefault();
- const form=e.currentTarget,d=formData(form);
- try{
-  let photo_url=null;
-  if(d.photo&&d.photo.size)photo_url=await uploadImage(d.photo,'players');
-  const {error}=await db.from('players').insert([{
-   nickname:d.nickname.trim(),role:d.role.trim(),
-   sort_order:Number(d.sort_order),photo_url,published:true
-  }]);
-  if(error)throw error;
-  form.reset();say('Игрок добавлен!');await loadData();
- }catch(error){say('Ошибка: '+error.message)}
+e.preventDefault();
+const form=e.currentTarget,d=formData(form);
+
+try{
+let photo_url=null;
+if(d.photo&&d.photo.size)photo_url=await uploadImage(d.photo,'players');
+
+const {error}=await db.from('players').insert([{
+nickname:d.nickname.trim(),
+role:d.role.trim(),
+sort_order:Number(d.sort_order),
+photo_url,published:true
+}]);
+
+if(error)throw error;
+
+form.reset();
+say('Игрок добавлен!');
+await loadData();
+}catch(error){
+say('Ошибка: '+error.message);
+}
 });
 
 $('tournament-form').addEventListener('submit',async e=>{
- e.preventDefault();
- const form=e.currentTarget,d=formData(form);
- try{
-  say('Загружаем фотографию турнира...');
-  const image_url=await uploadImage(d.image,'tournaments');
-  const {error}=await db.from('tournaments').insert([{
-   title:d.title.trim(),image_url,
-   description:d.description.trim(),published:true
-  }]);
-  if(error)throw error;
-  form.reset();say('Турнир добавлен!');await loadData();
- }catch(error){say('Ошибка: '+error.message)}
+e.preventDefault();
+const form=e.currentTarget,d=formData(form);
+
+try{
+say('Загружаем фотографию турнира...');
+const image_url=await uploadImage(d.image,'tournaments');
+
+const {error}=await db.from('tournaments').insert([{
+title:d.title.trim(),
+image_url,
+description:d.description.trim(),
+published:true
+}]);
+
+if(error)throw error;
+
+form.reset();
+say('Турнир добавлен!');
+await loadData();
+}catch(error){
+say('Ошибка: '+error.message);
+}
 });
 
 $('highlight-form').addEventListener('submit',async e=>{
- e.preventDefault();
- const form=e.currentTarget,d=formData(form);
- const {error}=await db.from('highlights').insert([{
-  title:d.title.trim(),player_nickname:d.player_nickname.trim(),
-  youtube_url:d.youtube_url.trim(),description:d.description.trim(),published:true
- }]);
- if(error){say('Ошибка: '+error.message);return}
- form.reset();say('Хайлайт добавлен!');await loadData();
+e.preventDefault();
+const form=e.currentTarget,d=formData(form);
+
+const {error}=await db.from('highlights').insert([{
+title:d.title.trim(),
+player_nickname:d.player_nickname.trim(),
+youtube_url:d.youtube_url.trim(),
+description:d.description.trim(),
+published:true
+}]);
+
+if(error){
+say('Ошибка: '+error.message);
+return;
+}
+
+form.reset();
+say('Хайлайт добавлен!');
+await loadData();
 });
 
 $('match-form').addEventListener('submit',async e=>{
- e.preventDefault();
- const form=e.currentTarget,d=formData(form);
- const {error}=await db.from('matches').insert([{
-  opponent:d.opponent.trim(),
-  score:d.score.trim(),
-  status:d.status.trim(),
-  match_date:d.match_date?new Date(d.match_date).toISOString():null,
-  mvp_player_id:d.mvp_player_id||null,
-  map_name:d.map_name.trim()||null,
-  round_score:d.round_score.trim()||null,
-  lineup:d.lineup.trim()||null,
-  match_url:d.match_url.trim()||null,
-  published:true
- }]);
- if(error){say('Ошибка добавления матча: '+error.message);return}
- form.reset();
- form.elements.score.value='0-0';
- form.elements.status.value='UPCOMING';
- say('Матч добавлен!');await loadData();
+e.preventDefault();
+const form=e.currentTarget,d=formData(form);
+
+const {error}=await db.from('matches').insert([{
+opponent:d.opponent.trim(),
+score:d.score.trim(),
+status:d.status.trim(),
+match_date:d.match_date?new Date(d.match_date).toISOString():null,
+mvp_player_id:d.mvp_player_id||null,
+map_name:d.map_name.trim()||null,
+round_score:d.round_score.trim()||null,
+lineup:d.lineup.trim()||null,
+published:true
+}]);
+
+if(error){
+say('Ошибка добавления матча: '+error.message);
+return;
+}
+
+form.reset();
+form.elements.score.value='0-0';
+form.elements.status.value='UPCOMING';
+say('Матч добавлен!');
+await loadData();
 });
 
 $('mvp-form').addEventListener('submit',async e=>{
- e.preventDefault();
- const form=e.currentTarget,d=formData(form);
- const delta=Number(d.delta);
- const current=mvpTotal(d.player_id);
- if(delta===-1&&current<=0){
-  say('У этого игрока нет MVP, который можно снять.');return;
- }
- const {error}=await db.from('player_mvp_adjustments').insert([{
-  player_id:d.player_id,delta,note:d.note.trim()||null
- }]);
- if(error){say('Ошибка изменения MVP: '+error.message);return}
- form.reset();say(delta===1?'MVP добавлен!':'MVP снят.');await loadData();
+e.preventDefault();
+const form=e.currentTarget,d=formData(form);
+const delta=Number(d.delta);
+const current=mvpTotal(d.player_id);
+
+if(delta===-1&&current<=0){
+say('У этого игрока нет MVP, который можно снять.');
+return;
+}
+
+const {error}=await db.from('player_mvp_adjustments').insert([{
+player_id:d.player_id,
+delta,
+note:d.note.trim()||null
+}]);
+
+if(error){
+say('Ошибка изменения MVP: '+error.message);
+return;
+}
+
+form.reset();
+say(delta===1?'MVP добавлен!':'MVP снят.');
+await loadData();
 });
 
 $('award-form').addEventListener('submit',async e=>{
- e.preventDefault();
- const form=e.currentTarget,d=formData(form);
- const {error}=await db.from('player_awards').insert([{
-  player_id:d.player_id,title:d.title.trim(),
-  description:d.description.trim(),
-  awarded_at:d.awarded_at||new Date().toISOString().slice(0,10),
-  published:true
- }]);
- if(error){say('Ошибка добавления награды: '+error.message);return}
- form.reset();say('Награда добавлена!');await loadData();
+e.preventDefault();
+const form=e.currentTarget,d=formData(form);
+
+const {error}=await db.from('player_awards').insert([{
+player_id:d.player_id,
+title:d.title.trim(),
+description:d.description.trim(),
+awarded_at:d.awarded_at||new Date().toISOString().slice(0,10),
+published:true
+}]);
+
+if(error){
+say('Ошибка добавления награды: '+error.message);
+return;
+}
+
+form.reset();
+say('Награда добавлена!');
+await loadData();
 });
 
 $('stats-form').addEventListener('submit',async e=>{
- e.preventDefault();
- const form=e.currentTarget,d=formData(form);
- const values={
-  player_id:d.player_id,
-  matches_played:Number(d.matches_played),
-  wins:Number(d.wins),losses:Number(d.losses),
-  kills:Number(d.kills),deaths:Number(d.deaths),
-  assists:Number(d.assists),adr:Number(d.adr),
-  kast:Number(d.kast),rating:Number(d.rating),
-  updated_at:new Date().toISOString()
- };
- if(values.wins+values.losses>values.matches_played){
-  say('Победы и поражения не могут превышать количество матчей.');return;
- }
- const {error}=await db.from('player_stats').upsert(values,{onConflict:'player_id'});
- if(error){say('Ошибка сохранения статистики: '+error.message);return}
- say('Статистика сохранена!');await loadData();
+e.preventDefault();
+const form=e.currentTarget,d=formData(form);
+
+const values={
+player_id:d.player_id,
+matches_played:Number(d.matches_played),
+wins:Number(d.wins),
+losses:Number(d.losses),
+kills:Number(d.kills),
+deaths:Number(d.deaths),
+assists:Number(d.assists),
+adr:Number(d.adr),
+kast:Number(d.kast),
+rating:Number(d.rating),
+updated_at:new Date().toISOString()
+};
+
+if(values.wins+values.losses>values.matches_played){
+say('Победы и поражения не могут превышать количество матчей.');
+return;
+}
+
+const {error}=await db.from('player_stats').upsert(values,{onConflict:'player_id'});
+
+if(error){
+say('Ошибка сохранения статистики: '+error.message);
+return;
+}
+
+say('Статистика сохранена!');
+await loadData();
 });
 
 $('news-form').addEventListener('submit',async e=>{
- e.preventDefault();
- const form=e.currentTarget,d=formData(form);
- const {error}=await db.from('news').insert([{
-  title:d.title.trim(),category:d.category.trim(),
-  body:d.body.trim(),published:true
- }]);
- if(error){say('Ошибка: '+error.message);return}
- form.reset();form.elements.category.value='TEAM NEWS';
- say('Новость опубликована.');await loadData();
+e.preventDefault();
+const form=e.currentTarget,d=formData(form);
+
+const {error}=await db.from('news').insert([{
+title:d.title.trim(),
+category:d.category.trim(),
+body:d.body.trim(),
+published:true
+}]);
+
+if(error){
+say('Ошибка: '+error.message);
+return;
+}
+
+form.reset();
+form.elements.category.value='TEAM NEWS';
+say('Новость опубликована.');
+await loadData();
 });
 
 document.addEventListener('click',async e=>{
- const uploadButton=e.target.closest('[data-upload-player]');
- if(uploadButton){
-  const id=uploadButton.dataset.uploadPlayer;
-  const fileInput=document.querySelector(`[data-player-file="${CSS.escape(id)}"]`);
-  const file=fileInput?.files?.[0];
-  try{
-   if(!file)throw new Error('Сначала выбери фотографию.');
-   say('Загружаем аватарку...');
-   const photo_url=await uploadImage(file,'players');
-   const {error}=await db.from('players').update({photo_url}).eq('id',id);
-   if(error)throw error;
-   say('Аватарка обновлена!');await loadData();
-  }catch(error){say('Ошибка: '+error.message)}
-  return;
- }
+const uploadButton=e.target.closest('[data-upload-player]');
 
- const del=e.target.closest('[data-delete]');
- if(del){
-  const table=del.dataset.delete;
-  if(!['players','matches','news','highlights','tournaments','player_awards'].includes(table))return;
-  if(!confirm('Точно удалить эту запись?'))return;
-  const {error}=await db.from(table).delete().eq('id',del.dataset.id);
-  if(error){say('Ошибка удаления: '+error.message);return}
-  say('Запись удалена.');await loadData();return;
- }
+if(uploadButton){
+const id=uploadButton.dataset.uploadPlayer;
+const fileInput=document.querySelector(`[data-player-file="${CSS.escape(id)}"]`);
+const file=fileInput?.files?.[0];
 
- const save=e.target.closest('[data-save-app]');
- if(save){
-  const id=save.dataset.saveApp;
-  const select=document.querySelector(`[data-app-status="${CSS.escape(id)}"]`);
-  if(!select)return;
-  const {error}=await db.from('academy_applications')
-   .update({status:select.value}).eq('id',id);
-  if(error){say('Ошибка сохранения: '+error.message);return}
-  say('Статус заявки обновлён.');await loadData();
- }
+try{
+if(!file)throw new Error('Сначала выбери фотографию.');
+
+say('Загружаем аватарку...');
+const photo_url=await uploadImage(file,'players');
+
+const {error}=await db.from('players').update({photo_url}).eq('id',id);
+if(error)throw error;
+
+say('Аватарка обновлена!');
+await loadData();
+}catch(error){
+say('Ошибка: '+error.message);
+}
+return;
+}
+
+const del=e.target.closest('[data-delete]');
+
+if(del){
+const table=del.dataset.delete;
+
+if(!['players','matches','news','highlights','tournaments','player_awards'].includes(table))return;
+if(!confirm('Точно удалить эту запись?'))return;
+
+const {error}=await db.from(table).delete().eq('id',del.dataset.id);
+
+if(error){
+say('Ошибка удаления: '+error.message);
+return;
+}
+
+say('Запись удалена.');
+await loadData();
+return;
+}
+
+const save=e.target.closest('[data-save-app]');
+
+if(save){
+const id=save.dataset.saveApp;
+const select=document.querySelector(`[data-app-status="${CSS.escape(id)}"]`);
+if(!select)return;
+
+const {error}=await db.from('academy_applications')
+.update({status:select.value}).eq('id',id);
+
+if(error){
+say('Ошибка сохранения: '+error.message);
+return;
+}
+
+say('Статус заявки обновлён.');
+await loadData();
+}
 });
 
 db.auth.onAuthStateChange(()=>{
- setTimeout(checkSession,0);
+setTimeout(checkSession,0);
 });
 
 checkSession();
 </script>
 </body>
 </html>
+
