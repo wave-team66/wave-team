@@ -1,80 +1,1816 @@
 <!DOCTYPE html>
-<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#090909"><title>WAVE TEAM — Manager</title>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>WAVE TEAM — Manager</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#090909;color:#eee9df;font:15px Arial,sans-serif}header{padding:18px 5%;border-bottom:1px solid #3b3223;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.logo{font-size:20px;font-weight:900;letter-spacing:2px;color:#d8bd83}header a,a{color:#d8bd83}main{max-width:1000px;margin:25px auto;padding:0 14px}h1,h2{color:#d8bd83}.panel{background:#121210;border:1px solid #393125;padding:18px;border-radius:8px;margin:16px 0}input,textarea,select{display:block;width:100%;margin:10px 0;padding:13px;background:#090909;color:#fff;border:1px solid #514634;border-radius:5px;font-size:16px;min-height:44px}input[type=file]{padding:12px;background:#171510}textarea{min-height:80px}button{padding:13px 16px;background:#d8bd83;color:#111;border:0;border-radius:5px;font-weight:bold;cursor:pointer;margin:5px 3px;min-height:44px}button.secondary{background:#29251e;color:#eee9df;border:1px solid #62533b}button.danger{background:#4b2525;color:#fff}button:disabled{opacity:.5;cursor:wait}.small{color:#aaa49a;font-size:13px;line-height:1.5}.hidden{display:none!important}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.stat-card{background:#121210;border:1px solid #514634;border-radius:8px;padding:14px;text-align:center}.stat-number{display:block;color:#d8bd83;font-size:27px;font-weight:bold;margin-bottom:6px}.item{border-top:1px solid #393125;padding:14px 0;overflow-wrap:anywhere}.actions{display:flex;gap:5px;flex-wrap:wrap}.preview{max-width:180px;max-height:140px;object-fit:contain;display:block;margin:10px 0;border:1px solid #514634;border-radius:5px}.file-box{background:#0b0b09;padding:12px;border:1px solid #393125;border-radius:6px;margin:10px 0}.tabs{display:flex;gap:7px;flex-wrap:wrap}.tabs a{padding:9px 12px;border:1px solid #514634;text-decoration:none}.inline{display:inline-block}@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}main{margin:12px auto}.panel{padding:14px}.logo{font-size:16px}button{width:100%;margin:5px 0}.actions button{width:auto;flex:1}}
-</style></head><body>
-<header><div class="logo">WAVE TEAM / MANAGER</div><a href="index.html">Открыть сайт ↗</a></header><main>
-<section id="login" class="panel"><h1>Панель менеджера</h1><p class="small">Войди с аккаунтом Supabase. Для доступа к управлению пользователь должен быть добавлен в admin_roles.</p><form id="login-form"><input id="email" type="email" placeholder="Email менеджера" required><input id="password" type="password" placeholder="Пароль" required><button type="submit">ВОЙТИ</button></form><p id="login-message" class="small"></p></section>
+*{box-sizing:border-box}
+body{margin:0;background:#090909;color:#eee9df;font:15px Arial,sans-serif}
+header{
+ padding:18px 5%;border-bottom:1px solid #3b3223;
+ display:flex;justify-content:space-between;align-items:center;
+ gap:10px;flex-wrap:wrap
+}
+.logo{font-size:20px;font-weight:900;letter-spacing:2px;color:#d8bd83}
+header a,a{color:#d8bd83}
+main{max-width:1000px;margin:25px auto;padding:0 14px}
+h1,h2{color:#d8bd83}
+.panel{
+ background:#121210;border:1px solid #393125;
+ padding:18px;border-radius:8px;margin:16px 0
+}
+input,textarea,select{
+ display:block;width:100%;margin:10px 0;padding:13px;
+ background:#090909;color:#fff;border:1px solid #514634;
+ border-radius:5px;font-size:16px;min-height:44px
+}
+input[type=file]{padding:12px;background:#171510}
+input[type=checkbox]{
+ display:inline-block;width:auto;min-height:0;
+ margin:0 6px 0 0;vertical-align:middle
+}
+textarea{min-height:80px;resize:vertical}
+button{
+ padding:13px 16px;background:#d8bd83;color:#111;
+ border:0;border-radius:5px;font-weight:bold;
+ cursor:pointer;margin:5px 3px;min-height:44px
+}
+button.secondary{
+ background:#29251e;color:#eee9df;border:1px solid #62533b
+}
+button.danger{background:#4b2525;color:#fff}
+button:disabled{opacity:.5;cursor:wait}
+.small{color:#aaa49a;font-size:13px;line-height:1.5}
+.hidden{display:none!important}
+.stats{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ gap:10px;margin:16px 0
+}
+.stat-card{
+ background:#121210;border:1px solid #514634;
+ border-radius:8px;padding:14px;text-align:center
+}
+.stat-number{
+ display:block;color:#d8bd83;font-size:27px;
+ font-weight:bold;margin-bottom:6px
+}
+.item{border-top:1px solid #393125;padding:14px 0;overflow-wrap:anywhere}
+.actions{display:flex;gap:5px;flex-wrap:wrap}
+.preview{
+ max-width:180px;max-height:140px;object-fit:contain;
+ display:block;margin:10px 0;border:1px solid #514634;border-radius:5px
+}
+.file-box{
+ background:#0b0b09;padding:12px;border:1px solid #393125;
+ border-radius:6px;margin:10px 0
+}
+.tabs{display:flex;gap:7px;flex-wrap:wrap}
+.tabs a{padding:9px 12px;border:1px solid #514634;text-decoration:none}
+.inline{display:inline-block}
+
+/* Редактирование игроков */
+.player-edit-form{
+ background:#0b0b09;border:1px solid #393125;
+ border-radius:6px;padding:14px;margin:12px 0
+}
+.player-edit-form h3{
+ color:#d8bd83;font-size:16px;margin:0 0 12px
+}
+.player-edit-form label{
+ display:block;color:#aaa49a;font-size:12px;margin-top:10px
+}
+.player-edit-form .check-line{
+ display:flex;align-items:center;gap:8px;
+ margin:12px 0;color:#eee9df;font-size:13px
+}
+.player-edit-form .check-line input{margin:0}
+.roster-badge{
+ display:inline-block;border:1px solid #665333;
+ color:#d8bd83;padding:4px 8px;
+ font-size:11px;letter-spacing:1px;margin-top:5px
+}
+.player-edit-actions{display:flex;gap:8px;flex-wrap:wrap}
+.player-edit-actions button{flex:1}
+@media(max-width:600px){
+ .stats{grid-template-columns:repeat(2,1fr)}
+ main{margin:12px auto}
+ .panel{padding:14px}
+ .logo{font-size:16px}
+ button{width:100%;margin:5px 0}
+ .actions button{width:auto;flex:1}
+ .player-edit-actions button{width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">WAVE TEAM / MANAGER</div>
+ <a href="index.html">Открыть сайт ↗</a>
+</header>
+
+<main>
+
+<section id="login" class="panel">
+ <h1>Панель менеджера</h1>
+ <p class="small">
+  Войди с аккаунтом Supabase. Для доступа к управлению пользователь должен быть добавлен в admin_roles.
+ </p>
+
+ <form id="login-form">
+  <input id="email" type="email" placeholder="Email менеджера" required>
+  <input id="password" type="password" placeholder="Пароль" required>
+  <button type="submit">ВОЙТИ</button>
+ </form>
+
+ <p id="login-message" class="small"></p>
+</section>
+
 <section id="dashboard" class="hidden">
-<div class="stats"><div class="stat-card"><span class="stat-number" id="players-count">0</span><span class="small">Игроки</span></div><div class="stat-card"><span class="stat-number" id="matches-count">0</span><span class="small">Матчи</span></div><div class="stat-card"><span class="stat-number" id="news-count">0</span><span class="small">Новости</span></div><div class="stat-card"><span class="stat-number" id="applications-count">0</span><span class="small">Заявки</span></div></div>
-<div class="panel"><h2>Управление</h2><p class="small" id="signed-in"></p><p class="small" id="role-label"></p><button id="refresh" class="secondary">Обновить данные</button><button id="logout" class="secondary">Выйти</button><p id="notice" class="small" aria-live="polite"></p></div>
-<div class="panel"><h2>Массовое редактирование</h2><p class="small">Выбери несколько записей в списках ниже и используй массовую публикацию/снятие с публикации. Доступно для материалов, поддерживающих поле published.</p><div class="actions"><button id="bulk-publish" class="secondary">Опубликовать выбранное</button><button id="bulk-unpublish" class="secondary">Снять с публикации</button></div><p class="small">Экспорт всех основных данных доступен ниже.</p><button id="export-data" class="secondary">Экспорт данных в JSON</button></div>
-<div class="panel"><h2>Игроки и аватарки</h2><form id="player-form"><input name="nickname" placeholder="Игровой ник" required maxlength="40"><input name="role" placeholder="Роль: Rifler, AWPer..." required><input name="sort_order" type="number" placeholder="Порядок" value="1" required><label class="small">Фотография игрока</label><input name="photo" type="file" accept="image/*"><button type="submit">Добавить игрока</button></form><div id="players-list"></div></div>
-<div class="panel"><h2>Турнирные таблицы</h2><form id="tournament-form"><input name="title" placeholder="Название турнира" required><textarea name="description" placeholder="Описание"></textarea><label class="small">Фотография</label><input name="image" type="file" accept="image/*" required><button type="submit">Загрузить турнир</button></form><div id="tournaments-list"></div></div>
-<div class="panel"><h2>Player Highlights</h2><form id="highlight-form"><input name="title" placeholder="Название видео" required><input name="player_nickname" placeholder="Ник игрока" required><input name="youtube_url" type="url" placeholder="Ссылка на YouTube" required><textarea name="description" placeholder="Описание"></textarea><button type="submit">Добавить хайлайт</button></form><div id="highlights-list"></div></div>
-<div class="panel"><h2>Матчи</h2><form id="match-form"><input name="opponent" placeholder="Соперник" required><input name="score" placeholder="Итоговый счёт" value="0-0" required><input name="status" placeholder="UPCOMING / LIVE / FINISHED" value="UPCOMING" required><label class="small">Дата и время</label><input name="match_date" type="datetime-local"><input name="map_name" placeholder="Карта"><input name="round_score" placeholder="Счёт по раундам"><textarea name="lineup" placeholder="Состав на матч"></textarea><label class="small">MVP матча</label><select name="mvp_player_id" id="match-mvp"><option value="">Без MVP</option></select><button type="submit">Добавить матч</button></form><div id="matches-list"></div></div>
-<div class="panel"><h2>Прогнозы матчей</h2><p class="small">Создавай голосования, смотри проценты и закрывай их. Один браузер/пользователь может проголосовать один раз на опрос.</p><form id="poll-form"><input name="title" placeholder="Название матча / вопрос" required><input name="team_a" placeholder="Команда A" required><input name="team_b" placeholder="Команда B" required><label class="small">Дата матча</label><input name="match_date" type="datetime-local"><button type="submit">Создать голосование</button></form><div id="polls-list"></div></div>
-<div class="panel"><h2>Медиацентр</h2><p class="small">Материалы публикуются в разделе Медиацентр на сайте. Файлы загружаются в Storage wave-media.</p><form id="media-form"><input name="title" placeholder="Название материала" required><select name="category" required><option value="PHOTO">Фото</option><option value="VIDEO">Видео (YouTube или ссылка)</option><option value="INTERVIEW">Интервью</option><option value="NEWS">Новость</option></select><input name="media_url" placeholder="Ссылка на YouTube / видео (для видео)"><label class="small">Файл изображения (для фото/обложки, необязательно)</label><input name="file" type="file" accept="image/*,video/*"><textarea name="description" placeholder="Описание"></textarea><button type="submit">Добавить материал</button></form><div id="media-list"></div></div>
-<div class="panel"><h2>Управление MVP</h2><form id="mvp-form"><label class="small">Игрок</label><select name="player_id" id="mvp-player" required><option value="">Выбери игрока</option></select><label class="small">Действие</label><select name="delta"><option value="1">Добавить 1 MVP</option><option value="-1">Снять 1 MVP</option></select><input name="note" placeholder="Причина (необязательно)"><button type="submit">Сохранить изменение MVP</button></form><div id="mvp-list"></div></div>
-<div class="panel"><h2>Награды игроков</h2><form id="award-form"><label class="small">Игрок</label><select name="player_id" id="award-player" required></select><input name="title" placeholder="Название награды" required><textarea name="description" placeholder="Описание"></textarea><label class="small">Дата получения</label><input name="awarded_at" type="date"><button type="submit">Добавить награду</button></form><div id="awards-list"></div></div>
-<div class="panel"><h2>Статистика игроков</h2><form id="stats-form"><label class="small">Игрок</label><select name="player_id" id="stats-player" required></select><input name="matches_played" type="number" min="0" placeholder="Матчи" value="0" required><input name="wins" type="number" min="0" placeholder="Победы" value="0" required><input name="losses" type="number" min="0" placeholder="Поражения" value="0" required><input name="kills" type="number" min="0" placeholder="Убийства" value="0" required><input name="deaths" type="number" min="0" placeholder="Смерти" value="0" required><input name="assists" type="number" min="0" placeholder="Ассисты" value="0" required><input name="adr" type="number" min="0" step=".01" placeholder="ADR" value="0" required><input name="kast" type="number" min="0" max="100" step=".01" placeholder="KAST %" value="0" required><input name="rating" type="number" min="0" step=".01" placeholder="Rating" value="0" required><button type="submit">Сохранить статистику</button></form><div id="stats-list"></div></div>
-<div class="panel"><h2>Новости</h2><form id="news-form"><input name="title" placeholder="Заголовок" required><input name="category" placeholder="Категория" value="TEAM NEWS" required><textarea name="body" placeholder="Текст новости" required></textarea><button type="submit">Опубликовать новость</button></form><div id="news-list"></div></div>
-<div class="panel"><h2>WAVE ACADEMY 2.0</h2><div id="applications-list"></div></div>
-<div class="panel"><h2>Управление ролями</h2><p class="small">Только владелец может назначать роли. Введи UUID пользователя Supabase Auth и выбери роль. Не выдавай owner без необходимости.</p><form id="role-form"><input name="user_id" placeholder="UUID пользователя Supabase Auth" required><select name="role"><option value="admin">admin</option><option value="editor">editor</option><option value="viewer">viewer</option></select><button type="submit">Назначить роль</button></form><div id="roles-list"></div></div>
-<div class="panel"><h2>Журнал действий</h2><p class="small">Записываются действия, выполненные через эту админ-панель. Журнал не является аудитом прямых SQL-операций в Supabase.</p><div id="audit-list"></div></div>
-</section></main>
+
+<div class="stats">
+ <div class="stat-card">
+  <span class="stat-number" id="players-count">0</span>
+  <span class="small">Игроки</span>
+ </div>
+ <div class="stat-card">
+  <span class="stat-number" id="matches-count">0</span>
+  <span class="small">Матчи</span>
+ </div>
+ <div class="stat-card">
+  <span class="stat-number" id="news-count">0</span>
+  <span class="small">Новости</span>
+ </div>
+ <div class="stat-card">
+  <span class="stat-number" id="applications-count">0</span>
+  <span class="small">Заявки</span>
+ </div>
+</div>
+
+<div class="panel">
+ <h2>Управление</h2>
+ <p class="small" id="signed-in"></p>
+ <p class="small" id="role-label"></p>
+ <button id="refresh" class="secondary">Обновить данные</button>
+ <button id="logout" class="secondary">Выйти</button>
+ <p id="notice" class="small" aria-live="polite"></p>
+</div>
+
+<div class="panel">
+ <h2>Массовое редактирование</h2>
+ <p class="small">
+  Выбери несколько записей в списках ниже и используй массовую публикацию/снятие с публикации. Доступно для материалов, поддерживающих поле published.
+ </p>
+ <div class="actions">
+  <button id="bulk-publish" class="secondary">Опубликовать выбранное</button>
+  <button id="bulk-unpublish" class="secondary">Снять с публикации</button>
+ </div>
+ <p class="small">Экспорт всех основных данных доступен ниже.</p>
+ <button id="export-data" class="secondary">Экспорт данных в JSON</button>
+</div>
+
+<!-- ИГРОКИ И РОСТЕРЫ -->
+<div class="panel">
+ <h2>Игроки и ростеры</h2>
+
+ <p class="small">
+  Добавляй игроков в MAIN ROSTER, YOUNG ROSTER или ACADEMY ROSTER.
+  Уже добавленных игроков можно редактировать ниже.
+ </p>
+
+ <form id="player-form">
+
+  <label class="small">Игровой ник</label>
+  <input name="nickname" placeholder="Игровой ник" required maxlength="40">
+
+  <label class="small">Игровая роль</label>
+  <input name="role" placeholder="Роль: Rifler, AWPer..." required>
+
+  <label class="small">Ростер игрока</label>
+  <select name="roster" required>
+   <option value="MAIN">MAIN ROSTER — основной состав</option>
+   <option value="YOUNG">YOUNG ROSTER — молодёжный состав</option>
+   <option value="ACADEMY">ACADEMY ROSTER — академия</option>
+  </select>
+
+  <label class="small">Порядок отображения</label>
+  <input name="sort_order" type="number" placeholder="Порядок" value="1" min="0" required>
+
+  <label class="small">Описание игрока</label>
+  <textarea name="bio" placeholder="Информация об игроке, достижения, сильные стороны..."></textarea>
+
+  <label class="small">Фотография игрока</label>
+  <input name="photo" type="file" accept="image/*">
+
+  <button type="submit">Добавить игрока</button>
+ </form>
+
+ <div id="players-list"></div>
+</div>
+
+<!-- ТУРНИРЫ -->
+<div class="panel">
+ <h2>Турнирные таблицы</h2>
+
+ <form id="tournament-form">
+  <input name="title" placeholder="Название турнира" required>
+  <textarea name="description" placeholder="Описание"></textarea>
+  <label class="small">Фотография</label>
+  <input name="image" type="file" accept="image/*" required>
+  <button type="submit">Загрузить турнир</button>
+ </form>
+
+ <div id="tournaments-list"></div>
+</div>
+
+<!-- HIGHLIGHTS -->
+<div class="panel">
+ <h2>Player Highlights</h2>
+
+ <form id="highlight-form">
+  <input name="title" placeholder="Название видео" required>
+  <input name="player_nickname" placeholder="Ник игрока" required>
+  <input name="youtube_url" type="url" placeholder="Ссылка на YouTube" required>
+  <textarea name="description" placeholder="Описание"></textarea>
+  <button type="submit">Добавить хайлайт</button>
+ </form>
+
+ <div id="highlights-list"></div>
+</div>
+
+<!-- МАТЧИ -->
+<div class="panel">
+ <h2>Матчи</h2>
+
+ <form id="match-form">
+  <input name="opponent" placeholder="Соперник" required>
+  <input name="score" placeholder="Итоговый счёт" value="0-0" required>
+  <input name="status" placeholder="UPCOMING / LIVE / FINISHED" value="UPCOMING" required>
+
+  <label class="small">Дата и время</label>
+  <input name="match_date" type="datetime-local">
+
+  <input name="map_name" placeholder="Карта">
+  <input name="round_score" placeholder="Счёт по раундам">
+  <textarea name="lineup" placeholder="Состав на матч"></textarea>
+
+  <label class="small">MVP матча</label>
+  <select name="mvp_player_id" id="match-mvp">
+   <option value="">Без MVP</option>
+  </select>
+
+  <button type="submit">Добавить матч</button>
+ </form>
+
+ <div id="matches-list"></div>
+</div>
+
+<!-- ПРОГНОЗЫ -->
+<div class="panel">
+ <h2>Прогнозы матчей</h2>
+ <p class="small">
+  Создавай голосования, смотри проценты и закрывай их. Один браузер/пользователь может проголосовать один раз на опрос.
+ </p>
+
+ <form id="poll-form">
+  <input name="title" placeholder="Название матча / вопрос" required>
+  <input name="team_a" placeholder="Команда A" required>
+  <input name="team_b" placeholder="Команда B" required>
+  <label class="small">Дата матча</label>
+  <input name="match_date" type="datetime-local">
+  <button type="submit">Создать голосование</button>
+ </form>
+
+ <div id="polls-list"></div>
+</div>
+
+<!-- МЕДИАЦЕНТР -->
+<div class="panel">
+ <h2>Медиацентр</h2>
+ <p class="small">
+  Материалы публикуются в разделе Медиацентр на сайте. Файлы загружаются в Storage wave-media.
+ </p>
+
+ <form id="media-form">
+  <input name="title" placeholder="Название материала" required>
+
+  <select name="category" required>
+   <option value="PHOTO">Фото</option>
+   <option value="VIDEO">Видео (YouTube или ссылка)</option>
+   <option value="INTERVIEW">Интервью</option>
+   <option value="NEWS">Новость</option>
+  </select>
+
+  <input name="media_url" placeholder="Ссылка на YouTube / видео (для видео)">
+
+  <label class="small">Файл изображения (для фото/обложки, необязательно)</label>
+  <input name="file" type="file" accept="image/*,video/*">
+
+  <textarea name="description" placeholder="Описание"></textarea>
+  <button type="submit">Добавить материал</button>
+ </form>
+
+ <div id="media-list"></div>
+</div>
+
+<!-- MVP -->
+<div class="panel">
+ <h2>Управление MVP</h2>
+
+ <form id="mvp-form">
+  <label class="small">Игрок</label>
+  <select name="player_id" id="mvp-player" required>
+   <option value="">Выбери игрока</option>
+  </select>
+
+  <label class="small">Действие</label>
+  <select name="delta">
+   <option value="1">Добавить 1 MVP</option>
+   <option value="-1">Снять 1 MVP</option>
+  </select>
+
+  <input name="note" placeholder="Причина (необязательно)">
+  <button type="submit">Сохранить изменение MVP</button>
+ </form>
+
+ <div id="mvp-list"></div>
+</div>
+
+<!-- НАГРАДЫ -->
+<div class="panel">
+ <h2>Награды игроков</h2>
+
+ <form id="award-form">
+  <label class="small">Игрок</label>
+  <select name="player_id" id="award-player" required></select>
+
+  <input name="title" placeholder="Название награды" required>
+  <textarea name="description" placeholder="Описание"></textarea>
+
+  <label class="small">Дата получения</label>
+  <input name="awarded_at" type="date">
+
+  <button type="submit">Добавить награду</button>
+ </form>
+
+ <div id="awards-list"></div>
+</div>
+
+<!-- СТАТИСТИКА -->
+<div class="panel">
+ <h2>Статистика игроков</h2>
+
+ <form id="stats-form">
+  <label class="small">Игрок</label>
+  <select name="player_id" id="stats-player" required></select>
+
+  <input name="matches_played" type="number" min="0" placeholder="Матчи" value="0" required>
+  <input name="wins" type="number" min="0" placeholder="Победы" value="0" required>
+  <input name="losses" type="number" min="0" placeholder="Поражения" value="0" required>
+  <input name="kills" type="number" min="0" placeholder="Убийства" value="0" required>
+  <input name="deaths" type="number" min="0" placeholder="Смерти" value="0" required>
+  <input name="assists" type="number" min="0" placeholder="Ассисты" value="0" required>
+  <input name="adr" type="number" min="0" step=".01" placeholder="ADR" value="0" required>
+  <input name="kast" type="number" min="0" max="100" step=".01" placeholder="KAST %" value="0" required>
+  <input name="rating" type="number" min="0" step=".01" placeholder="Rating" value="0" required>
+
+  <button type="submit">Сохранить статистику</button>
+ </form>
+
+ <div id="stats-list"></div>
+</div>
+
+<!-- НОВОСТИ -->
+<div class="panel">
+ <h2>Новости</h2>
+
+ <form id="news-form">
+  <input name="title" placeholder="Заголовок" required>
+  <input name="category" placeholder="Категория" value="TEAM NEWS" required>
+  <textarea name="body" placeholder="Текст новости" required></textarea>
+  <button type="submit">Опубликовать новость</button>
+ </form>
+
+ <div id="news-list"></div>
+</div>
+
+<!-- ЗАЯВКИ -->
+<div class="panel">
+ <h2>WAVE ACADEMY 2.0</h2>
+ <div id="applications-list"></div>
+</div>
+
+<!-- РОЛИ -->
+<div class="panel">
+ <h2>Управление ролями</h2>
+ <p class="small">
+  Только владелец может назначать роли. Введи UUID пользователя Supabase Auth и выбери роль. Не выдавай owner без необходимости.
+ </p>
+
+ <form id="role-form">
+  <input name="user_id" placeholder="UUID пользователя Supabase Auth" required>
+  <select name="role">
+   <option value="admin">admin</option>
+   <option value="editor">editor</option>
+   <option value="viewer">viewer</option>
+  </select>
+  <button type="submit">Назначить роль</button>
+ </form>
+
+ <div id="roles-list"></div>
+</div>
+
+<!-- ЖУРНАЛ -->
+<div class="panel">
+ <h2>Журнал действий</h2>
+ <p class="small">
+  Записываются действия, выполненные через эту админ-панель. Журнал не является аудитом прямых SQL-операций в Supabase.
+ </p>
+ <div id="audit-list"></div>
+</div>
+
+</section>
+</main>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-const db=window.supabase.createClient('https://hjtrnyufryxudqgvqkuo.supabase.co','sb_publishable_q6wpqCXCpunEsIPNU2Hqjw_8Jk44FXi');
-const $=id=>document.getElementById(id),loginSection=$('login'),dashboard=$('dashboard');let cachedPlayers=[],cachedMatches=[],cachedAdjustments=[],cachedApplications=[],currentUser=null,currentRole='viewer';
-function say(t){$('notice').textContent=t}function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function fd(f){return Object.fromEntries(new FormData(f).entries())}
-function playerName(id){return cachedPlayers.find(p=>String(p.id)===String(id))?.nickname||'Неизвестный игрок'}
-function playerOptions(){return '<option value="">Выбери игрока</option>'+cachedPlayers.map(p=>`<option value="${esc(p.id)}">${esc(p.nickname)}</option>`).join('')}
-function fillSelects(){['match-mvp','mvp-player','award-player','stats-player'].forEach(id=>$(id).innerHTML=playerOptions())}
-function mvpTotal(id){return Math.max(0,cachedMatches.filter(x=>String(x.mvp_player_id)===String(id)).length+cachedAdjustments.filter(x=>String(x.player_id)===String(id)).reduce((s,x)=>s+Number(x.delta||0),0))}
-function canEdit(){return ['owner','admin','editor'].includes(currentRole)}function requireEdit(){if(!canEdit()){say('Недостаточно прав: нужна роль editor или выше.');return false}return true}
-async function audit(action,details={}){try{await db.from('admin_audit_log').insert([{actor_id:currentUser?.id||null,actor_email:currentUser?.email||'',action,details}])}catch(e){console.warn('Audit log',e)}}
-async function uploadFile(file,folder){if(!file)throw new Error('Выбери файл.');if(file.size>50*1024*1024)throw new Error('Файл должен быть меньше 50 МБ.');const name=file.name.replace(/[^a-zA-Z0-9._-]/g,'_'),path=folder+'/'+Date.now()+'_'+name;const {error}=await db.storage.from('wave-media').upload(path,file,{cacheControl:'3600',upsert:false});if(error)throw error;return db.storage.from('wave-media').getPublicUrl(path).data.publicUrl}
-function itemDelete(table,id,label){return `<button class="danger" data-delete="${esc(table)}" data-id="${esc(id)}">${label||'Удалить'}</button>`}
-function row(title,details,id,table){return `<div class="item"><strong>${esc(title)}</strong><p class="small">${esc(details)}</p><label class="small"><input type="checkbox" class="bulk-check" data-table="${esc(table)}" value="${esc(id)}" style="display:inline;width:auto;min-height:0"> Выбрать для массового действия</label>${itemDelete(table,id)}</div>`}
-async function loadData(){say('Загружаем данные...');const [p,m,n,a,h,t,aw,adj,st,po,me,roles,logs]=await Promise.all([
-db.from('players').select('*').order('sort_order'),db.from('matches').select('*').order('created_at',{ascending:false}),db.from('news').select('*').order('created_at',{ascending:false}),db.from('academy_applications').select('*').order('created_at',{ascending:false}),db.from('highlights').select('*').order('created_at',{ascending:false}),db.from('tournaments').select('*').order('created_at',{ascending:false}),db.from('player_awards').select('*').order('awarded_at',{ascending:false}),db.from('player_mvp_adjustments').select('*').order('created_at',{ascending:false}),db.from('player_stats').select('*'),db.from('match_polls').select('*').order('created_at',{ascending:false}),db.from('media_items').select('*').order('created_at',{ascending:false}),db.from('admin_roles').select('*'),db.from('admin_audit_log').select('*').order('created_at',{ascending:false}).limit(40)]);
-const failed=[p,m,n,a,h,t,aw,adj,st,po,me].find(x=>x.error);if(failed){say('Ошибка загрузки: '+failed.error.message);console.error(failed.error);return}
-cachedPlayers=p.data||[];cachedMatches=m.data||[];cachedAdjustments=adj.data||[];cachedApplications=a.data||[];fillSelects();
-$('players-count').textContent=p.data.length;$('matches-count').textContent=m.data.length;$('news-count').textContent=n.data.length;$('applications-count').textContent=a.data.length;
-$('players-list').innerHTML=p.data.map(x=>`<div class="item"><strong>${esc(x.nickname)}</strong><p class="small">${esc(x.role)} · порядок ${esc(x.sort_order)} · MVP ${mvpTotal(x.id)}</p>${x.photo_url?`<img class="preview" src="${esc(x.photo_url)}">`:''}<div class="file-box"><input type="file" accept="image/*" data-player-file="${esc(x.id)}"><button data-upload-player="${esc(x.id)}">Загрузить аватарку</button></div><label class="small"><input type="checkbox" class="bulk-check" data-table="players" value="${esc(x.id)}" style="display:inline;width:auto;min-height:0"> Выбрать</label>${itemDelete('players',x.id)}</div>`).join('')||'<p class="small">Игроков пока нет.</p>';
-$('matches-list').innerHTML=m.data.map(x=>`<div class="item"><strong>${esc(x.opponent)} — ${esc(x.score)}</strong><p class="small">${esc(x.status)} · ${esc(x.match_date||'Дата не указана')} · ${esc(x.map_name||'')}</p>${itemDelete('matches',x.id)}</div>`).join('')||'<p class="small">Матчей пока нет.</p>';
-$('mvp-list').innerHTML=cachedPlayers.map(x=>`<div class="item"><strong>${esc(x.nickname)}</strong><p class="small">Всего MVP: ${mvpTotal(x.id)}</p></div>`).join('');
-$('awards-list').innerHTML=aw.data.map(x=>`<div class="item"><strong>${esc(x.title)}</strong><p class="small">${esc(playerName(x.player_id))} · ${esc(x.awarded_at||'')}</p><p>${esc(x.description||'')}</p>${itemDelete('player_awards',x.id)}</div>`).join('');
-$('stats-list').innerHTML=st.data.map(x=>`<div class="item"><strong>${esc(playerName(x.player_id))}</strong><p class="small">Матчи ${esc(x.matches_played)} · W ${esc(x.wins)} · L ${esc(x.losses)} · K/D/A ${esc(x.kills)}/${esc(x.deaths)}/${esc(x.assists)} · ADR ${esc(x.adr)} · KAST ${esc(x.kast)}% · Rating ${esc(x.rating)}</p></div>`).join('');
-$('news-list').innerHTML=n.data.map(x=>row(x.title,x.category,x.id,'news')).join('');$('highlights-list').innerHTML=h.data.map(x=>row(x.title,x.player_nickname,x.id,'highlights')).join('');$('tournaments-list').innerHTML=t.data.map(x=>`<div class="item"><strong>${esc(x.title)}</strong><p class="small">${esc(x.description||'')}</p>${x.image_url?`<img class="preview" src="${esc(x.image_url)}">`:''}${itemDelete('tournaments',x.id)}</div>`).join('');
-$('applications-list').innerHTML=a.data.map(x=>`<div class="item"><strong>${esc(x.nickname)} · ${esc(x.age)} лет</strong><p class="small">Роль ${esc(x.role)} · Рейтинг ${esc(x.rating)} · Контакт ${esc(x.contact)}</p><p>${esc(x.about)}</p><label class="small">Статус</label><select data-app-status="${esc(x.id)}">${[['NEW','Новая'],['REVIEWING','На рассмотрении'],['TESTING','Тестирование'],['WAITLIST','Резерв'],['ACCEPTED','Принят'],['REJECTED','Отказ']].map(([v,l])=>`<option value="${v}" ${x.status===v?'selected':''}>${l}</option>`).join('')}</select><button data-save-app="${esc(x.id)}">Сохранить статус</button>${x.status==='ACCEPTED'&&!cachedPlayers.some(p=>p.nickname.toLowerCase()===String(x.nickname).toLowerCase())?`<button data-promote-app="${esc(x.id)}">Добавить в состав</button>`:''}</div>`).join('')||'<p class="small">Заявок пока нет.</p>';
-const votesRes=await db.from('match_poll_votes').select('poll_id,choice');const votes=votesRes.data||[];$('polls-list').innerHTML=(po.data||[]).map(x=>{const v=votes.filter(z=>String(z.poll_id)===String(x.id)),a1=v.filter(z=>z.choice==='A').length,b1=v.filter(z=>z.choice==='B').length,total=a1+b1;return `<div class="item"><strong>${esc(x.title)}</strong><p class="small">${esc(x.team_a)}: ${total?Math.round(a1/total*100):0}% (${a1}) · ${esc(x.team_b)}: ${total?Math.round(b1/total*100):0}% (${b1}) · ${total} голосов</p><p class="small">Статус: ${x.is_open?'Открыто':'Закрыто'}</p><button data-toggle-poll="${esc(x.id)}" data-open="${x.is_open?'false':'true'}" class="secondary">${x.is_open?'Закрыть голосование':'Открыть голосование'}</button>${itemDelete('match_polls',x.id)}</div>`}).join('')||'<p class="small">Голосований пока нет.</p>';
-$('media-list').innerHTML=(me.data||[]).map(x=>`<div class="item"><strong>${esc(x.title)}</strong><p class="small">${esc(x.category)} · ${esc(x.description||'')}</p>${x.media_url?`<a href="${esc(x.media_url)}" target="_blank" rel="noopener">Открыть материал ↗</a>`:''}<p><label class="small"><input type="checkbox" class="bulk-check" data-table="media_items" value="${esc(x.id)}" style="display:inline;width:auto;min-height:0"> Выбрать</label></p>${itemDelete('media_items',x.id)}</div>`).join('')||'<p class="small">Материалов пока нет.</p>';
-$('roles-list').innerHTML=(roles.data||[]).map(x=>`<div class="item"><strong>${esc(x.user_id)}</strong><p class="small">Роль: ${esc(x.role)}</p></div>`).join('')||'<p class="small">Роли не настроены.</p>';
-$('audit-list').innerHTML=(logs.data||[]).map(x=>`<div class="item"><strong>${esc(x.action)}</strong><p class="small">${esc(x.actor_email)} · ${esc(x.created_at)}</p><p class="small">${esc(JSON.stringify(x.details||{}))}</p></div>`).join('')||'<p class="small">Записей пока нет.</p>';say('Данные обновлены.')}
-async function checkSession(){const {data:{session},error}=await db.auth.getSession();if(error){$('login-message').textContent=error.message;return}currentUser=session?.user||null;loginSection.classList.toggle('hidden',!!session);dashboard.classList.toggle('hidden',!session);if(!session)return;$('signed-in').textContent='Вход выполнен: '+session.user.email;const {data:roleRow,error:roleError}=await db.from('admin_roles').select('role').eq('user_id',session.user.id).maybeSingle();if(roleError){say('Не удалось проверить роль: '+roleError.message);return}currentRole=roleRow?.role||'viewer';$('role-label').textContent='Ваша роль: '+currentRole;if(currentRole==='viewer')say('Режим просмотра: редактирование недоступно.');await loadData()}
-$('login-form').addEventListener('submit',async e=>{e.preventDefault();$('login-message').textContent='Выполняется вход...';const {error}=await db.auth.signInWithPassword({email:$('email').value,password:$('password').value});if(error){$('login-message').textContent='Ошибка входа: '+error.message;return}$('login-message').textContent='';await checkSession()});
-$('logout').addEventListener('click',async()=>{await db.auth.signOut();currentUser=null;await checkSession()});$('refresh').addEventListener('click',loadData);
-async function insertOne(table,values,form,message){if(!requireEdit())return;const {error}=await db.from(table).insert([values]);if(error){say('Ошибка: '+error.message);return}if(form)form.reset();say(message);await audit('insert:'+table,values);await loadData()}
-$('player-form').addEventListener('submit',async e=>{e.preventDefault();if(!requireEdit())return;const f=e.currentTarget,d=fd(f);try{const photo_url=d.photo?.size?await uploadFile(d.photo,'players'):null;await insertOne('players',{nickname:d.nickname.trim(),role:d.role.trim(),sort_order:Number(d.sort_order),photo_url,published:true},f,'Игрок добавлен!')}catch(err){say('Ошибка: '+err.message)}});
-$('tournament-form').addEventListener('submit',async e=>{e.preventDefault();if(!requireEdit())return;const f=e.currentTarget,d=fd(f);try{const image_url=await uploadFile(d.image,'tournaments');await insertOne('tournaments',{title:d.title.trim(),image_url,description:d.description.trim(),published:true},f,'Турнир добавлен!')}catch(err){say('Ошибка: '+err.message)}});
-$('highlight-form').addEventListener('submit',async e=>{e.preventDefault();const f=e.currentTarget,d=fd(f);await insertOne('highlights',{title:d.title.trim(),player_nickname:d.player_nickname.trim(),youtube_url:d.youtube_url.trim(),description:d.description.trim(),published:true},f,'Хайлайт добавлен!')});
-$('match-form').addEventListener('submit',async e=>{e.preventDefault();const f=e.currentTarget,d=fd(f);await insertOne('matches',{opponent:d.opponent.trim(),score:d.score.trim(),status:d.status.trim(),match_date:d.match_date?new Date(d.match_date).toISOString():null,mvp_player_id:d.mvp_player_id||null,map_name:d.map_name.trim()||null,round_score:d.round_score.trim()||null,lineup:d.lineup.trim()||null,published:true},f,'Матч добавлен!')});
-$('poll-form').addEventListener('submit',async e=>{e.preventDefault();const f=e.currentTarget,d=fd(f);await insertOne('match_polls',{title:d.title.trim(),team_a:d.team_a.trim(),team_b:d.team_b.trim(),match_date:d.match_date?new Date(d.match_date).toISOString():null,is_open:true,published:true},f,'Голосование создано!')});
-$('media-form').addEventListener('submit',async e=>{e.preventDefault();if(!requireEdit())return;const f=e.currentTarget,d=fd(f);try{let media_url=d.media_url.trim()||null;if(d.file?.size)media_url=await uploadFile(d.file,'media');if(d.category==='PHOTO'&&!media_url)throw new Error('Для фото выбери файл или укажи ссылку.');await insertOne('media_items',{title:d.title.trim(),category:d.category,media_url,description:d.description.trim(),published:true},f,'Материал добавлен!')}catch(err){say('Ошибка: '+err.message)}});
-$('mvp-form').addEventListener('submit',async e=>{e.preventDefault();const f=e.currentTarget,d=fd(f),delta=Number(d.delta);if(delta===-1&&mvpTotal(d.player_id)<=0){say('У игрока нет MVP для снятия.');return}await insertOne('player_mvp_adjustments',{player_id:d.player_id,delta,note:d.note.trim()||null},f,'Изменение MVP сохранено!')});
-$('award-form').addEventListener('submit',async e=>{e.preventDefault();const f=e.currentTarget,d=fd(f);await insertOne('player_awards',{player_id:d.player_id,title:d.title.trim(),description:d.description.trim(),awarded_at:d.awarded_at||new Date().toISOString().slice(0,10),published:true},f,'Награда добавлена!')});
-$('stats-form').addEventListener('submit',async e=>{e.preventDefault();if(!requireEdit())return;const f=e.currentTarget,d=fd(f),v={player_id:d.player_id,matches_played:+d.matches_played,wins:+d.wins,losses:+d.losses,kills:+d.kills,deaths:+d.deaths,assists:+d.assists,adr:+d.adr,kast:+d.kast,rating:+d.rating,updated_at:new Date().toISOString()};if(v.wins+v.losses>v.matches_played){say('Победы и поражения не могут превышать количество матчей.');return}const {error}=await db.from('player_stats').upsert(v,{onConflict:'player_id'});if(error){say('Ошибка: '+error.message);return}say('Статистика сохранена.');await audit('upsert:player_stats',{player_id:v.player_id});await loadData()});
-$('news-form').addEventListener('submit',async e=>{e.preventDefault();const f=e.currentTarget,d=fd(f);await insertOne('news',{title:d.title.trim(),category:d.category.trim(),body:d.body.trim(),published:true},f,'Новость опубликована!')});
-$('role-form').addEventListener('submit',async e=>{e.preventDefault();if(currentRole!=='owner'){say('Назначать роли может только owner.');return}const f=e.currentTarget,d=fd(f);const {error}=await db.from('admin_roles').upsert({user_id:d.user_id.trim(),role:d.role,updated_at:new Date().toISOString()},{onConflict:'user_id'});if(error){say('Ошибка назначения роли: '+error.message);return}say('Роль обновлена.');await audit('role:update',{user_id:d.user_id,role:d.role});await loadData()});
-document.addEventListener('click',async e=>{const up=e.target.closest('[data-upload-player]');if(up){if(!requireEdit())return;const id=up.dataset.uploadPlayer,file=document.querySelector(`[data-player-file="${CSS.escape(id)}"]`)?.files?.[0];try{const photo_url=await uploadFile(file,'players');const {error}=await db.from('players').update({photo_url}).eq('id',id);if(error)throw error;say('Аватарка обновлена.');await audit('player:photo',{id});await loadData()}catch(err){say('Ошибка: '+err.message)}return}
-const toggle=e.target.closest('[data-toggle-poll]');if(toggle){if(!requireEdit())return;const {error}=await db.from('match_polls').update({is_open:toggle.dataset.open==='true'}).eq('id',toggle.dataset.togglePoll);if(error){say('Ошибка: '+error.message);return}say('Статус голосования изменён.');await audit('poll:toggle',{id:toggle.dataset.togglePoll,is_open:toggle.dataset.open==='true'});await loadData();return}
-const promote=e.target.closest('[data-promote-app]');if(promote){if(!requireEdit())return;const a=cachedApplications.find(x=>String(x.id)===promote.dataset.promoteApp);if(!a)return;if(cachedPlayers.some(p=>p.nickname.toLowerCase()===String(a.nickname).toLowerCase())){say('Игрок уже есть в составе.');return}if(!confirm('Добавить '+a.nickname+' в состав?'))return;const sort_order=Math.max(0,...cachedPlayers.map(p=>Number(p.sort_order)||0))+1;await insertOne('players',{nickname:String(a.nickname).trim(),role:String(a.role||'Rifler'),sort_order,bio:String(a.about||''),published:true},null,'Кандидат добавлен в состав!');return}
-const save=e.target.closest('[data-save-app]');if(save){if(!requireEdit())return;const id=save.dataset.saveApp,select=document.querySelector(`[data-app-status="${CSS.escape(id)}"]`);const {error}=await db.from('academy_applications').update({status:select.value}).eq('id',id);if(error){say('Ошибка: '+error.message);return}say('Статус обновлён.');await audit('academy:status',{id,status:select.value});await loadData();return}
-const del=e.target.closest('[data-delete]');if(del){if(!requireEdit())return;const table=del.dataset.delete;if(!['players','matches','news','highlights','tournaments','player_awards','match_polls','media_items'].includes(table))return;if(!confirm('Точно удалить запись?'))return;const {error}=await db.from(table).delete().eq('id',del.dataset.id);if(error){say('Ошибка удаления: '+error.message);return}say('Запись удалена.');await audit('delete:'+table,{id:del.dataset.id});await loadData()}});
-async function bulkUpdate(published){if(!requireEdit())return;const selected=[...document.querySelectorAll('.bulk-check:checked')];if(!selected.length){say('Сначала выбери записи.');return}const groups={};selected.forEach(x=>(groups[x.dataset.table]??=[]).push(x.value));for(const [table,ids] of Object.entries(groups)){const {error}=await db.from(table).update({published}).in('id',ids);if(error){say('Ошибка массового изменения '+table+': '+error.message);return}await audit('bulk:'+table,{ids,published})}say('Массовое изменение выполнено.');await loadData()}
-$('bulk-publish').addEventListener('click',()=>bulkUpdate(true));$('bulk-unpublish').addEventListener('click',()=>bulkUpdate(false));
-$('export-data').addEventListener('click',async()=>{if(!canEdit()){say('Недостаточно прав для экспорта.');return}const tables=['players','matches','news','highlights','tournaments','player_awards','player_stats','academy_applications','match_polls','media_items'];const data={exported_at:new Date().toISOString()};for(const t of tables){const {data:rows,error}=await db.from(t).select('*');if(error){say('Ошибка экспорта '+t+': '+error.message);return}data[t]=rows}const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='wave-team-export-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(url);await audit('data:export',{tables})});
-db.auth.onAuthStateChange(()=>{setTimeout(checkSession,0)});checkSession();
-</script></body></html>
+const db=window.supabase.createClient(
+ 'https://hjtrnyufryxudqgvqkuo.supabase.co',
+ 'sb_publishable_q6wpqCXCpunEsIPNU2Hqjw_8Jk44FXi'
+);
+
+const $=id=>document.getElementById(id);
+const loginSection=$('login');
+const dashboard=$('dashboard');
+
+let cachedPlayers=[];
+let cachedMatches=[];
+let cachedAdjustments=[];
+let cachedApplications=[];
+let currentUser=null;
+let currentRole='viewer';
+
+function say(t){
+ $('notice').textContent=t;
+}
+
+function esc(v){
+ return String(v??'').replace(/[&<>"']/g,c=>({
+  '&':'&amp;',
+  '<':'&lt;',
+  '>':'&gt;',
+  '"':'&quot;',
+  "'":'&#39;'
+ }[c]));
+}
+
+function fd(f){
+ return Object.fromEntries(new FormData(f).entries());
+}
+
+function playerName(id){
+ return cachedPlayers.find(p=>String(p.id)===String(id))?.nickname||'Неизвестный игрок';
+}
+
+function rosterName(value){
+ const names={
+  MAIN:'MAIN ROSTER',
+  YOUNG:'YOUNG ROSTER',
+  ACADEMY:'ACADEMY ROSTER'
+ };
+ return names[String(value||'MAIN').toUpperCase()]||'MAIN ROSTER';
+}
+
+function playerOptions(){
+ return '<option value="">Выбери игрока</option>'+
+  cachedPlayers.map(p=>`
+   <option value="${esc(p.id)}">
+    ${esc(p.nickname)} — ${esc(rosterName(p.roster))}
+   </option>
+  `).join('');
+}
+
+function fillSelects(){
+ ['match-mvp','mvp-player','award-player','stats-player'].forEach(id=>{
+  $(id).innerHTML=playerOptions();
+ });
+}
+
+function mvpTotal(id){
+ return Math.max(
+  0,
+  cachedMatches.filter(x=>String(x.mvp_player_id)===String(id)).length+
+  cachedAdjustments
+   .filter(x=>String(x.player_id)===String(id))
+   .reduce((s,x)=>s+Number(x.delta||0),0)
+ );
+}
+
+function canEdit(){
+ return ['owner','admin','editor'].includes(currentRole);
+}
+
+function requireEdit(){
+ if(!canEdit()){
+  say('Недостаточно прав: нужна роль editor или выше.');
+  return false;
+ }
+ return true;
+}
+
+async function audit(action,details={}){
+ try{
+  await db.from('admin_audit_log').insert([{
+   actor_id:currentUser?.id||null,
+   actor_email:currentUser?.email||'',
+   action,
+   details
+  }]);
+ }catch(e){
+  console.warn('Audit log',e);
+ }
+}
+
+async function uploadFile(file,folder){
+ if(!file)throw new Error('Выбери файл.');
+
+ if(file.size>50*1024*1024){
+  throw new Error('Файл должен быть меньше 50 МБ.');
+ }
+
+ const name=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+ const path=folder+'/'+Date.now()+'_'+name;
+
+ const {error}=await db.storage
+  .from('wave-media')
+  .upload(path,file,{
+   cacheControl:'3600',
+   upsert:false
+  });
+
+ if(error)throw error;
+
+ return db.storage.from('wave-media').getPublicUrl(path).data.publicUrl;
+}
+
+function itemDelete(table,id,label){
+ return `
+  <button class="danger"
+   data-delete="${esc(table)}"
+   data-id="${esc(id)}">
+   ${label||'Удалить'}
+  </button>
+ `;
+}
+
+function row(title,details,id,table){
+ return `
+  <div class="item">
+   <strong>${esc(title)}</strong>
+   <p class="small">${esc(details)}</p>
+
+   <label class="small">
+    <input
+     type="checkbox"
+     class="bulk-check"
+     data-table="${esc(table)}"
+     value="${esc(id)}"
+    >
+    Выбрать для массового действия
+   </label>
+
+   ${itemDelete(table,id)}
+  </div>
+ `;
+}
+
+// ЗАГРУЗКА ВСЕХ ДАННЫХ
+async function loadData(){
+
+ say('Загружаем данные...');
+
+ const [
+  p,m,n,a,h,t,aw,adj,st,po,me,roles,logs
+ ]=await Promise.all([
+
+  db.from('players')
+   .select('*')
+   .order('sort_order'),
+
+  db.from('matches')
+   .select('*')
+   .order('created_at',{ascending:false}),
+
+  db.from('news')
+   .select('*')
+   .order('created_at',{ascending:false}),
+
+  db.from('academy_applications')
+   .select('*')
+   .order('created_at',{ascending:false}),
+
+  db.from('highlights')
+   .select('*')
+   .order('created_at',{ascending:false}),
+
+  db.from('tournaments')
+   .select('*')
+   .order('created_at',{ascending:false}),
+
+  db.from('player_awards')
+   .select('*')
+   .order('awarded_at',{ascending:false}),
+
+  db.from('player_mvp_adjustments')
+   .select('*')
+   .order('created_at',{ascending:false}),
+
+  db.from('player_stats')
+   .select('*'),
+
+  db.from('match_polls')
+   .select('*')
+   .order('created_at',{ascending:false}),
+
+  db.from('media_items')
+   .select('*')
+   .order('created_at',{ascending:false}),
+
+  db.from('admin_roles')
+   .select('*'),
+
+  db.from('admin_audit_log')
+   .select('*')
+   .order('created_at',{ascending:false})
+   .limit(40)
+ ]);
+
+ const failed=[p,m,n,a,h,t,aw,adj,st,po,me].find(x=>x.error);
+
+ if(failed){
+  say('Ошибка загрузки: '+failed.error.message);
+  console.error(failed.error);
+  return;
+ }
+
+ cachedPlayers=p.data||[];
+ cachedMatches=m.data||[];
+ cachedAdjustments=adj.data||[];
+ cachedApplications=a.data||[];
+
+ fillSelects();
+
+ $('players-count').textContent=p.data.length;
+ $('matches-count').textContent=m.data.length;
+ $('news-count').textContent=n.data.length;
+ $('applications-count').textContent=a.data.length;
+
+ // СПИСОК И РЕДАКТИРОВАНИЕ ИГРОКОВ
+ $('players-list').innerHTML=p.data.map(x=>{
+
+  const roster=String(x.roster||'MAIN').toUpperCase();
+  const safeRoster=['MAIN','YOUNG','ACADEMY'].includes(roster)?roster:'MAIN';
+
+  return `
+   <div class="item">
+
+    <strong>${esc(x.nickname)}</strong>
+
+    <p class="small">
+     ${esc(x.role)}
+     · ${esc(rosterName(safeRoster))}
+     · порядок ${esc(x.sort_order)}
+     · MVP ${mvpTotal(x.id)}
+    </p>
+
+    <span class="roster-badge">${esc(safeRoster)}</span>
+
+    ${x.photo_url?`
+     <img class="preview"
+      src="${esc(x.photo_url)}"
+      alt="${esc(x.nickname)}">
+    `:''}
+
+    <form class="player-edit-form" data-edit-player="${esc(x.id)}">
+
+     <h3>Редактировать игрока</h3>
+
+     <label>Игровой ник</label>
+     <input
+      name="nickname"
+      value="${esc(x.nickname)}"
+      maxlength="40"
+      required
+     >
+
+     <label>Роль</label>
+     <input
+      name="role"
+      value="${esc(x.role)}"
+      required
+     >
+
+     <label>Ростер</label>
+     <select name="roster" required>
+      <option value="MAIN" ${safeRoster==='MAIN'?'selected':''}>
+       MAIN ROSTER — основной состав
+      </option>
+
+      <option value="YOUNG" ${safeRoster==='YOUNG'?'selected':''}>
+       YOUNG ROSTER — молодёжный состав
+      </option>
+
+      <option value="ACADEMY" ${safeRoster==='ACADEMY'?'selected':''}>
+       ACADEMY ROSTER — академия
+      </option>
+     </select>
+
+     <label>Порядок отображения</label>
+     <input
+      name="sort_order"
+      type="number"
+      min="0"
+      value="${esc(x.sort_order??0)}"
+      required
+     >
+
+     <label>Описание игрока</label>
+     <textarea name="bio" placeholder="Информация об игроке...">${esc(x.bio||'')}</textarea>
+
+     <label class="check-line">
+      <input
+       type="checkbox"
+       name="published"
+       value="true"
+       ${x.published?'checked':''}
+      >
+      Игрок опубликован на сайте
+     </label>
+
+     <div class="player-edit-actions">
+      <button type="submit">Сохранить изменения</button>
+     </div>
+
+    </form>
+
+    <div class="file-box">
+     <label class="small">Заменить фотографию игрока</label>
+
+     <input
+      type="file"
+      accept="image/*"
+      data-player-file="${esc(x.id)}"
+     >
+
+     <button data-upload-player="${esc(x.id)}">
+      Загрузить аватарку
+     </button>
+    </div>
+
+    <label class="small">
+     <input
+      type="checkbox"
+      class="bulk-check"
+      data-table="players"
+      value="${esc(x.id)}"
+     >
+     Выбрать для массового действия
+    </label>
+
+    ${itemDelete('players',x.id)}
+
+   </div>
+  `;
+ }).join('')||'<p class="small">Игроков пока нет.</p>';
+
+ // МАТЧИ
+ $('matches-list').innerHTML=m.data.map(x=>`
+  <div class="item">
+   <strong>${esc(x.opponent)} — ${esc(x.score)}</strong>
+   <p class="small">
+    ${esc(x.status)}
+    · ${esc(x.match_date||'Дата не указана')}
+    · ${esc(x.map_name||'')}
+   </p>
+   ${itemDelete('matches',x.id)}
+  </div>
+ `).join('')||'<p class="small">Матчей пока нет.</p>';
+
+ // MVP
+ $('mvp-list').innerHTML=cachedPlayers.map(x=>`
+  <div class="item">
+   <strong>${esc(x.nickname)}</strong>
+   <p class="small">
+    ${esc(rosterName(x.roster))}
+    · Всего MVP: ${mvpTotal(x.id)}
+   </p>
+  </div>
+ `).join('');
+
+ // НАГРАДЫ
+ $('awards-list').innerHTML=aw.data.map(x=>`
+  <div class="item">
+   <strong>${esc(x.title)}</strong>
+   <p class="small">
+    ${esc(playerName(x.player_id))}
+    · ${esc(x.awarded_at||'')}
+   </p>
+   <p>${esc(x.description||'')}</p>
+   ${itemDelete('player_awards',x.id)}
+  </div>
+ `).join('');
+
+ // СТАТИСТИКА
+ $('stats-list').innerHTML=st.data.map(x=>`
+  <div class="item">
+   <strong>${esc(playerName(x.player_id))}</strong>
+   <p class="small">
+    Матчи ${esc(x.matches_played)}
+    · W ${esc(x.wins)}
+    · L ${esc(x.losses)}
+    · K/D/A ${esc(x.kills)}/${esc(x.deaths)}/${esc(x.assists)}
+    · ADR ${esc(x.adr)}
+    · KAST ${esc(x.kast)}%
+    · Rating ${esc(x.rating)}
+   </p>
+  </div>
+ `).join('');
+
+ // НОВОСТИ
+ $('news-list').innerHTML=n.data.map(x=>
+  row(x.title,x.category,x.id,'news')
+ ).join('');
+
+ // HIGHLIGHTS
+ $('highlights-list').innerHTML=h.data.map(x=>
+  row(x.title,x.player_nickname,x.id,'highlights')
+ ).join('');
+
+ // ТУРНИРЫ
+ $('tournaments-list').innerHTML=t.data.map(x=>`
+  <div class="item">
+   <strong>${esc(x.title)}</strong>
+   <p class="small">${esc(x.description||'')}</p>
+   ${x.image_url?`
+    <img class="preview" src="${esc(x.image_url)}" alt="">
+   `:''}
+   ${itemDelete('tournaments',x.id)}
+  </div>
+ `).join('');
+
+ // ЗАЯВКИ
+ $('applications-list').innerHTML=a.data.map(x=>`
+  <div class="item">
+
+   <strong>${esc(x.nickname)} · ${esc(x.age)} лет</strong>
+
+   <p class="small">
+    Роль ${esc(x.role)}
+    · Рейтинг ${esc(x.rating)}
+    · Контакт ${esc(x.contact)}
+   </p>
+
+   <p>${esc(x.about)}</p>
+
+   <label class="small">Статус</label>
+
+   <select data-app-status="${esc(x.id)}">
+    ${[
+     ['NEW','Новая'],
+     ['REVIEWING','На рассмотрении'],
+     ['TESTING','Тестирование'],
+     ['WAITLIST','Резерв'],
+     ['ACCEPTED','Принят'],
+     ['REJECTED','Отказ']
+    ].map(([v,l])=>`
+     <option value="${v}" ${x.status===v?'selected':''}>
+      ${l}
+     </option>
+    `).join('')}
+   </select>
+
+   <button data-save-app="${esc(x.id)}">
+    Сохранить статус
+   </button>
+
+   ${
+    x.status==='ACCEPTED'&&
+    !cachedPlayers.some(p=>
+     p.nickname.toLowerCase()===String(x.nickname).toLowerCase()
+    )
+     ?`
+      <button data-promote-app="${esc(x.id)}">
+       Добавить в ACADEMY ROSTER
+      </button>
+     `
+     :''
+   }
+
+  </div>
+ `).join('')||'<p class="small">Заявок пока нет.</p>';
+
+ // ГОЛОСОВАНИЯ
+ const votesRes=await db.from('match_poll_votes').select('poll_id,choice');
+ const votes=votesRes.data||[];
+
+ $('polls-list').innerHTML=(po.data||[]).map(x=>{
+  const v=votes.filter(z=>String(z.poll_id)===String(x.id));
+  const a1=v.filter(z=>z.choice==='A').length;
+  const b1=v.filter(z=>z.choice==='B').length;
+  const total=a1+b1;
+
+  return `
+   <div class="item">
+    <strong>${esc(x.title)}</strong>
+
+    <p class="small">
+     ${esc(x.team_a)}: ${total?Math.round(a1/total*100):0}% (${a1})
+     · ${esc(x.team_b)}: ${total?Math.round(b1/total*100):0}% (${b1})
+     · ${total} голосов
+    </p>
+
+    <p class="small">
+     Статус: ${x.is_open?'Открыто':'Закрыто'}
+    </p>
+
+    <button
+     data-toggle-poll="${esc(x.id)}"
+     data-open="${x.is_open?'false':'true'}"
+     class="secondary"
+    >
+     ${x.is_open?'Закрыть голосование':'Открыть голосование'}
+    </button>
+
+    ${itemDelete('match_polls',x.id)}
+   </div>
+  `;
+ }).join('')||'<p class="small">Голосований пока нет.</p>';
+
+ // МЕДИАЦЕНТР
+ $('media-list').innerHTML=(me.data||[]).map(x=>`
+  <div class="item">
+   <strong>${esc(x.title)}</strong>
+
+   <p class="small">
+    ${esc(x.category)}
+    · ${esc(x.description||'')}
+   </p>
+
+   ${x.media_url?`
+    <a href="${esc(x.media_url)}" target="_blank" rel="noopener">
+     Открыть материал ↗
+    </a>
+   `:''}
+
+   <p>
+    <label class="small">
+     <input
+      type="checkbox"
+      class="bulk-check"
+      data-table="media_items"
+      value="${esc(x.id)}"
+     >
+     Выбрать
+    </label>
+   </p>
+
+   ${itemDelete('media_items',x.id)}
+  </div>
+ `).join('')||'<p class="small">Материалов пока нет.</p>';
+
+ // РОЛИ
+ $('roles-list').innerHTML=(roles.data||[]).map(x=>`
+  <div class="item">
+   <strong>${esc(x.user_id)}</strong>
+   <p class="small">Роль: ${esc(x.role)}</p>
+  </div>
+ `).join('')||'<p class="small">Роли не настроены.</p>';
+
+ // ЖУРНАЛ
+ $('audit-list').innerHTML=(logs.data||[]).map(x=>`
+  <div class="item">
+   <strong>${esc(x.action)}</strong>
+   <p class="small">
+    ${esc(x.actor_email)}
+    · ${esc(x.created_at)}
+   </p>
+   <p class="small">${esc(JSON.stringify(x.details||{}))}</p>
+  </div>
+ `).join('')||'<p class="small">Записей пока нет.</p>';
+
+ say('Данные обновлены.');
+}
+
+// АВТОРИЗАЦИЯ И ПРОВЕРКА РОЛИ
+async function checkSession(){
+
+ const {data:{session},error}=await db.auth.getSession();
+
+ if(error){
+  $('login-message').textContent=error.message;
+  return;
+ }
+
+ currentUser=session?.user||null;
+
+ loginSection.classList.toggle('hidden',!!session);
+ dashboard.classList.toggle('hidden',!session);
+
+ if(!session)return;
+
+ $('signed-in').textContent='Вход выполнен: '+session.user.email;
+
+ const {data:roleRow,error:roleError}=await db
+  .from('admin_roles')
+  .select('role')
+  .eq('user_id',session.user.id)
+  .maybeSingle();
+
+ if(roleError){
+  say('Не удалось проверить роль: '+roleError.message);
+  return;
+ }
+
+ currentRole=roleRow?.role||'viewer';
+
+ $('role-label').textContent='Ваша роль: '+currentRole;
+
+ if(currentRole==='viewer'){
+  say('Режим просмотра: редактирование недоступно.');
+ }
+
+ await loadData();
+}
+
+// ВХОД
+$('login-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ $('login-message').textContent='Выполняется вход...';
+
+ const {error}=await db.auth.signInWithPassword({
+  email:$('email').value,
+  password:$('password').value
+ });
+
+ if(error){
+  $('login-message').textContent='Ошибка входа: '+error.message;
+  return;
+ }
+
+ $('login-message').textContent='';
+
+ await checkSession();
+});
+
+// ВЫХОД
+$('logout').addEventListener('click',async()=>{
+ await db.auth.signOut();
+ currentUser=null;
+ await checkSession();
+});
+
+$('refresh').addEventListener('click',loadData);
+
+// УНИВЕРСАЛЬНОЕ ДОБАВЛЕНИЕ
+async function insertOne(table,values,form,message){
+
+ if(!requireEdit())return;
+
+ const {error}=await db.from(table).insert([values]);
+
+ if(error){
+  say('Ошибка: '+error.message);
+  return;
+ }
+
+ if(form)form.reset();
+
+ say(message);
+
+ await audit('insert:'+table,values);
+ await loadData();
+}
+
+// ДОБАВИТЬ ИГРОКА
+$('player-form').addEventListener('submit',async e=>{
+
+ e.preventDefault();
+
+ if(!requireEdit())return;
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ const roster=String(d.roster||'MAIN').toUpperCase();
+
+ if(!['MAIN','YOUNG','ACADEMY'].includes(roster)){
+  say('Выбран неизвестный ростер.');
+  return;
+ }
+
+ if(!String(d.nickname||'').trim()||!String(d.role||'').trim()){
+  say('Заполни ник и роль игрока.');
+  return;
+ }
+
+ const sort_order=Number(d.sort_order);
+
+ if(!Number.isFinite(sort_order)||sort_order<0){
+  say('Укажи корректный порядок отображения.');
+  return;
+ }
+
+ try{
+
+  const photo_url=d.photo?.size
+   ?await uploadFile(d.photo,'players')
+   :null;
+
+  await insertOne(
+   'players',
+   {
+    nickname:d.nickname.trim(),
+    role:d.role.trim(),
+    roster,
+    sort_order,
+    bio:String(d.bio||'').trim(),
+    photo_url,
+    published:true
+   },
+   f,
+   'Игрок добавлен в '+rosterName(roster)+'!'
+  );
+
+ }catch(err){
+  say('Ошибка: '+err.message);
+ }
+
+});
+
+// СОХРАНИТЬ ИЗМЕНЕНИЯ ИГРОКА
+document.addEventListener('submit',async e=>{
+
+ const form=e.target.closest('[data-edit-player]');
+
+ if(!form)return;
+
+ e.preventDefault();
+
+ if(!requireEdit())return;
+
+ const id=form.dataset.editPlayer;
+ const d=fd(form);
+
+ const roster=String(d.roster||'').toUpperCase();
+
+ if(!['MAIN','YOUNG','ACADEMY'].includes(roster)){
+  say('Выбран неизвестный ростер.');
+  return;
+ }
+
+ const nickname=String(d.nickname||'').trim();
+ const role=String(d.role||'').trim();
+ const sort_order=Number(d.sort_order);
+ const bio=String(d.bio||'').trim();
+ const published=form.querySelector('[name="published"]').checked;
+
+ if(!nickname||!role){
+  say('Ник и роль игрока обязательны.');
+  return;
+ }
+
+ if(!Number.isFinite(sort_order)||sort_order<0){
+  say('Укажи корректный порядок отображения.');
+  return;
+ }
+
+ const values={
+  nickname,
+  role,
+  roster,
+  sort_order,
+  bio,
+  published
+ };
+
+ const {error}=await db
+  .from('players')
+  .update(values)
+  .eq('id',id);
+
+ if(error){
+  say('Ошибка редактирования: '+error.message);
+  return;
+ }
+
+ say('Игрок обновлён! Ростер: '+rosterName(roster));
+
+ await audit('player:update',{
+  id,
+  ...values
+ });
+
+ await loadData();
+});
+
+// ДОБАВИТЬ ТУРНИР
+$('tournament-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ if(!requireEdit())return;
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ try{
+  const image_url=await uploadFile(d.image,'tournaments');
+
+  await insertOne(
+   'tournaments',
+   {
+    title:d.title.trim(),
+    image_url,
+    description:d.description.trim(),
+    published:true
+   },
+   f,
+   'Турнир добавлен!'
+  );
+
+ }catch(err){
+  say('Ошибка: '+err.message);
+ }
+});
+
+// ДОБАВИТЬ HIGHLIGHT
+$('highlight-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ await insertOne(
+  'highlights',
+  {
+   title:d.title.trim(),
+   player_nickname:d.player_nickname.trim(),
+   youtube_url:d.youtube_url.trim(),
+   description:d.description.trim(),
+   published:true
+  },
+  f,
+  'Хайлайт добавлен!'
+ );
+});
+
+// ДОБАВИТЬ МАТЧ
+$('match-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ await insertOne(
+  'matches',
+  {
+   opponent:d.opponent.trim(),
+   score:d.score.trim(),
+   status:d.status.trim(),
+   match_date:d.match_date
+    ?new Date(d.match_date).toISOString()
+    :null,
+   mvp_player_id:d.mvp_player_id||null,
+   map_name:d.map_name.trim()||null,
+   round_score:d.round_score.trim()||null,
+   lineup:d.lineup.trim()||null,
+   published:true
+  },
+  f,
+  'Матч добавлен!'
+ );
+});
+
+// СОЗДАТЬ ОПРОС
+$('poll-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ await insertOne(
+  'match_polls',
+  {
+   title:d.title.trim(),
+   team_a:d.team_a.trim(),
+   team_b:d.team_b.trim(),
+   match_date:d.match_date
+    ?new Date(d.match_date).toISOString()
+    :null,
+   is_open:true,
+   published:true
+  },
+  f,
+  'Голосование создано!'
+ );
+});
+
+// ДОБАВИТЬ МАТЕРИАЛ В МЕДИАЦЕНТР
+$('media-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ if(!requireEdit())return;
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ try{
+
+  let media_url=d.media_url.trim()||null;
+
+  if(d.file?.size){
+   media_url=await uploadFile(d.file,'media');
+  }
+
+  if(d.category==='PHOTO'&&!media_url){
+   throw new Error('Для фото выбери файл или укажи ссылку.');
+  }
+
+  await insertOne(
+   'media_items',
+   {
+    title:d.title.trim(),
+    category:d.category,
+    media_url,
+    description:d.description.trim(),
+    published:true
+   },
+   f,
+   'Материал добавлен!'
+  );
+
+ }catch(err){
+  say('Ошибка: '+err.message);
+ }
+});
+
+// ИЗМЕНЕНИЕ MVP
+$('mvp-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ const f=e.currentTarget;
+ const d=fd(f);
+ const delta=Number(d.delta);
+
+ if(!requireEdit())return;
+
+ if(delta===-1&&mvpTotal(d.player_id)<=0){
+  say('У игрока нет MVP для снятия.');
+  return;
+ }
+
+ await insertOne(
+  'player_mvp_adjustments',
+  {
+   player_id:d.player_id,
+   delta,
+   note:d.note.trim()||null
+  },
+  f,
+  'Изменение MVP сохранено!'
+ );
+});
+
+// ДОБАВИТЬ НАГРАДУ
+$('award-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ await insertOne(
+  'player_awards',
+  {
+   player_id:d.player_id,
+   title:d.title.trim(),
+   description:d.description.trim(),
+   awarded_at:d.awarded_at||new Date().toISOString().slice(0,10),
+   published:true
+  },
+  f,
+  'Награда добавлена!'
+ );
+});
+
+// СОХРАНИТЬ СТАТИСТИКУ
+$('stats-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ if(!requireEdit())return;
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ const v={
+  player_id:d.player_id,
+  matches_played:+d.matches_played,
+  wins:+d.wins,
+  losses:+d.losses,
+  kills:+d.kills,
+  deaths:+d.deaths,
+  assists:+d.assists,
+  adr:+d.adr,
+  kast:+d.kast,
+  rating:+d.rating,
+  updated_at:new Date().toISOString()
+ };
+
+ if(v.wins+v.losses>v.matches_played){
+  say('Победы и поражения не могут превышать количество матчей.');
+  return;
+ }
+
+ const {error}=await db
+  .from('player_stats')
+  .upsert(v,{onConflict:'player_id'});
+
+ if(error){
+  say('Ошибка: '+error.message);
+  return;
+ }
+
+ say('Статистика сохранена.');
+
+ await audit('upsert:player_stats',{
+  player_id:v.player_id
+ });
+
+ await loadData();
+});
+
+// ДОБАВИТЬ НОВОСТЬ
+$('news-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ await insertOne(
+  'news',
+  {
+   title:d.title.trim(),
+   category:d.category.trim(),
+   body:d.body.trim(),
+   published:true
+  },
+  f,
+  'Новость опубликована!'
+ );
+});
+
+// НАЗНАЧИТЬ РОЛЬ
+$('role-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+
+ if(currentRole!=='owner'){
+  say('Назначать роли может только owner.');
+  return;
+ }
+
+ const f=e.currentTarget;
+ const d=fd(f);
+
+ const {error}=await db
+  .from('admin_roles')
+  .upsert({
+   user_id:d.user_id.trim(),
+   role:d.role,
+   updated_at:new Date().toISOString()
+  },{onConflict:'user_id'});
+
+ if(error){
+  say('Ошибка назначения роли: '+error.message);
+  return;
+ }
+
+ say('Роль обновлена.');
+
+ await audit('role:update',{
+  user_id:d.user_id,
+  role:d.role
+ });
+
+ await loadData();
+});
+
+// ОБРАБОТЧИКИ КНОПОК СПИСКОВ
+document.addEventListener('click',async e=>{
+
+ // ЗАГРУЗКА ФОТО ИГРОКА
+ const up=e.target.closest('[data-upload-player]');
+
+ if(up){
+
+  if(!requireEdit())return;
+
+  const id=up.dataset.uploadPlayer;
+
+  const file=document
+   .querySelector(`[data-player-file="${CSS.escape(id)}"]`)
+   ?.files?.[0];
+
+  try{
+
+   const photo_url=await uploadFile(file,'players');
+
+   const {error}=await db
+    .from('players')
+    .update({photo_url})
+    .eq('id',id);
+
+   if(error)throw error;
+
+   say('Аватарка обновлена.');
+
+   await audit('player:photo',{id});
+
+   await loadData();
+
+  }catch(err){
+   say('Ошибка: '+err.message);
+  }
+
+  return;
+ }
+
+ // ОТКРЫТЬ / ЗАКРЫТЬ ГОЛОСОВАНИЕ
+ const toggle=e.target.closest('[data-toggle-poll]');
+
+ if(toggle){
+
+  if(!requireEdit())return;
+
+  const {error}=await db
+   .from('match_polls')
+   .update({
+    is_open:toggle.dataset.open==='true'
+   })
+   .eq('id',toggle.dataset.togglePoll);
+
+  if(error){
+   say('Ошибка: '+error.message);
+   return;
+  }
+
+  say('Статус голосования изменён.');
+
+  await audit('poll:toggle',{
+   id:toggle.dataset.togglePoll,
+   is_open:toggle.dataset.open==='true'
+  });
+
+  await loadData();
+
+  return;
+ }
+
+ // ПЕРЕНЕСТИ КАНДИДАТА В ACADEMY ROSTER
+ const promote=e.target.closest('[data-promote-app]');
+
+ if(promote){
+
+  if(!requireEdit())return;
+
+  const a=cachedApplications.find(x=>
+   String(x.id)===promote.dataset.promoteApp
+  );
+
+  if(!a)return;
+
+  if(cachedPlayers.some(p=>
+   p.nickname.toLowerCase()===String(a.nickname).toLowerCase()
+  )){
+   say('Игрок уже есть в составе.');
+   return;
+  }
+
+  if(!confirm('Добавить '+a.nickname+' в ACADEMY ROSTER?'))return;
+
+  const sort_order=Math.max(
+   0,
+   ...cachedPlayers.map(p=>Number(p.sort_order)||0)
+  )+1;
+
+  await insertOne(
+   'players',
+   {
+    nickname:String(a.nickname).trim(),
+    role:String(a.role||'Rifler'),
+    roster:'ACADEMY',
+    sort_order,
+    bio:String(a.about||''),
+    published:true
+   },
+   null,
+   'Кандидат добавлен в ACADEMY ROSTER!'
+  );
+
+  return;
+ }
+
+ // СОХРАНИТЬ СТАТУС ЗАЯВКИ
+ const save=e.target.closest('[data-save-app]');
+
+ if(save){
+
+  if(!requireEdit())return;
+
+  const id=save.dataset.saveApp;
+
+  const select=document.querySelector(
+   `[data-app-status="${CSS.escape(id)}"]`
+  );
+
+  const {error}=await db
+   .from('academy_applications')
+   .update({status:select.value})
+   .eq('id',id);
+
+  if(error){
+   say('Ошибка: '+error.message);
+   return;
+  }
+
+  say('Статус обновлён.');
+
+  await audit('academy:status',{
+   id,
+   status:select.value
+  });
+
+  await loadData();
+
+  return;
+ }
+
+ // УДАЛЕНИЕ
+ const del=e.target.closest('[data-delete]');
+
+ if(del){
+
+  if(!requireEdit())return;
+
+  const table=del.dataset.delete;
+
+  if(![
+   'players',
+   'matches',
+   'news',
+   'highlights',
+   'tournaments',
+   'player_awards',
+   'match_polls',
+   'media_items'
+  ].includes(table))return;
+
+  if(!confirm('Точно удалить запись?'))return;
+
+  const {error}=await db
+   .from(table)
+   .delete()
+   .eq('id',del.dataset.id);
+
+  if(error){
+   say('Ошибка удаления: '+error.message);
+   return;
+  }
+
+  say('Запись удалена.');
+
+  await audit('delete:'+table,{
+   id:del.dataset.id
+  });
+
+  await loadData();
+ }
+});
+
+// МАССОВОЕ РЕДАКТИРОВАНИЕ
+async function bulkUpdate(published){
+
+ if(!requireEdit())return;
+
+ const selected=[
+  ...document.querySelectorAll('.bulk-check:checked')
+ ];
+
+ if(!selected.length){
+  say('Сначала выбери записи.');
+  return;
+ }
+
+ const groups={};
+
+ selected.forEach(x=>{
+  (groups[x.dataset.table]??=[]).push(x.value);
+ });
+
+ for(const [table,ids] of Object.entries(groups)){
+
+  const {error}=await db
+   .from(table)
+   .update({published})
+   .in('id',ids);
+
+  if(error){
+   say('Ошибка массового изменения '+table+': '+error.message);
+   return;
+  }
+
+  await audit('bulk:'+table,{
+   ids,
+   published
+  });
+ }
+
+ say('Массовое изменение выполнено.');
+
+ await loadData();
+}
+
+$('bulk-publish').addEventListener('click',()=>bulkUpdate(true));
+$('bulk-unpublish').addEventListener('click',()=>bulkUpdate(false));
+
+// ЭКСПОРТ ДАННЫХ
+$('export-data').addEventListener('click',async()=>{
+
+ if(!canEdit()){
+  say('Недостаточно прав для экспорта.');
+  return;
+ }
+
+ const tables=[
+  'players',
+  'matches',
+  'news',
+  'highlights',
+  'tournaments',
+  'player_awards',
+  'player_stats',
+  'academy_applications',
+  'match_polls',
+  'media_items'
+ ];
+
+ const data={
+  exported_at:new Date().toISOString()
+ };
+
+ for(const t of tables){
+
+  const {data:rows,error}=await db
+   .from(t)
+   .select('*');
+
+  if(error){
+   say('Ошибка экспорта '+t+': '+error.message);
+   return;
+  }
+
+  data[t]=rows;
+ }
+
+ const blob=new Blob(
+  [JSON.stringify(data,null,2)],
+  {type:'application/json'}
+ );
+
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');
+
+ a.href=url;
+ a.download='wave-team-export-'+
+  new Date().toISOString().slice(0,10)+'.json';
+
+ a.click();
+
+ URL.revokeObjectURL(url);
+
+ await audit('data:export',{tables});
+});
+
+// ОБНОВЛЕНИЕ СЕССИИ
+db.auth.onAuthStateChange(()=>{
+ setTimeout(checkSession,0);
+});
+
+checkSession();
+</script>
+
+</body>
+</html>
