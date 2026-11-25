@@ -69,6 +69,7 @@ button:disabled{opacity:.5;cursor:wait}
 }
 .tabs{display:flex;gap:7px;flex-wrap:wrap}
 .tabs a{padding:9px 12px;border:1px solid #514634;text-decoration:none}
+.tabs button.active{background:#d8bd83;color:#111;border-color:#d8bd83}
 .inline{display:inline-block}
 
 /* Редактирование игроков */
@@ -209,6 +210,19 @@ button:disabled{opacity:.5;cursor:wait}
   <button type="submit">Добавить игрока</button>
  </form>
 
+ <div class="stats" id="roster-counts" style="grid-template-columns:repeat(3,1fr)">
+  <div class="stat-card"><span class="stat-number" id="count-main">0</span><span class="small">MAIN ROSTER</span></div>
+  <div class="stat-card"><span class="stat-number" id="count-young">0</span><span class="small">YOUNG ROSTER</span></div>
+  <div class="stat-card"><span class="stat-number" id="count-academy">0</span><span class="small">ACADEMY ROSTER</span></div>
+ </div>
+ <div class="tabs" id="roster-filters" style="margin:14px 0">
+  <button type="button" class="secondary" data-roster-filter="ALL">Все игроки</button>
+  <button type="button" class="secondary" data-roster-filter="MAIN">MAIN</button>
+  <button type="button" class="secondary" data-roster-filter="YOUNG">YOUNG</button>
+  <button type="button" class="secondary" data-roster-filter="ACADEMY">ACADEMY</button>
+ </div>
+ <input id="player-search" type="search" placeholder="Поиск игрока по нику или роли">
+ <p class="small">Выбери ростер у конкретного игрока и нажми «Сохранить изменения». Перенос сохраняется в базе Supabase.</p>
  <div id="players-list"></div>
 </div>
 
@@ -452,6 +466,8 @@ let cachedPlayers=[];
 let cachedMatches=[];
 let cachedAdjustments=[];
 let cachedApplications=[];
+let activeRosterFilter='ALL';
+let playerSearchText='';
 let currentUser=null;
 let currentRole='viewer';
 
@@ -659,6 +675,14 @@ async function loadData(){
  }
 
  cachedPlayers=p.data||[];
+ const rosterCounts={MAIN:0,YOUNG:0,ACADEMY:0};
+ cachedPlayers.forEach(player=>{
+  const r=String(player.roster||'MAIN').toUpperCase();
+  rosterCounts[['MAIN','YOUNG','ACADEMY'].includes(r)?r:'MAIN']++;
+ });
+ $('count-main').textContent=rosterCounts.MAIN;
+ $('count-young').textContent=rosterCounts.YOUNG;
+ $('count-academy').textContent=rosterCounts.ACADEMY;
  cachedMatches=m.data||[];
  cachedAdjustments=adj.data||[];
  cachedApplications=a.data||[];
@@ -671,7 +695,14 @@ async function loadData(){
  $('applications-count').textContent=a.data.length;
 
  // СПИСОК И РЕДАКТИРОВАНИЕ ИГРОКОВ
- $('players-list').innerHTML=p.data.map(x=>{
+ const visiblePlayers=p.data.filter(player=>{
+  const r=String(player.roster||'MAIN').toUpperCase();
+  const normalized=['MAIN','YOUNG','ACADEMY'].includes(r)?r:'MAIN';
+  const matchesRoster=activeRosterFilter==='ALL'||normalized===activeRosterFilter;
+  const haystack=(String(player.nickname||'')+' '+String(player.role||'')).toLowerCase();
+  return matchesRoster&&haystack.includes(playerSearchText);
+ });
+ $('players-list').innerHTML=visiblePlayers.map(x=>{
 
   const roster=String(x.roster||'MAIN').toUpperCase();
   const safeRoster=['MAIN','YOUNG','ACADEMY'].includes(roster)?roster:'MAIN';
@@ -1048,6 +1079,20 @@ async function checkSession(){
 }
 
 // ВХОД
+$('roster-filters').addEventListener('click',e=>{
+ const button=e.target.closest('[data-roster-filter]');
+ if(!button)return;
+ activeRosterFilter=button.dataset.rosterFilter;
+ $('roster-filters').querySelectorAll('[data-roster-filter]').forEach(b=>{
+  b.classList.toggle('active',b===button);
+ });
+ loadData();
+});
+$('player-search').addEventListener('input',e=>{
+ playerSearchText=String(e.target.value||'').trim().toLowerCase();
+ loadData();
+});
+
 $('login-form').addEventListener('submit',async e=>{
  e.preventDefault();
 
