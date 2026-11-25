@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090909">
 <title>WAVE TEAM — CS2 Esports</title>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9GBPR7RVW"></script>
 <script>
 window.dataLayer=window.dataLayer||[];
@@ -12,869 +13,1164 @@ function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());
 gtag('config','G-L9GBPR7RVW');
 </script>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:#090909;color:#f4f0e8;font-family:Arial,Helvetica,sans-serif}
 a{color:inherit;text-decoration:none}
 .gold{color:#d8bd83}
-header{display:flex;justify-content:space-between;align-items:center;padding:24px 7%;border-bottom:1px solid #29251d;position:sticky;top:0;background:#090909ee;z-index:5;backdrop-filter:blur(12px)}
+
+header{
+ display:flex;justify-content:space-between;align-items:center;
+ padding:24px 7%;border-bottom:1px solid #29251d;
+ position:sticky;top:0;background:#090909ee;z-index:5;
+ backdrop-filter:blur(12px)
+}
 .logo{font-weight:900;font-size:24px;letter-spacing:4px}
 nav{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#c8c4bc}
 nav a:hover{color:#d8bd83}
-.hero{min-height:580px;padding:100px 8%;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(ellipse at 80% 40%,#4b3920 0,#17130e 25%,#090909 65%);border-bottom:1px solid #29251d}
+
+.hero{
+ min-height:580px;padding:100px 8%;display:flex;flex-direction:column;
+ justify-content:center;
+ background:radial-gradient(ellipse at 80% 40%,#4b3920 0,#17130e 25%,#090909 65%);
+ border-bottom:1px solid #29251d
+}
 .eyebrow,.section-label,.number{color:#d8bd83;letter-spacing:4px;font-size:11px}
 h1{font-size:clamp(58px,11vw,130px);line-height:.95;letter-spacing:-5px;margin:25px 0}
 .hero p{color:#aaa49a;max-width:480px;line-height:1.8}
 .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
-.btn{display:inline-block;padding:14px 22px;border:1px solid #d8bd83;font-size:12px;letter-spacing:1px;font-weight:bold;transition:.25s;background:transparent;color:#f4f0e8}
+.btn{
+ display:inline-block;padding:14px 22px;border:1px solid #d8bd83;
+ font-size:12px;letter-spacing:1px;font-weight:bold;transition:.25s;
+ background:transparent;color:#f4f0e8
+}
 .btn:hover{transform:translateY(-3px);box-shadow:0 0 22px #d8bd8340}
 .btn.primary{background:#d8bd83;color:#100e09}
+
 section{padding:80px 8%}
 h2{font-size:clamp(32px,5vw,54px);margin:14px 0 32px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-.card{background:#11110f;border:1px solid #302b21;padding:25px;transition:transform .3s,border-color .3s,box-shadow .3s}
-.card:hover{transform:translateY(-5px);border-color:#8e7446;box-shadow:0 10px 30px #0008}
+.card{
+ background:#11110f;border:1px solid #302b21;padding:25px;
+ transition:transform .3s,border-color .3s,box-shadow .3s
+}
+.card:hover{
+ transform:translateY(-5px);border-color:#8e7446;
+ box-shadow:0 10px 30px #0008
+}
 .card h3{margin:18px 0 8px;font-size:22px}
 .muted{color:#918d85;font-size:13px;line-height:1.7}
-.empty-state{color:#918d85;padding:22px;border:1px dashed #393329;grid-column:1/-1}
+.empty-state{
+ color:#918d85;padding:22px;border:1px dashed #393329;
+ grid-column:1/-1
+}
+
+/* Ростеры */
+.roster-block{margin-top:44px}
+.roster-heading{
+ display:flex;align-items:center;gap:14px;
+ flex-wrap:wrap;margin:0 0 20px;
+ border-bottom:1px solid #302b21;padding-bottom:14px
+}
+.roster-heading h3{
+ font-size:25px;color:#d8bd83;letter-spacing:1px
+}
+.roster-heading span{
+ font-size:11px;color:#918d85;letter-spacing:2px
+}
+.roster-description{
+ color:#918d85;font-size:13px;line-height:1.7;
+ margin:-8px 0 20px
+}
+
 .match{display:flex;justify-content:space-between;gap:15px;align-items:center}
 .score{color:#d8bd83;font-size:24px;font-weight:bold;white-space:nowrap}
 .match-details{border-top:1px solid #393329;margin-top:16px;padding-top:12px}
 .match-details p{margin:8px 0;overflow-wrap:anywhere}
-.match-status{display:inline-block;color:#d8bd83;border:1px solid #665333;padding:5px 9px;font-size:10px;letter-spacing:1px;margin-top:10px}
-.match-lineup,.match-mvp{background:#1b1915;border-left:2px solid #8e7446;padding:12px;margin-top:12px;white-space:pre-wrap;overflow-wrap:anywhere}
-.academy{background:#12100c;border-top:1px solid #302b21;border-bottom:1px solid #302b21}
+.match-status{
+ display:inline-block;color:#d8bd83;border:1px solid #665333;
+ padding:5px 9px;font-size:10px;letter-spacing:1px;margin-top:10px
+}
+.match-lineup,.match-mvp{
+ background:#1b1915;border-left:2px solid #8e7446;
+ padding:12px;margin-top:12px;white-space:pre-wrap;overflow-wrap:anywhere
+}
+
+.academy{
+ background:#12100c;border-top:1px solid #302b21;
+ border-bottom:1px solid #302b21
+}
 form{display:grid;gap:13px;max-width:600px}
-input,select,textarea{width:100%;padding:14px;color:#f4f0e8;background:#090909;border:1px solid #393329;font:inherit;outline-color:#d8bd83}
+input,select,textarea{
+ width:100%;padding:14px;color:#f4f0e8;background:#090909;
+ border:1px solid #393329;font:inherit;outline-color:#d8bd83
+}
 textarea{min-height:100px;resize:vertical}
 button{cursor:pointer;font:inherit}
 button:disabled{opacity:.6;cursor:wait}
-footer{padding:30px 8%;color:#918d85;font-size:12px;border-top:1px solid #29251d}
+footer{
+ padding:30px 8%;color:#918d85;font-size:12px;
+ border-top:1px solid #29251d
+}
+
 .player-card{padding:0;overflow:hidden;cursor:pointer}
-.player-photo{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#1b1915}
+.player-photo{
+ width:100%;aspect-ratio:4/3;object-fit:cover;
+ display:block;background:#1b1915
+}
 .player-info,.media-copy{padding:20px}
-.profile-link{color:#d8bd83;font-size:12px;letter-spacing:1px;margin-top:12px;display:inline-block}
+.profile-link{
+ color:#d8bd83;font-size:12px;letter-spacing:1px;
+ margin-top:12px;display:inline-block
+}
 .media-card{overflow:hidden;padding:0}
-.video-frame{width:100%;aspect-ratio:16/9;border:0;display:block;background:#000}
-.tournament-image,.media-image{width:100%;max-height:520px;object-fit:contain;display:block;background:#080808}
-.modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:20px;background:#000d}
+.video-frame{
+ width:100%;aspect-ratio:16/9;border:0;
+ display:block;background:#000
+}
+.tournament-image,.media-image{
+ width:100%;max-height:520px;object-fit:contain;
+ display:block;background:#080808
+}
+.modal{
+ position:fixed;inset:0;z-index:20;display:none;
+ align-items:center;justify-content:center;
+ padding:20px;background:#000d
+}
 .modal.open{display:flex}
-.modal-box{width:min(760px,100%);max-height:90vh;overflow:auto;background:#11110f;border:1px solid #d8bd83;padding:26px;position:relative}
-.modal-close{position:absolute;right:12px;top:10px;background:transparent;color:#d8bd83;border:0;font-size:26px}
+.modal-box{
+ width:min(760px,100%);max-height:90vh;overflow:auto;
+ background:#11110f;border:1px solid #d8bd83;
+ padding:26px;position:relative
+}
+.modal-close{
+ position:absolute;right:12px;top:10px;
+ background:transparent;color:#d8bd83;
+ border:0;font-size:26px
+}
 .modal-photo{width:100%;max-height:340px;object-fit:cover;margin:12px 0}
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
-.stat-box,.hall-record{background:#1b1915;border:1px solid #393329;padding:13px;text-align:center}
-.stat-value{display:block;color:#d8bd83;font-size:22px;font-weight:bold;margin-bottom:5px}
+.stat-box,.hall-record{
+ background:#1b1915;border:1px solid #393329;
+ padding:13px;text-align:center
+}
+.stat-value{
+ display:block;color:#d8bd83;font-size:22px;
+ font-weight:bold;margin-bottom:5px
+}
 .stat-name{font-size:10px;color:#aaa49a;letter-spacing:1px}
-.award-item,.hall-award{background:#11110f;border:1px solid #665333;padding:18px;margin-top:10px}
+.award-item,.hall-award{
+ background:#11110f;border:1px solid #665333;
+ padding:18px;margin-top:10px
+}
 .award-title,.hall-award h3{color:#d8bd83;font-weight:bold}
 .analytics-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .analytics-summary-card{min-height:116px}
-.big-number{display:block;color:#d8bd83;font-size:34px;font-weight:900;margin:8px 0}
+.big-number{
+ display:block;color:#d8bd83;font-size:34px;
+ font-weight:900;margin:8px 0
+}
 .form-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.form-pill{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 10px;border:1px solid #665333;color:#d8bd83;font-weight:bold}
+.form-pill{
+ display:inline-flex;align-items:center;justify-content:center;
+ min-width:36px;height:36px;padding:0 10px;
+ border:1px solid #665333;color:#d8bd83;font-weight:bold
+}
 .form-pill.win{background:#263323;color:#b9d6a8}
 .form-pill.loss{background:#392222;color:#e4aaaa}
-.map-row{display:grid;grid-template-columns:90px 1fr 48px;gap:10px;align-items:center;margin:13px 0;font-size:12px}
+.map-row{
+ display:grid;grid-template-columns:90px 1fr 48px;
+ gap:10px;align-items:center;margin:13px 0;font-size:12px
+}
 .map-track{height:7px;background:#29251d;border-radius:10px;overflow:hidden}
 .map-fill{height:100%;background:#d8bd83}
 .map-value{text-align:right;color:#d8bd83}
 .analytics-table{width:100%;border-collapse:collapse;font-size:13px}
-.analytics-table th,.analytics-table td{text-align:left;padding:12px 8px;border-bottom:1px solid #393329}
+.analytics-table th,.analytics-table td{
+ text-align:left;padding:12px 8px;border-bottom:1px solid #393329
+}
 .analytics-table th{color:#d8bd83;font-size:10px;letter-spacing:1px}
 .analytics-table td:last-child,.analytics-table th:last-child{text-align:right}
-.poll-option{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#1b1915;border:1px solid #393329;padding:14px;margin-top:10px}
+
+.poll-option{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:10px;background:#1b1915;border:1px solid #393329;padding:14px;margin-top:10px
+}
 .poll-bar{height:7px;background:#29251d;margin-top:8px;overflow:hidden}
 .poll-bar span{display:block;height:100%;background:#d8bd83}
 .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
-.filter-btn{background:#171510;color:#d8bd83;border:1px solid #665333;padding:9px 13px}
+.filter-btn{
+ background:#171510;color:#d8bd83;
+ border:1px solid #665333;padding:9px 13px
+}
 .filter-btn.active{background:#d8bd83;color:#111}
-.media-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#171510}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.media-thumb{
+ width:100%;aspect-ratio:16/9;object-fit:cover;
+ display:block;background:#171510
+}
+
+.reveal{
+ opacity:0;transform:translateY(22px);
+ transition:opacity .65s ease,transform .65s ease
+}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
-/* Три ростера */
-.roster-block{margin-top:42px}
-.roster-heading{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 20px}
-.roster-heading h3{font-size:25px;color:#d8bd83;letter-spacing:1px;margin:0}
-.roster-heading span{font-size:11px;color:#918d85;letter-spacing:2px}
-.roster-block .grid{min-height:40px}
-.roster-block .player-card{min-width:0}
-.player-roster-tag{display:inline-block;color:#d8bd83;border:1px solid #665333;padding:5px 8px;font-size:10px;letter-spacing:1px;margin-top:8px}
-
 @media(max-width:650px){
-header{padding:18px 5%;flex-wrap:wrap;gap:15px}
-nav{gap:11px}
-.hero{padding:80px 6%;min-height:500px}
-section{padding:60px 6%}
-h1{letter-spacing:-3px}
-.stats-grid{grid-template-columns:repeat(2,1fr)}
-.analytics-layout{grid-template-columns:1fr}
-.analytics-table{font-size:11px}
-.analytics-table th,.analytics-table td{padding:9px 4px}
-.modal-box{padding:20px}
-.roster-heading h3{font-size:21px}
+ header{padding:18px 5%;flex-wrap:wrap;gap:15px}
+ nav{gap:11px}
+ .hero{padding:80px 6%;min-height:500px}
+ section{padding:60px 6%}
+ h1{letter-spacing:-3px}
+ .stats-grid{grid-template-columns:repeat(2,1fr)}
+ .analytics-layout{grid-template-columns:1fr}
+ .analytics-table{font-size:11px}
+ .analytics-table th,.analytics-table td{padding:9px 4px}
+ .modal-box{padding:20px}
+ .roster-heading h3{font-size:21px}
 }
 @media(prefers-reduced-motion:reduce){
-*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
-.reveal{opacity:1;transform:none}
+ *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+ .reveal{opacity:1;transform:none}
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<a class="logo" href="#">WAVE<span class="gold">.</span></a>
-<nav id="mainNav">
-<a href="#team">Состав</a>
-<a href="#highlights">Highlights</a>
-<a href="#tournaments">Турниры</a>
-<a href="#matches">Матчи</a>
-<a href="#predictions">Прогнозы</a>
-<a href="#media-center">Медиацентр</a>
-<a href="#hall-of-fame">Зал славы</a>
-<a href="#analytics">Аналитика</a>
-<a href="#academy">Академия</a>
-<a href="#contacts">Контакты</a>
-</nav>
+ <a class="logo" href="#">WAVE<span class="gold">.</span></a>
+ <nav id="mainNav">
+  <a href="#team">Состав</a>
+  <a href="#highlights">Highlights</a>
+  <a href="#tournaments">Турниры</a>
+  <a href="#matches">Матчи</a>
+  <a href="#predictions">Прогнозы</a>
+  <a href="#media-center">Медиацентр</a>
+  <a href="#hall-of-fame">Зал славы</a>
+  <a href="#analytics">Аналитика</a>
+  <a href="#academy">Академия</a>
+  <a href="#contacts">Контакты</a>
+ </nav>
 </header>
 
 <main>
+
 <section class="hero">
-<span class="eyebrow">COUNTER-STRIKE 2 / ESPORTS</span>
-<h1>WAVE<br><span class="gold">TEAM</span></h1>
-<p>Новая волна начинается здесь. Дисциплина, командная игра и стремление к победе.</p>
-<div class="actions">
-<a class="btn primary" href="#team">НАША КОМАНДА</a>
-<a class="btn" href="https://t.me/cfls66" target="_blank" rel="noopener">TELEGRAM ↗</a>
-</div>
+ <span class="eyebrow">COUNTER-STRIKE 2 / ESPORTS</span>
+ <h1>WAVE<br><span class="gold">TEAM</span></h1>
+ <p>Новая волна начинается здесь. Дисциплина, командная игра и стремление к победе.</p>
+ <div class="actions">
+  <a class="btn primary" href="#team">НАША КОМАНДА</a>
+  <a class="btn" href="https://t.me/cfls66" target="_blank" rel="noopener">TELEGRAM ↗</a>
+ </div>
 </section>
 
+<!-- ТРИ РОСТЕРА -->
 <section id="team">
-<div class="section-label">01 / ROSTER</div>
-<h2>Наш <span class="gold">состав</span></h2>
+ <div class="section-label">01 / ROSTER</div>
+ <h2>Наш <span class="gold">состав</span></h2>
 
-<div class="roster-block" id="main-roster">
-<div class="roster-heading">
-<h3>MAIN ROSTER</h3>
-<span>ОСНОВНОЙ СОСТАВ</span>
-</div>
-<div class="grid" id="players-main-grid">
-<div class="empty-state">Загрузка основного состава...</div>
-</div>
-</div>
+ <div class="roster-block">
+  <div class="roster-heading">
+   <h3>MAIN ROSTER</h3>
+   <span>ОСНОВНОЙ СОСТАВ</span>
+  </div>
+  <p class="roster-description">Основной боевой состав WAVE TEAM.</p>
+  <div class="grid" id="players-main-grid">
+   <div class="empty-state">Загрузка основного состава...</div>
+  </div>
+ </div>
 
-<div class="roster-block" id="young-roster">
-<div class="roster-heading">
-<h3>YOUNG ROSTER</h3>
-<span>МОЛОДЁЖНЫЙ СОСТАВ</span>
-</div>
-<div class="grid" id="players-young-grid">
-<div class="empty-state">Загрузка молодёжного состава...</div>
-</div>
-</div>
+ <div class="roster-block">
+  <div class="roster-heading">
+   <h3>YOUNG ROSTER</h3>
+   <span>МОЛОДЁЖНЫЙ СОСТАВ</span>
+  </div>
+  <p class="roster-description">Молодые игроки, развивающиеся вместе с WAVE TEAM.</p>
+  <div class="grid" id="players-young-grid">
+   <div class="empty-state">Загрузка молодёжного состава...</div>
+  </div>
+ </div>
 
-<div class="roster-block" id="academy-roster">
-<div class="roster-heading">
-<h3>ACADEMY ROSTER</h3>
-<span>АКАДЕМИЯ</span>
-</div>
-<div class="grid" id="players-academy-grid">
-<div class="empty-state">Загрузка академии...</div>
-</div>
-</div>
+ <div class="roster-block">
+  <div class="roster-heading">
+   <h3>ACADEMY ROSTER</h3>
+   <span>АКАДЕМИЯ</span>
+  </div>
+  <p class="roster-description">Перспективные игроки академии WAVE TEAM.</p>
+  <div class="grid" id="players-academy-grid">
+   <div class="empty-state">Загрузка академии...</div>
+  </div>
+ </div>
 </section>
 
 <section id="highlights">
-<div class="section-label">02 / PLAYER MOMENTS</div>
-<h2>Player <span class="gold">highlights</span></h2>
-<div class="grid" id="highlights-grid"><div class="empty-state">Загрузка видео...</div></div>
+ <div class="section-label">02 / PLAYER MOMENTS</div>
+ <h2>Player <span class="gold">highlights</span></h2>
+ <div class="grid" id="highlights-grid"><div class="empty-state">Загрузка видео...</div></div>
 </section>
 
 <section id="tournaments">
-<div class="section-label">03 / COMPETITIVE HISTORY</div>
-<h2>Наши <span class="gold">турниры</span></h2>
-<div class="grid" id="tournaments-grid"><div class="empty-state">Загрузка турниров...</div></div>
+ <div class="section-label">03 / COMPETITIVE HISTORY</div>
+ <h2>Наши <span class="gold">турниры</span></h2>
+ <div class="grid" id="tournaments-grid"><div class="empty-state">Загрузка турниров...</div></div>
 </section>
 
 <section id="matches">
-<div class="section-label">04 / MATCH CENTER</div>
-<h2>Матчи <span class="gold">WAVE TEAM</span></h2>
-<div class="grid" id="matches-grid"><div class="empty-state">Загрузка матчей...</div></div>
+ <div class="section-label">04 / MATCH CENTER</div>
+ <h2>Матчи <span class="gold">WAVE TEAM</span></h2>
+ <div class="grid" id="matches-grid"><div class="empty-state">Загрузка матчей...</div></div>
 </section>
 
 <section id="predictions">
-<div class="section-label">05 / COMMUNITY PICKS</div>
-<h2>Прогнозы <span class="gold">матчей</span></h2>
-<p class="muted" style="margin:-14px 0 25px">Выбери победителя предстоящего матча. Голосование не является ставкой.</p>
-<div class="grid" id="polls-grid"><div class="empty-state">Загрузка прогнозов...</div></div>
+ <div class="section-label">05 / COMMUNITY PICKS</div>
+ <h2>Прогнозы <span class="gold">матчей</span></h2>
+ <p class="muted" style="margin:-14px 0 25px">Выбери победителя предстоящего матча. Голосование не является ставкой.</p>
+ <div class="grid" id="polls-grid"><div class="empty-state">Загрузка прогнозов...</div></div>
 </section>
 
 <section id="media-center">
-<div class="section-label">06 / WAVE MEDIA</div>
-<h2>Медиа<span class="gold">центр</span></h2>
-<div class="filter-row" id="media-filters">
-<button class="filter-btn active" data-filter="ALL">Все</button>
-<button class="filter-btn" data-filter="PHOTO">Фото</button>
-<button class="filter-btn" data-filter="VIDEO">Видео</button>
-<button class="filter-btn" data-filter="INTERVIEW">Интервью</button>
-<button class="filter-btn" data-filter="NEWS">Новости</button>
-</div>
-<div class="grid" id="media-grid"><div class="empty-state">Загрузка материалов...</div></div>
+ <div class="section-label">06 / WAVE MEDIA</div>
+ <h2>Медиа<span class="gold">центр</span></h2>
+ <div class="filter-row" id="media-filters">
+  <button class="filter-btn active" data-filter="ALL">Все</button>
+  <button class="filter-btn" data-filter="PHOTO">Фото</button>
+  <button class="filter-btn" data-filter="VIDEO">Видео</button>
+  <button class="filter-btn" data-filter="INTERVIEW">Интервью</button>
+  <button class="filter-btn" data-filter="NEWS">Новости</button>
+ </div>
+ <div class="grid" id="media-grid"><div class="empty-state">Загрузка материалов...</div></div>
 </section>
 
 <section id="hall-of-fame">
-<div class="section-label">07 / LEGENDS NEVER FADE</div>
-<h2>Зал <span class="gold">славы</span></h2>
-<p class="muted" style="margin:-14px 0 28px">Награды, рекорды и игроки, которые создают историю WAVE TEAM.</p>
-<div class="grid" id="hall-awards-grid"><div class="empty-state">Загрузка зала славы...</div></div>
-<div class="grid" id="hall-records-grid" style="margin-top:14px"></div>
+ <div class="section-label">07 / LEGENDS NEVER FADE</div>
+ <h2>Зал <span class="gold">славы</span></h2>
+ <p class="muted" style="margin:-14px 0 28px">Награды, рекорды и игроки, которые создают историю WAVE TEAM.</p>
+ <div class="grid" id="hall-awards-grid"><div class="empty-state">Загрузка зала славы...</div></div>
+ <div class="grid" id="hall-records-grid" style="margin-top:14px"></div>
 </section>
 
 <section id="analytics">
-<div class="section-label">08 / PERFORMANCE CENTER</div>
-<h2>WAVE <span class="gold">Analytics</span></h2>
-<p class="muted" style="margin:-14px 0 28px">Статистика команды, результаты матчей и индивидуальные показатели игроков.</p>
-<div class="grid" id="analytics-summary"><div class="empty-state">Загрузка аналитики...</div></div>
-<div class="analytics-layout">
-<div class="card">
-<h3>Форма команды</h3>
-<div id="analytics-form" class="form-strip"><p class="muted">Загрузка результатов...</p></div>
-</div>
-<div class="card">
-<h3>Лучшие карты</h3>
-<div id="analytics-maps"><p class="muted">Загрузка карт...</p></div>
-</div>
-</div>
-<div class="card" style="margin-top:14px">
-<h3>Рейтинг игроков</h3>
-<div id="analytics-players"><p class="muted">Загрузка рейтинга...</p></div>
-</div>
+ <div class="section-label">08 / PERFORMANCE CENTER</div>
+ <h2>WAVE <span class="gold">Analytics</span></h2>
+ <p class="muted" style="margin:-14px 0 28px">Статистика команды, результаты матчей и индивидуальные показатели игроков.</p>
+ <div class="grid" id="analytics-summary"><div class="empty-state">Загрузка аналитики...</div></div>
+ <div class="analytics-layout">
+  <div class="card">
+   <h3>Форма команды</h3>
+   <div id="analytics-form" class="form-strip"><p class="muted">Загрузка результатов...</p></div>
+  </div>
+  <div class="card">
+   <h3>Лучшие карты</h3>
+   <div id="analytics-maps"><p class="muted">Загрузка карт...</p></div>
+  </div>
+ </div>
+ <div class="card" style="margin-top:14px">
+  <h3>Рейтинг игроков</h3>
+  <div id="analytics-players"><p class="muted">Загрузка рейтинга...</p></div>
+ </div>
 </section>
 
 <section id="news">
-<div class="section-label">09 / LATEST UPDATES</div>
-<h2>Новости <span class="gold">WAVE TEAM</span></h2>
-<div class="grid" id="news-grid"><div class="empty-state">Загрузка новостей...</div></div>
+ <div class="section-label">09 / LATEST UPDATES</div>
+ <h2>Новости <span class="gold">WAVE TEAM</span></h2>
+ <div class="grid" id="news-grid"><div class="empty-state">Загрузка новостей...</div></div>
 </section>
 
 <section id="academy" class="academy">
-<div class="section-label">10 / JOIN THE NEXT WAVE</div>
-<h2>Академия <span class="gold">WAVE</span></h2>
-<p class="muted" style="margin-bottom:28px">Хочешь попасть в WAVE TEAM? Оставь заявку — менеджер рассмотрит твой профиль, рейтинг, роль и опыт.</p>
-<form id="application">
-<input name="nickname" placeholder="Твой игровой ник" required maxlength="40">
-<input name="age" type="number" placeholder="Возраст" min="13" max="60" required>
-<input name="rating" placeholder="Faceit ELO / Premier rating" required>
-<select name="role" required>
-<option value="">Выбери роль</option>
-<option>Rifler</option>
-<option>AWPer</option>
-<option>IGL</option>
-<option>Support</option>
-<option>Lurker</option>
-<option>Coach</option>
-</select>
-<input name="steam" placeholder="Ссылка на Steam-профиль" type="url" required>
-<input name="contact" placeholder="Telegram или Discord для связи" required maxlength="100">
-<textarea name="about" placeholder="Расскажи о себе, опыте, сильных сторонах и расписании тренировок"></textarea>
-<button class="btn primary" type="submit">ОТПРАВИТЬ ЗАЯВКУ</button>
-<p class="muted" id="form-message">Форма подключена к базе WAVE TEAM.</p>
-</form>
+ <div class="section-label">10 / JOIN THE NEXT WAVE</div>
+ <h2>Академия <span class="gold">WAVE</span></h2>
+ <p class="muted" style="margin-bottom:28px">Хочешь попасть в WAVE TEAM? Оставь заявку — менеджер рассмотрит твой профиль, рейтинг, роль и опыт.</p>
+ <form id="application">
+  <input name="nickname" placeholder="Твой игровой ник" required maxlength="40">
+  <input name="age" type="number" placeholder="Возраст" min="13" max="60" required>
+  <input name="rating" placeholder="Faceit ELO / Premier rating" required>
+  <select name="role" required>
+   <option value="">Выбери роль</option>
+   <option>Rifler</option>
+   <option>AWPer</option>
+   <option>IGL</option>
+   <option>Support</option>
+   <option>Lurker</option>
+   <option>Coach</option>
+  </select>
+  <input name="steam" placeholder="Ссылка на Steam-профиль" type="url" required>
+  <input name="contact" placeholder="Telegram или Discord для связи" required maxlength="100">
+  <textarea name="about" placeholder="Расскажи о себе, опыте, сильных сторонах и расписании тренировок"></textarea>
+  <button class="btn primary" type="submit">ОТПРАВИТЬ ЗАЯВКУ</button>
+  <p class="muted" id="form-message">Форма подключена к базе WAVE TEAM.</p>
+ </form>
 </section>
 
 <section id="contacts">
-<div class="section-label">11 / CONTACT</div>
-<h2>Связь с <span class="gold">нами</span></h2>
-<div class="grid">
-<a class="card" href="https://t.me/cfls66" target="_blank" rel="noopener">
-<span class="number">TELEGRAM</span>
-<h3>WAVE TEAM ↗</h3>
-<p class="muted">Новости и связь</p>
-</a>
-<a class="card" href="https://discord.gg/v5t3wWggx" target="_blank" rel="noopener">
-<span class="number">DISCORD</span>
-<h3>Наш сервер ↗</h3>
-<p class="muted">Играй вместе с нами</p>
-</a>
-<a class="card" href="https://t.me/wwwodd5" target="_blank" rel="noopener">
-<span class="number">MANAGER</span>
-<h3>Написать менеджеру ↗</h3>
-<p class="muted">Telegram: @wwwodd5</p>
-</a>
-</div>
+ <div class="section-label">11 / CONTACT</div>
+ <h2>Связь с <span class="gold">нами</span></h2>
+ <div class="grid">
+  <a class="card" href="https://t.me/cfls66" target="_blank" rel="noopener">
+   <span class="number">TELEGRAM</span>
+   <h3>WAVE TEAM ↗</h3>
+   <p class="muted">Новости и связь</p>
+  </a>
+  <a class="card" href="https://discord.gg/v5t3wWggx" target="_blank" rel="noopener">
+   <span class="number">DISCORD</span>
+   <h3>Наш сервер ↗</h3>
+   <p class="muted">Играй вместе с нами</p>
+  </a>
+  <a class="card" href="https://t.me/wwwodd5" target="_blank" rel="noopener">
+   <span class="number">MANAGER</span>
+   <h3>Написать менеджеру ↗</h3>
+   <p class="muted">Telegram: @wwwodd5</p>
+  </a>
+ </div>
 </section>
+
 </main>
 
 <div class="modal" id="player-modal" role="dialog" aria-modal="true" aria-label="Профиль игрока">
-<div class="modal-box">
-<button class="modal-close" id="modal-close" aria-label="Закрыть">×</button>
-<div id="player-modal-content"></div>
-</div>
+ <div class="modal-box">
+  <button class="modal-close" id="modal-close" aria-label="Закрыть">×</button>
+  <div id="player-modal-content"></div>
+ </div>
 </div>
 
 <footer>© 2026 WAVE TEAM — CS2 ESPORTS. ALL RIGHTS RESERVED.</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 const SUPABASE_URL='https://hjtrnyufryxudqgvqkuo.supabase.co';
 const SUPABASE_KEY='sb_publishable_q6wpqCXCpunEsIPNU2Hqjw_8Jk44FXi';
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
 const $=id=>document.getElementById(id);
 
 function esc(v){
-return String(v??'').replace(/[&<>"']/g,c=>({
-'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-}[c]));
+ return String(v??'').replace(/[&<>"']/g,c=>({
+  '&':'&amp;',
+  '<':'&lt;',
+  '>':'&gt;',
+  '"':'&quot;',
+  "'":'&#39;'
+ }[c]));
 }
 
 function safeUrl(v){
-try{
-const u=new URL(v);
-return ['http:','https:'].includes(u.protocol)?u.href:'';
-}catch(_){
-return '';
-}
+ try{
+  const u=new URL(v);
+  return ['http:','https:'].includes(u.protocol)?u.href:'';
+ }catch(_){
+  return '';
+ }
 }
 
 function dateText(v){
-if(!v)return '';
-const d=new Date(v);
-return Number.isNaN(d.getTime())?'':d.toLocaleDateString('ru-RU');
+ if(!v)return '';
+ const d=new Date(v);
+ return Number.isNaN(d.getTime())?'':d.toLocaleDateString('ru-RU');
 }
 
 function youtubeEmbed(v){
-try{
-const u=new URL(v);
-let id='';
-if(u.hostname.includes('youtu.be'))id=u.pathname.slice(1);
-else if(u.hostname.includes('youtube.com')){
-id=u.searchParams.get('v')||(u.pathname.includes('/embed/')?u.pathname.split('/embed/')[1]:'');
-}
-return id?'https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id.split('&')[0]):'';
-}catch(_){
-return '';
-}
+ try{
+  const u=new URL(v);
+  let id='';
+  if(u.hostname.includes('youtu.be'))id=u.pathname.slice(1);
+  else if(u.hostname.includes('youtube.com')){
+   id=u.searchParams.get('v')||(u.pathname.includes('/embed/')?u.pathname.split('/embed/')[1]:'');
+  }
+  return id?'https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id.split('&')[0]):'';
+ }catch(_){
+  return '';
+ }
 }
 
 function observeReveals(){
-const nodes=document.querySelectorAll('.card:not(.visible),section:not(.hero)');
-if(!('IntersectionObserver'in window)){
-nodes.forEach(n=>n.classList.add('visible'));
-return;
-}
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('visible');
-observer.unobserve(entry.target);
-}
-});
-},{threshold:.08});
-nodes.forEach(n=>{
-n.classList.add('reveal');
-observer.observe(n);
-});
+ const nodes=document.querySelectorAll('.card:not(.visible),section:not(.hero)');
+ if(!('IntersectionObserver'in window)){
+  nodes.forEach(n=>n.classList.add('visible'));
+  return;
+ }
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+   if(entry.isIntersecting){
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
+   }
+  });
+ },{threshold:.08});
+ nodes.forEach(n=>{
+  n.classList.add('reveal');
+  observer.observe(n);
+ });
 }
 
 async function loadApplicationForm(){
-const form=$('application');
-const message=$('form-message');
-const button=form.querySelector('button');
+ const form=$('application');
+ const message=$('form-message');
+ const button=form.querySelector('button');
 
-form.addEventListener('submit',async e=>{
-e.preventDefault();
-button.disabled=true;
-message.textContent='Отправляем заявку...';
+ form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  button.disabled=true;
+  message.textContent='Отправляем заявку...';
 
-const d=Object.fromEntries(new FormData(form).entries());
-const application={
-nickname:String(d.nickname||'').trim(),
-age:Number(d.age),
-rating:String(d.rating||'').trim(),
-role:String(d.role||''),
-steam:String(d.steam||'').trim(),
-contact:String(d.contact||'').trim(),
-about:String(d.about||'').trim()
-};
+  const d=Object.fromEntries(new FormData(form).entries());
 
-try{
-const {error}=await db.from('academy_applications').insert([application]);
-if(error)throw error;
-message.textContent='Заявка отправлена! Спасибо за интерес к WAVE TEAM.';
-form.reset();
-}catch(error){
-console.error(error);
-message.textContent='Ошибка отправки. Проверь настройки Supabase.';
-}finally{
-button.disabled=false;
-}
-});
+  const application={
+   nickname:String(d.nickname||'').trim(),
+   age:Number(d.age),
+   rating:String(d.rating||'').trim(),
+   role:String(d.role||''),
+   steam:String(d.steam||'').trim(),
+   contact:String(d.contact||'').trim(),
+   about:String(d.about||'').trim()
+  };
+
+  try{
+   const {error}=await db.from('academy_applications').insert([application]);
+   if(error)throw error;
+
+   message.textContent='Заявка отправлена! Спасибо за интерес к WAVE TEAM.';
+   form.reset();
+  }catch(error){
+   console.error(error);
+   message.textContent='Ошибка отправки. Проверь настройки Supabase.';
+  }finally{
+   button.disabled=false;
+  }
+ });
 }
 
 let mediaCache=[];
 
 function renderMedia(filter='ALL'){
-const list=filter==='ALL'?mediaCache:mediaCache.filter(x=>x.category===filter);
+ const list=filter==='ALL'
+  ?mediaCache
+  :mediaCache.filter(x=>x.category===filter);
 
-$('media-grid').innerHTML=list.map(x=>{
-const type=x.category||'NEWS';
-const url=safeUrl(x.media_url||'');
-let visual='';
+ $('media-grid').innerHTML=list.map(x=>{
+  const type=x.category||'NEWS';
+  const url=safeUrl(x.media_url||'');
+  let visual='';
 
-if(type==='VIDEO'&&youtubeEmbed(x.media_url)){
-visual=`<iframe class="video-frame" src="${youtubeEmbed(x.media_url)}" title="${esc(x.title)}" loading="lazy" allowfullscreen></iframe>`;
-}else if(url&&type==='PHOTO'){
-visual=`<a href="${esc(url)}" target="_blank" rel="noopener"><img class="media-thumb" src="${esc(url)}" alt="${esc(x.title)}" loading="lazy"></a>`;
-}else if(url){
-visual=`<p><a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Открыть материал ↗</a></p>`;
-}
+  if(type==='VIDEO'&&youtubeEmbed(x.media_url)){
+   visual=`<iframe class="video-frame" src="${youtubeEmbed(x.media_url)}" title="${esc(x.title)}" loading="lazy" allowfullscreen></iframe>`;
+  }else if(url&&type==='PHOTO'){
+   visual=`<a href="${esc(url)}" target="_blank" rel="noopener"><img class="media-thumb" src="${esc(url)}" alt="${esc(x.title)}" loading="lazy"></a>`;
+  }else if(url){
+   visual=`<p><a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Открыть материал ↗</a></p>`;
+  }
 
-return `<article class="card media-card">
-${visual}
-<div class="media-copy">
-<span class="number">${esc(type)}</span>
-<h3>${esc(x.title)}</h3>
-<p class="muted">${esc(x.description||'')}</p>
-${x.created_at?`<p class="muted">${dateText(x.created_at)}</p>`:''}
-</div>
-</article>`;
-}).join('')||'<div class="empty-state">В этой категории пока нет материалов.</div>';
+  return `
+   <article class="card media-card">
+    ${visual}
+    <div class="media-copy">
+     <span class="number">${esc(type)}</span>
+     <h3>${esc(x.title)}</h3>
+     <p class="muted">${esc(x.description||'')}</p>
+     ${x.created_at?`<p class="muted">${dateText(x.created_at)}</p>`:''}
+    </div>
+   </article>
+  `;
+ }).join('')||'<div class="empty-state">В этой категории пока нет материалов.</div>';
 }
 
 async function loadWaveTeam(){
-const [p,a,s,mv,adj,m,h,t,n,polls,media]=await Promise.all([
-db.from('players').select('id,nickname,role,sort_order,photo_url,bio,published,roster').eq('published',true).order('sort_order'),
-db.from('player_awards').select('player_id,title,description,awarded_at').eq('published',true).order('awarded_at',{ascending:false}),
-db.from('player_stats').select('player_id,matches_played,wins,losses,kills,deaths,assists,adr,kast,rating'),
-db.from('matches').select('mvp_player_id').eq('published',true),
-db.from('player_mvp_adjustments').select('player_id,delta'),
-db.from('matches').select('id,opponent,score,status,match_date,map_name,round_score,lineup,mvp_player_id').eq('published',true).order('match_date',{ascending:false,nullsFirst:false}),
-db.from('highlights').select('title,player_nickname,youtube_url,description,created_at').eq('published',true).order('created_at',{ascending:false}),
-db.from('tournaments').select('title,image_url,description,created_at').eq('published',true).order('created_at',{ascending:false}),
-db.from('news').select('title,body,category,created_at').eq('published',true).order('created_at',{ascending:false}),
-db.from('match_polls').select('*').eq('published',true).order('created_at',{ascending:false}),
-db.from('media_items').select('*').eq('published',true).order('created_at',{ascending:false})
-]);
 
-if(p.error){
-console.error(p.error);
-const errorMessage='Не удалось загрузить состав. Проверь Supabase и наличие столбца roster.';
-['players-main-grid','players-young-grid','players-academy-grid'].forEach(id=>{
-$(id).innerHTML=`<div class="empty-state">${errorMessage}</div>`;
-});
-return;
+ const [
+  p,a,s,mv,adj,m,h,t,n,polls,media
+ ]=await Promise.all([
+
+  // Игроки загружаются из всех трёх ростеров
+  db.from('players')
+   .select('id,nickname,role,sort_order,photo_url,bio,published,roster')
+   .eq('published',true)
+   .order('sort_order'),
+
+  db.from('player_awards')
+   .select('player_id,title,description,awarded_at')
+   .eq('published',true)
+   .order('awarded_at',{ascending:false}),
+
+  db.from('player_stats')
+   .select('player_id,matches_played,wins,losses,kills,deaths,assists,adr,kast,rating'),
+
+  db.from('matches')
+   .select('mvp_player_id')
+   .eq('published',true),
+
+  db.from('player_mvp_adjustments')
+   .select('player_id,delta'),
+
+  db.from('matches')
+   .select('id,opponent,score,status,match_date,map_name,round_score,lineup,mvp_player_id')
+   .eq('published',true)
+   .order('match_date',{ascending:false,nullsFirst:false}),
+
+  db.from('highlights')
+   .select('title,player_nickname,youtube_url,description,created_at')
+   .eq('published',true)
+   .order('created_at',{ascending:false}),
+
+  db.from('tournaments')
+   .select('title,image_url,description,created_at')
+   .eq('published',true)
+   .order('created_at',{ascending:false}),
+
+  db.from('news')
+   .select('title,body,category,created_at')
+   .eq('published',true)
+   .order('created_at',{ascending:false}),
+
+  db.from('match_polls')
+   .select('*')
+   .eq('published',true)
+   .order('created_at',{ascending:false}),
+
+  db.from('media_items')
+   .select('*')
+   .eq('published',true)
+   .order('created_at',{ascending:false})
+ ]);
+
+ // Если загрузка игроков завершилась ошибкой — показываем её во всех ростерах
+ if(p.error){
+  console.error(p.error);
+
+  [
+   'players-main-grid',
+   'players-young-grid',
+   'players-academy-grid'
+  ].forEach(id=>{
+   $(id).innerHTML='<div class="empty-state">Не удалось загрузить состав. Проверь Supabase.</div>';
+  });
+
+  return;
+ }
+
+ const players=p.data||[];
+ const awards=a.data||[];
+ const stats=s.data||[];
+ const allMatches=m.data||[];
+
+ if(a.error)console.warn('Награды',a.error);
+ if(s.error)console.warn('Статистика',s.error);
+
+ // Определяем ростер игрока.
+ // Если у старого игрока значение отсутствует, считаем его MAIN.
+ function rosterOf(player){
+  const value=String(player.roster||'MAIN').toUpperCase();
+  return ['MAIN','YOUNG','ACADEMY'].includes(value)?value:'MAIN';
+ }
+
+ function mvpTotal(id){
+  return Math.max(
+   0,
+   (mv.data||[]).filter(x=>String(x.mvp_player_id)===String(id)).length+
+   (adj.data||[])
+    .filter(x=>String(x.player_id)===String(id))
+    .reduce((z,x)=>z+Number(x.delta||0),0)
+  );
+ }
+
+ function statFor(id){
+  return stats.find(x=>String(x.player_id)===String(id));
+ }
+
+ function statBox(label,value){
+  return `
+   <div class="stat-box">
+    <span class="stat-value">${esc(value)}</span>
+    <span class="stat-name">${esc(label)}</span>
+   </div>
+  `;
+ }
+
+ function parseScore(v){
+  const q=String(v||'').match(/^\s*(\d+)\s*[:\-–]\s*(\d+)\s*$/);
+  if(!q)return null;
+
+  const l=+q[1],r=+q[2];
+  if(l===0&&r===0)return null;
+
+  return l>r?'W':l<r?'L':'D';
+ }
+
+ function matchResult(x){
+  if(['UPCOMING','LIVE'].includes(String(x.status||'').toUpperCase()))return null;
+  return parseScore(x.round_score)||parseScore(x.score);
+ }
+
+ // Отрисовка выбранного ростера
+ function renderRoster(roster,elementId){
+  const list=players.filter(x=>rosterOf(x)===roster);
+
+  $(elementId).innerHTML=list.map((x,i)=>`
+   <article
+    class="card player-card"
+    tabindex="0"
+    role="button"
+    data-player-id="${esc(x.id)}"
+    aria-label="Открыть профиль ${esc(x.nickname)}"
+   >
+    ${
+     x.photo_url
+      ?`<img class="player-photo" src="${esc(safeUrl(x.photo_url))}" alt="${esc(x.nickname)}" loading="lazy">`
+      :'<div class="player-photo"></div>'
+    }
+    <div class="player-info">
+     <span class="number">${String(i+1).padStart(2,'0')} / ${esc(x.role)}</span>
+     <h3>${esc(x.nickname)}</h3>
+     <p class="muted">WAVE TEAM</p>
+     <span class="profile-link">ОТКРЫТЬ ПРОФИЛЬ ↗</span>
+    </div>
+   </article>
+  `).join('')||'<div class="empty-state">В этом ростере пока нет игроков.</div>';
+ }
+
+ // Три отдельных ростера
+ renderRoster('MAIN','players-main-grid');
+ renderRoster('YOUNG','players-young-grid');
+ renderRoster('ACADEMY','players-academy-grid');
+
+ // Профиль игрока
+ function openProfile(id){
+  const x=players.find(z=>String(z.id)===String(id));
+  if(!x)return;
+
+  const ps=statFor(x.id);
+  const pa=awards.filter(z=>String(z.player_id)===String(x.id));
+
+  const kd=ps
+   ?(Number(ps.deaths)>0
+     ?(Number(ps.kills)/Number(ps.deaths)).toFixed(2)
+     :Number(ps.kills).toFixed(2))
+   :'—';
+
+  const wr=ps&&Number(ps.matches_played)>0
+   ?(Number(ps.wins)/Number(ps.matches_played)*100).toFixed(1)+'%'
+   :'—';
+
+  $('player-modal-content').innerHTML=`
+   <span class="number">WAVE TEAM / PLAYER PROFILE</span>
+   <h2>${esc(x.nickname)}</h2>
+
+   ${x.photo_url
+    ?`<img class="modal-photo" src="${esc(safeUrl(x.photo_url))}" alt="${esc(x.nickname)}">`
+    :''}
+
+   <p class="number">${esc(x.role)} · ${esc(rosterOf(x))} ROSTER</p>
+
+   <p class="muted" style="margin-top:14px;white-space:pre-wrap">
+    ${esc(x.bio||'Профиль игрока WAVE TEAM.')}
+   </p>
+
+   <div style="margin-top:24px">
+    <h3 class="gold">📊 Статистика игрока</h3>
+
+    ${
+     ps
+      ?`<div class="stats-grid">
+        ${statBox('MATCHES',ps.matches_played)}
+        ${statBox('WINS',ps.wins)}
+        ${statBox('LOSSES',ps.losses)}
+        ${statBox('WIN RATE',wr)}
+        ${statBox('K/D',kd)}
+        ${statBox('KILLS',ps.kills)}
+        ${statBox('DEATHS',ps.deaths)}
+        ${statBox('ASSISTS',ps.assists)}
+        ${statBox('ADR',Number(ps.adr||0).toFixed(1))}
+        ${statBox('KAST',Number(ps.kast||0).toFixed(1)+'%')}
+        ${statBox('RATING',Number(ps.rating||0).toFixed(2))}
+        ${statBox('MVP',mvpTotal(x.id))}
+       </div>`
+      :'<p class="muted">Статистика пока не добавлена.</p>'
+    }
+   </div>
+
+   <div style="margin-top:24px">
+    <h3 class="gold">🏆 Награды и достижения</h3>
+
+    ${
+     pa.map(z=>`
+      <div class="award-item">
+       <div class="award-title">🏆 ${esc(z.title)}</div>
+       <p class="muted">${esc(z.description||'')} ${dateText(z.awarded_at)}</p>
+      </div>
+     `).join('')
+     ||'<p class="muted">Наград пока нет.</p>'
+    }
+   </div>
+  `;
+
+  $('player-modal').classList.add('open');
+ }
+
+ // Обработчики карточек игроков из всех ростеров
+ document.querySelectorAll('[data-player-id]').forEach(el=>{
+  el.addEventListener('click',()=>openProfile(el.dataset.playerId));
+
+  el.addEventListener('keydown',e=>{
+   if(e.key==='Enter'||e.key===' '){
+    e.preventDefault();
+    openProfile(el.dataset.playerId);
+   }
+  });
+ });
+
+ // Зал славы
+ const recent=awards.slice(0,6);
+
+ $('hall-awards-grid').innerHTML=recent.map(x=>`
+  <article class="hall-award">
+   <div style="font-size:26px">🏆</div>
+   <h3>${esc(x.title)}</h3>
+   <p class="muted">
+    ${esc(players.find(z=>String(z.id)===String(x.player_id))?.nickname||'Игрок WAVE TEAM')}
+   </p>
+   <p class="muted">${esc(x.description||'')} ${dateText(x.awarded_at)}</p>
+  </article>
+ `).join('')||'<div class="empty-state">Награды появятся после добавления в админке.</div>';
+
+ const leaders=[
+  {
+   label:'MOST MVP',
+   arr:players.map(x=>({name:x.nickname,value:mvpTotal(x.id)}))
+  },
+  {
+   label:'TOP RATING',
+   arr:players.map(x=>({name:x.nickname,value:Number(statFor(x.id)?.rating||0)}))
+  },
+  {
+   label:'MOST KILLS',
+   arr:players.map(x=>({name:x.nickname,value:Number(statFor(x.id)?.kills||0)}))
+  }
+ ];
+
+ $('hall-records-grid').innerHTML=leaders.map(z=>{
+  const top=z.arr.sort((a,b)=>b.value-a.value)[0];
+
+  return `
+   <article class="hall-record">
+    <span class="number">${z.label}</span>
+    <strong class="stat-value">${top?.value||0}</strong>
+    <h3>${esc(top?.name||'—')}</h3>
+   </article>
+  `;
+ }).join('');
+
+ // Аналитика: учитываются игроки всех ростеров
+ const done=allMatches
+  .map(x=>({match:x,result:matchResult(x)}))
+  .filter(x=>x.result);
+
+ const wins=done.filter(x=>x.result==='W').length;
+ const losses=done.filter(x=>x.result==='L').length;
+ const draws=done.filter(x=>x.result==='D').length;
+ const wr=done.length?Math.round(wins/done.length*100):0;
+
+ const totalKills=stats.reduce((z,x)=>z+Number(x.kills||0),0);
+ const totalMvp=players.reduce((z,x)=>z+mvpTotal(x.id),0);
+
+ $('analytics-summary').innerHTML=`
+  <article class="card analytics-summary-card">
+   <span class="number">RECORDED MATCHES</span>
+   <strong class="big-number">${done.length}</strong>
+   <p class="muted">Матчи с итоговым счётом</p>
+  </article>
+
+  <article class="card analytics-summary-card">
+   <span class="number">WIN RATE</span>
+   <strong class="big-number">${done.length?wr+'%':'—'}</strong>
+   <p class="muted">${wins} побед · ${losses} поражений · ${draws} ничьих</p>
+  </article>
+
+  <article class="card analytics-summary-card">
+   <span class="number">TEAM KILLS</span>
+   <strong class="big-number">${totalKills}</strong>
+   <p class="muted">Сумма личной статистики</p>
+  </article>
+
+  <article class="card analytics-summary-card">
+   <span class="number">MVP AWARDS</span>
+   <strong class="big-number">${totalMvp}</strong>
+   <p class="muted">MVP матчей и корректировки</p>
+  </article>
+ `;
+
+ $('analytics-form').innerHTML=done.slice(0,8).map(x=>`
+  <span class="form-pill ${x.result==='W'?'win':x.result==='L'?'loss':''}" title="${esc(x.match.opponent)}">
+   ${x.result}
+  </span>
+ `).join('')||'<p class="muted">Добавь завершённые матчи со счётом.</p>';
+
+ const mapStats={};
+
+ done.forEach(x=>{
+  const name=String(x.match.map_name||'').trim();
+
+  if(name){
+   mapStats[name]??={played:0,wins:0};
+   mapStats[name].played++;
+   if(x.result==='W')mapStats[name].wins++;
+  }
+ });
+
+ const maps=Object.entries(mapStats)
+  .map(([name,v])=>({
+   name,
+   ...v,
+   pct:Math.round(v.wins/v.played*100)
+  }))
+  .sort((a,b)=>b.played-a.played)
+  .slice(0,6);
+
+ const max=Math.max(1,...maps.map(x=>x.played));
+
+ $('analytics-maps').innerHTML=maps.map(x=>`
+  <div class="map-row">
+   <strong>${esc(x.name)}</strong>
+   <div class="map-track">
+    <div class="map-fill" style="width:${x.played/max*100}%"></div>
+   </div>
+   <span class="map-value">${x.pct}%</span>
+  </div>
+ `).join('')||'<p class="muted">Нет данных по картам.</p>';
+
+ const ranked=players
+  .map(player=>({player,s:statFor(player.id)}))
+  .sort((a,b)=>Number(b.s?.rating||0)-Number(a.s?.rating||0));
+
+ $('analytics-players').innerHTML=ranked.length
+  ?`<table class="analytics-table">
+    <thead>
+     <tr>
+      <th>#</th>
+      <th>ИГРОК</th>
+      <th>МАТЧИ</th>
+      <th>K/D</th>
+      <th>ADR</th>
+      <th>RATING</th>
+     </tr>
+    </thead>
+    <tbody>
+     ${ranked.map((x,i)=>`
+      <tr>
+       <td>${i+1}</td>
+       <td>${esc(x.player.nickname)}</td>
+       <td>${esc(x.s?.matches_played??'—')}</td>
+       <td>
+        ${
+         x.s&&Number(x.s.deaths)>0
+          ?(Number(x.s.kills||0)/Number(x.s.deaths)).toFixed(2)
+          :'—'
+        }
+       </td>
+       <td>${x.s?Number(x.s.adr||0).toFixed(1):'—'}</td>
+       <td>${x.s?Number(x.s.rating||0).toFixed(2):'—'}</td>
+      </tr>
+     `).join('')}
+    </tbody>
+   </table>`
+  :'<p class="muted">Игроки пока не добавлены.</p>';
+
+ // Матчи
+ $('matches-grid').innerHTML=allMatches.map(x=>{
+  const mvp=players.find(z=>String(z.id)===String(x.mvp_player_id))?.nickname;
+
+  return `
+   <article class="card">
+    <div class="match">
+     <div>
+      <h3>WAVE TEAM</h3>
+      <p class="muted">VS ${esc(x.opponent)}</p>
+     </div>
+     <div class="score">${esc(x.score||'—')}</div>
+    </div>
+
+    <span class="match-status">${esc(x.status||'MATCH')}</span>
+
+    <div class="match-details">
+     ${x.match_date?`<p class="muted">📅 ${dateText(x.match_date)}</p>`:''}
+     ${x.map_name?`<p class="muted">🗺 Карта: ${esc(x.map_name)}</p>`:''}
+     ${x.round_score?`<p class="muted">🎯 Счёт по раундам: ${esc(x.round_score)}</p>`:''}
+     ${x.lineup?`<div class="match-lineup">👥 СОСТАВ WAVE TEAM<br>${esc(x.lineup)}</div>`:''}
+     ${mvp?`<div class="match-mvp">⭐ MVP МАТЧА: ${esc(mvp)}</div>`:''}
+    </div>
+   </article>
+  `;
+ }).join('')||'<div class="empty-state">Матчи скоро появятся.</div>';
+
+ // Highlights
+ $('highlights-grid').innerHTML=(h.data||[]).map(x=>{
+  const embed=youtubeEmbed(x.youtube_url);
+
+  return `
+   <article class="card media-card">
+    ${embed?`<iframe class="video-frame" src="${embed}" title="${esc(x.title)}" loading="lazy" allowfullscreen></iframe>`:''}
+    <div class="media-copy">
+     <span class="number">${esc(x.player_nickname)}</span>
+     <h3>${esc(x.title)}</h3>
+     <p class="muted">${esc(x.description||'')}</p>
+    </div>
+   </article>
+  `;
+ }).join('')||'<div class="empty-state">Видео хайлайтов скоро появятся.</div>';
+
+ // Турниры
+ $('tournaments-grid').innerHTML=(t.data||[]).map(x=>{
+  const img=safeUrl(x.image_url);
+
+  return `
+   <article class="card media-card">
+    ${img?`<img class="tournament-image" src="${esc(img)}" alt="${esc(x.title)}" loading="lazy">`:''}
+    <div class="media-copy">
+     <h3>${esc(x.title)}</h3>
+     <p class="muted">${esc(x.description||'')}</p>
+    </div>
+   </article>
+  `;
+ }).join('')||'<div class="empty-state">Турнирные таблицы скоро появятся.</div>';
+
+ // Новости
+ $('news-grid').innerHTML=(n.data||[]).map(x=>`
+  <article class="card">
+   <span class="number">${esc(x.category)}</span>
+   <h3>${esc(x.title)}</h3>
+   <p class="muted">${esc(x.body).replace(/\n/g,'<br>')}</p>
+   <p class="muted">${dateText(x.created_at)}</p>
+  </article>
+ `).join('')||'<div class="empty-state">Скоро здесь появятся новости.</div>';
+
+ // Прогнозы
+ if(polls.error){
+  console.warn('Polls table:',polls.error);
+  $('polls-grid').innerHTML='<div class="empty-state">Прогнозы пока недоступны. Проверь SQL настройки.</div>';
+ }else{
+  const rows=polls.data||[];
+  const votesResult=await db.from('match_poll_votes').select('poll_id,choice');
+  const votes=votesResult.error?[]:(votesResult.data||[]);
+
+  $('polls-grid').innerHTML=rows.map(x=>{
+   const v=votes.filter(z=>String(z.poll_id)===String(x.id));
+   const a=v.filter(z=>z.choice==='A').length;
+   const b=v.filter(z=>z.choice==='B').length;
+   const total=a+b;
+   const pa=total?Math.round(a/total*100):0;
+   const pb=100-pa;
+
+   return `
+    <article class="card">
+     <span class="number">${x.is_open?'VOTING OPEN':'VOTING CLOSED'}</span>
+     <h3>${esc(x.title)}</h3>
+     <p class="muted">${dateText(x.match_date)} · ${esc(x.team_a)} vs ${esc(x.team_b)}</p>
+
+     <div class="poll-option">
+      <span>${esc(x.team_a)}</span>
+      <strong>${pa}%</strong>
+     </div>
+     <div class="poll-bar"><span style="width:${pa}%"></span></div>
+
+     <div class="poll-option">
+      <span>${esc(x.team_b)}</span>
+      <strong>${pb}%</strong>
+     </div>
+     <div class="poll-bar"><span style="width:${pb}%"></span></div>
+
+     <p class="muted" style="margin-top:10px">${total} голосов</p>
+
+     ${
+      x.is_open
+       ?`<div class="actions" style="margin-top:14px">
+          <button class="btn primary" data-vote="${esc(x.id)}" data-choice="A">${esc(x.team_a)}</button>
+          <button class="btn" data-vote="${esc(x.id)}" data-choice="B">${esc(x.team_b)}</button>
+         </div>`
+       :'<p class="muted" style="margin-top:12px">Голосование закрыто.</p>'
+     }
+    </article>
+   `;
+  }).join('')||'<div class="empty-state">Новых прогнозов пока нет.</div>';
+ }
+
+ // Медиацентр
+ if(media.error){
+  console.warn('Media table:',media.error);
+  mediaCache=[];
+  $('media-grid').innerHTML='<div class="empty-state">Медиацентр пока недоступен. Проверь SQL настройки.</div>';
+ }else{
+  mediaCache=media.data||[];
+  renderMedia();
+ }
+
+ observeReveals();
 }
 
-/* ВАЖНО: players содержит игроков всех трёх ростеров.
-   Поэтому профили, статистика, награды, MVP и аналитика
-   продолжают работать сразу для всех игроков. */
-const players=p.data||[];
-const awards=a.data||[];
-const stats=s.data||[];
-const allMatches=m.data||[];
-
-if(a.error)console.warn('Награды',a.error);
-if(s.error)console.warn('Статистика',s.error);
-
-function rosterOf(player){
-const value=String(player.roster||'MAIN').toUpperCase();
-return ['MAIN','YOUNG','ACADEMY'].includes(value)?value:'MAIN';
-}
-
-function mvpTotal(id){
-return Math.max(
-0,
-(mv.data||[]).filter(x=>String(x.mvp_player_id)===String(id)).length+
-(adj.data||[]).filter(x=>String(x.player_id)===String(id)).reduce((z,x)=>z+Number(x.delta||0),0)
-);
-}
-
-function statFor(id){
-return stats.find(x=>String(x.player_id)===String(id));
-}
-
-function statBox(label,value){
-return `<div class="stat-box">
-<span class="stat-value">${esc(value)}</span>
-<span class="stat-name">${esc(label)}</span>
-</div>`;
-}
-
-function parseScore(v){
-const q=String(v||'').match(/^\s*(\d+)\s*[:\-–]\s*(\d+)\s*$/);
-if(!q)return null;
-const l=+q[1],r=+q[2];
-if(l===0&&r===0)return null;
-return l>r?'W':l<r?'L':'D';
-}
-
-function matchResult(x){
-if(['UPCOMING','LIVE'].includes(String(x.status||'').toUpperCase()))return null;
-return parseScore(x.round_score)||parseScore(x.score);
-}
-
-/* Отрисовка каждого ростера отдельно */
-function renderRoster(roster,elementId){
-const list=players.filter(x=>rosterOf(x)===roster);
-
-$(elementId).innerHTML=list.map((x,i)=>`
-<article class="card player-card" tabindex="0" role="button" data-player-id="${esc(x.id)}">
-${x.photo_url
-?`<img class="player-photo" src="${esc(safeUrl(x.photo_url))}" alt="${esc(x.nickname)}" loading="lazy">`
-:'<div class="player-photo"></div>'}
-<div class="player-info">
-<span class="number">${String(i+1).padStart(2,'0')} / ${esc(x.role)}</span>
-<h3>${esc(x.nickname)}</h3>
-<p class="muted">WAVE TEAM</p>
-<span class="player-roster-tag">${roster} ROSTER</span><br>
-<span class="profile-link">ОТКРЫТЬ ПРОФИЛЬ ↗</span>
-</div>
-</article>
-`).join('')||'<div class="empty-state">В этом ростере пока нет игроков.</div>';
-}
-
-renderRoster('MAIN','players-main-grid');
-renderRoster('YOUNG','players-young-grid');
-renderRoster('ACADEMY','players-academy-grid');
-
-function openProfile(id){
-const x=players.find(z=>String(z.id)===String(id));
-if(!x)return;
-
-const ps=statFor(x.id);
-const pa=awards.filter(z=>String(z.player_id)===String(x.id));
-const kd=ps
-?(Number(ps.deaths)>0?(Number(ps.kills)/Number(ps.deaths)).toFixed(2):Number(ps.kills).toFixed(2))
-:'—';
-const wr=ps&&Number(ps.matches_played)>0
-?(Number(ps.wins)/Number(ps.matches_played)*100).toFixed(1)+'%'
-:'—';
-
-$('player-modal-content').innerHTML=`
-<span class="number">WAVE TEAM / PLAYER PROFILE</span>
-<h2>${esc(x.nickname)}</h2>
-${x.photo_url?`<img class="modal-photo" src="${esc(safeUrl(x.photo_url))}" alt="${esc(x.nickname)}">`:''}
-<p class="number">${esc(x.role)} · ${esc(rosterOf(x))} ROSTER</p>
-<p class="muted" style="margin-top:14px;white-space:pre-wrap">${esc(x.bio||'Профиль игрока WAVE TEAM.')}</p>
-
-<div style="margin-top:24px">
-<h3 class="gold">📊 Статистика игрока</h3>
-${ps?`
-<div class="stats-grid">
-${statBox('MATCHES',ps.matches_played)}
-${statBox('WINS',ps.wins)}
-${statBox('LOSSES',ps.losses)}
-${statBox('WIN RATE',wr)}
-${statBox('K/D',kd)}
-${statBox('KILLS',ps.kills)}
-${statBox('DEATHS',ps.deaths)}
-${statBox('ASSISTS',ps.assists)}
-${statBox('ADR',Number(ps.adr||0).toFixed(1))}
-${statBox('KAST',Number(ps.kast||0).toFixed(1)+'%')}
-${statBox('RATING',Number(ps.rating||0).toFixed(2))}
-${statBox('MVP',mvpTotal(x.id))}
-</div>`
-:'<p class="muted">Статистика пока не добавлена.</p>'}
-</div>
-
-<div style="margin-top:24px">
-<h3 class="gold">🏆 Награды и достижения</h3>
-${pa.map(z=>`
-<div class="award-item">
-<div class="award-title">🏆 ${esc(z.title)}</div>
-<p class="muted">${esc(z.description||'')} ${dateText(z.awarded_at)}</p>
-</div>
-`).join('')||'<p class="muted">Наград пока нет.</p>'}
-</div>
-`;
-
-$('player-modal').classList.add('open');
-}
-
-/* Обработчики карточек всех трёх ростеров */
-document.querySelectorAll('[data-player-id]').forEach(el=>{
-el.addEventListener('click',()=>openProfile(el.dataset.playerId));
-el.addEventListener('keydown',e=>{
-if(e.key==='Enter'||e.key===' '){
-e.preventDefault();
-openProfile(el.dataset.playerId);
-}
-});
-});
-
-/* Зал славы */
-const recent=awards.slice(0,6);
-
-$('hall-awards-grid').innerHTML=recent.map(x=>`
-<article class="hall-award">
-<div style="font-size:26px">🏆</div>
-<h3>${esc(x.title)}</h3>
-<p class="muted">${esc(players.find(z=>String(z.id)===String(x.player_id))?.nickname||'Игрок WAVE TEAM')}</p>
-<p class="muted">${esc(x.description||'')} ${dateText(x.awarded_at)}</p>
-</article>
-`).join('')||'<div class="empty-state">Награды появятся после добавления в админке.</div>';
-
-const leaders=[
-{label:'MOST MVP',arr:players.map(x=>({name:x.nickname,value:mvpTotal(x.id)}))},
-{label:'TOP RATING',arr:players.map(x=>({name:x.nickname,value:Number(statFor(x.id)?.rating||0)}))},
-{label:'MOST KILLS',arr:players.map(x=>({name:x.nickname,value:Number(statFor(x.id)?.kills||0)}))}
-];
-
-$('hall-records-grid').innerHTML=leaders.map(z=>{
-const top=z.arr.sort((a,b)=>b.value-a.value)[0];
-return `<article class="hall-record">
-<span class="number">${z.label}</span>
-<strong class="stat-value">${top?.value||0}</strong>
-<h3>${esc(top?.name||'—')}</h3>
-</article>`;
-}).join('');
-
-/* Аналитика — учитывает MAIN, YOUNG и ACADEMY */
-const done=allMatches.map(x=>({match:x,result:matchResult(x)})).filter(x=>x.result);
-const wins=done.filter(x=>x.result==='W').length;
-const losses=done.filter(x=>x.result==='L').length;
-const draws=done.filter(x=>x.result==='D').length;
-const wr=done.length?Math.round(wins/done.length*100):0;
-const totalKills=stats.reduce((z,x)=>z+Number(x.kills||0),0);
-const totalMvp=players.reduce((z,x)=>z+mvpTotal(x.id),0);
-
-$('analytics-summary').innerHTML=`
-<article class="card analytics-summary-card">
-<span class="number">RECORDED MATCHES</span>
-<strong class="big-number">${done.length}</strong>
-<p class="muted">Матчи с итоговым счётом</p>
-</article>
-<article class="card analytics-summary-card">
-<span class="number">WIN RATE</span>
-<strong class="big-number">${done.length?wr+'%':'—'}</strong>
-<p class="muted">${wins} побед · ${losses} поражений · ${draws} ничьих</p>
-</article>
-<article class="card analytics-summary-card">
-<span class="number">TEAM KILLS</span>
-<strong class="big-number">${totalKills}</strong>
-<p class="muted">Сумма личной статистики всех ростеров</p>
-</article>
-<article class="card analytics-summary-card">
-<span class="number">MVP AWARDS</span>
-<strong class="big-number">${totalMvp}</strong>
-<p class="muted">MVP матчей и корректировки</p>
-</article>
-`;
-
-$('analytics-form').innerHTML=done.slice(0,8).map(x=>`
-<span class="form-pill ${x.result==='W'?'win':x.result==='L'?'loss':''}" title="${esc(x.match.opponent)}">${x.result}</span>
-`).join('')||'<p class="muted">Добавь завершённые матчи со счётом.</p>';
-
-const mapStats={};
-done.forEach(x=>{
-const name=String(x.match.map_name||'').trim();
-if(name){
-mapStats[name]??={played:0,wins:0};
-mapStats[name].played++;
-if(x.result==='W')mapStats[name].wins++;
-}
-});
-
-const maps=Object.entries(mapStats)
-.map(([name,v])=>({name,...v,pct:Math.round(v.wins/v.played*100)}))
-.sort((a,b)=>b.played-a.played)
-.slice(0,6);
-
-const max=Math.max(1,...maps.map(x=>x.played));
-
-$('analytics-maps').innerHTML=maps.map(x=>`
-<div class="map-row">
-<strong>${esc(x.name)}</strong>
-<div class="map-track"><div class="map-fill" style="width:${x.played/max*100}%"></div></div>
-<span class="map-value">${x.pct}%</span>
-</div>
-`).join('')||'<p class="muted">Нет данных по картам.</p>';
-
-const ranked=players
-.map(player=>({player,s:statFor(player.id)}))
-.sort((a,b)=>Number(b.s?.rating||0)-Number(a.s?.rating||0));
-
-$('analytics-players').innerHTML=ranked.length?`
-<table class="analytics-table">
-<thead>
-<tr><th>#</th><th>ИГРОК</th><th>МАТЧИ</th><th>K/D</th><th>ADR</th><th>RATING</th></tr>
-</thead>
-<tbody>
-${ranked.map((x,i)=>`
-<tr>
-<td>${i+1}</td>
-<td>${esc(x.player.nickname)} <span class="muted">(${esc(rosterOf(x.player))})</span></td>
-<td>${esc(x.s?.matches_played??'—')}</td>
-<td>${x.s&&Number(x.s.deaths)>0?(Number(x.s.kills||0)/Number(x.s.deaths)).toFixed(2):'—'}</td>
-<td>${x.s?Number(x.s.adr||0).toFixed(1):'—'}</td>
-<td>${x.s?Number(x.s.rating||0).toFixed(2):'—'}</td>
-</tr>
-`).join('')}
-</tbody>
-</table>`
-:'<p class="muted">Игроки пока не добавлены.</p>';
-
-/* Матчи */
-$('matches-grid').innerHTML=allMatches.map(x=>{
-const mvp=players.find(z=>String(z.id)===String(x.mvp_player_id))?.nickname;
-return `<article class="card">
-<div class="match">
-<div>
-<h3>WAVE TEAM</h3>
-<p class="muted">VS ${esc(x.opponent)}</p>
-</div>
-<div class="score">${esc(x.score||'—')}</div>
-</div>
-<span class="match-status">${esc(x.status||'MATCH')}</span>
-<div class="match-details">
-${x.match_date?`<p class="muted">📅 ${dateText(x.match_date)}</p>`:''}
-${x.map_name?`<p class="muted">🗺 Карта: ${esc(x.map_name)}</p>`:''}
-${x.round_score?`<p class="muted">🎯 Счёт по раундам: ${esc(x.round_score)}</p>`:''}
-${x.lineup?`<div class="match-lineup">👥 СОСТАВ WAVE TEAM<br>${esc(x.lineup)}</div>`:''}
-${mvp?`<div class="match-mvp">⭐ MVP МАТЧА: ${esc(mvp)}</div>`:''}
-</div>
-</article>`;
-}).join('')||'<div class="empty-state">Матчи скоро появятся.</div>';
-
-/* Хайлайты */
-$('highlights-grid').innerHTML=(h.data||[]).map(x=>{
-const embed=youtubeEmbed(x.youtube_url);
-return `<article class="card media-card">
-${embed?`<iframe class="video-frame" src="${embed}" title="${esc(x.title)}" loading="lazy" allowfullscreen></iframe>`:''}
-<div class="media-copy">
-<span class="number">${esc(x.player_nickname)}</span>
-<h3>${esc(x.title)}</h3>
-<p class="muted">${esc(x.description||'')}</p>
-</div>
-</article>`;
-}).join('')||'<div class="empty-state">Видео хайлайтов скоро появятся.</div>';
-
-/* Турниры */
-$('tournaments-grid').innerHTML=(t.data||[]).map(x=>{
-const img=safeUrl(x.image_url);
-return `<article class="card media-card">
-${img?`<img class="tournament-image" src="${esc(img)}" alt="${esc(x.title)}" loading="lazy">`:''}
-<div class="media-copy">
-<h3>${esc(x.title)}</h3>
-<p class="muted">${esc(x.description||'')}</p>
-</div>
-</article>`;
-}).join('')||'<div class="empty-state">Турнирные таблицы скоро появятся.</div>';
-
-/* Новости */
-$('news-grid').innerHTML=(n.data||[]).map(x=>`
-<article class="card">
-<span class="number">${esc(x.category)}</span>
-<h3>${esc(x.title)}</h3>
-<p class="muted">${esc(x.body).replace(/\n/g,'<br>')}</p>
-<p class="muted">${dateText(x.created_at)}</p>
-</article>
-`).join('')||'<div class="empty-state">Скоро здесь появятся новости.</div>';
-
-/* Прогнозы */
-if(polls.error){
-console.warn('Polls table:',polls.error);
-$('polls-grid').innerHTML='<div class="empty-state">Прогнозы пока недоступны. Проверь SQL настройки.</div>';
-}else{
-const rows=polls.data||[];
-const votesResult=await db.from('match_poll_votes').select('poll_id,choice');
-const votes=votesResult.error?[]:(votesResult.data||[]);
-
-$('polls-grid').innerHTML=rows.map(x=>{
-const v=votes.filter(z=>String(z.poll_id)===String(x.id));
-const aCount=v.filter(z=>z.choice==='A').length;
-const bCount=v.filter(z=>z.choice==='B').length;
-const total=aCount+bCount;
-const pa=total?Math.round(aCount/total*100):0;
-const pb=100-pa;
-
-return `<article class="card">
-<span class="number">${x.is_open?'VOTING OPEN':'VOTING CLOSED'}</span>
-<h3>${esc(x.title)}</h3>
-<p class="muted">${dateText(x.match_date)} · ${esc(x.team_a)} vs ${esc(x.team_b)}</p>
-
-<div class="poll-option"><span>${esc(x.team_a)}</span><strong>${pa}%</strong></div>
-<div class="poll-bar"><span style="width:${pa}%"></span></div>
-
-<div class="poll-option"><span>${esc(x.team_b)}</span><strong>${pb}%</strong></div>
-<div class="poll-bar"><span style="width:${pb}%"></span></div>
-
-<p class="muted" style="margin-top:10px">${total} голосов</p>
-
-${x.is_open?`
-<div class="actions" style="margin-top:14px">
-<button class="btn primary" data-vote="${esc(x.id)}" data-choice="A">${esc(x.team_a)}</button>
-<button class="btn" data-vote="${esc(x.id)}" data-choice="B">${esc(x.team_b)}</button>
-</div>`
-:'<p class="muted" style="margin-top:12px">Голосование закрыто.</p>'}
-</article>`;
-}).join('')||'<div class="empty-state">Новых прогнозов пока нет.</div>';
-}
-
-/* Медиацентр */
-if(media.error){
-console.warn('Media table:',media.error);
-mediaCache=[];
-$('media-grid').innerHTML='<div class="empty-state">Медиацентр пока недоступен. Проверь SQL настройки.</div>';
-}else{
-mediaCache=media.data||[];
-renderMedia();
-}
-
-observeReveals();
-}
-
-/* Фильтры медиацентра */
+// Фильтр медиацентра
 $('media-filters').addEventListener('click',e=>{
-const b=e.target.closest('[data-filter]');
-if(!b)return;
-document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));
-renderMedia(b.dataset.filter);
+ const b=e.target.closest('[data-filter]');
+ if(!b)return;
+
+ document.querySelectorAll('[data-filter]').forEach(x=>{
+  x.classList.toggle('active',x===b);
+ });
+
+ renderMedia(b.dataset.filter);
 });
 
-/* Голосование */
+// Голосование
 $('polls-grid').addEventListener('click',async e=>{
-const b=e.target.closest('[data-vote]');
-if(!b)return;
+ const b=e.target.closest('[data-vote]');
+ if(!b)return;
 
-b.disabled=true;
+ b.disabled=true;
 
-try{
-const voterKey=localStorage.getItem('wave_poll_voter')||(()=>{
-const value=(crypto.randomUUID?crypto.randomUUID():String(Date.now())+'-'+Math.random().toString(36).slice(2));
-localStorage.setItem('wave_poll_voter',value);
-return value;
-})();
+ try{
+  const voterKey=localStorage.getItem('wave_poll_voter')||(()=>{
+   const value=(
+    crypto.randomUUID
+     ?crypto.randomUUID()
+     :String(Date.now())+'-'+Math.random().toString(36).slice(2)
+   );
 
-const {error}=await db.from('match_poll_votes').insert([{
-poll_id:b.dataset.vote,
-choice:b.dataset.choice,
-voter_key:voterKey
-}]);
+   localStorage.setItem('wave_poll_voter',value);
+   return value;
+  })();
 
-if(error)throw error;
-await loadWaveTeam();
-}catch(err){
-alert(err.code==='23505'?'Ты уже голосовал в этом опросе.':'Не удалось принять голос: '+err.message);
-b.disabled=false;
-}
+  const {error}=await db.from('match_poll_votes').insert([{
+   poll_id:b.dataset.vote,
+   choice:b.dataset.choice,
+   voter_key:voterKey
+  }]);
+
+  if(error)throw error;
+
+  await loadWaveTeam();
+ }catch(err){
+  alert(
+   err.code==='23505'
+    ?'Ты уже голосовал в этом опросе.'
+    :'Не удалось принять голос: '+err.message
+  );
+  b.disabled=false;
+ }
 });
 
-/* Закрытие профиля */
+// Закрытие профиля
 $('modal-close').addEventListener('click',()=>$('player-modal').classList.remove('open'));
 
 $('player-modal').addEventListener('click',e=>{
-if(e.target.id==='player-modal')e.currentTarget.classList.remove('open');
+ if(e.target.id==='player-modal')e.currentTarget.classList.remove('open');
 });
 
 document.addEventListener('keydown',e=>{
-if(e.key==='Escape')$('player-modal').classList.remove('open');
+ if(e.key==='Escape')$('player-modal').classList.remove('open');
 });
 
+// Запуск сайта
 loadApplicationForm();
 loadWaveTeam().catch(e=>console.error('WAVE TEAM:',e));
 </script>
+
 </body>
 </html>
