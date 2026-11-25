@@ -234,6 +234,50 @@ footer{
  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
  .reveal{opacity:1;transform:none}
 }
+
+/* ===== WAVE TEAM PARTNERS: NextTier ===== */
+.partner-section{position:relative;overflow:hidden}
+.partner-description{color:#918d85;font-size:14px;line-height:1.7;margin:-14px 0 28px}
+.partner-banner{
+ position:relative;isolation:isolate;overflow:hidden;min-height:190px;
+ display:flex;align-items:center;justify-content:space-between;gap:25px;
+ padding:30px 34px;border:1px solid #244c83;border-radius:18px;
+ background:
+  radial-gradient(ellipse at 80% 50%,#12366a99,transparent 55%),
+  repeating-linear-gradient(130deg,transparent 0 38px,#16417a44 39px 66px,transparent 67px 105px),
+  linear-gradient(110deg,#050a16,#0b1830 60%,#050a16);
+ box-shadow:0 0 28px #145bb822;transition:.25s
+}
+.partner-banner:hover{transform:translateY(-3px);border-color:#5797ff;box-shadow:0 12px 34px #0008}
+.partner-info{display:flex;align-items:center;gap:22px;position:relative;z-index:1}
+.partner-logo{
+ width:90px;height:90px;flex-shrink:0;display:grid;place-items:center;
+ border:1px solid #334766;border-radius:16px;background:#050b18;
+ color:#fff;font-size:58px;font-weight:900;letter-spacing:-8px;padding-right:7px
+}
+.partner-text h3{font-size:clamp(25px,4vw,36px);margin-bottom:8px;color:#fff}
+.partner-text p{color:#aeb8cb;font-size:14px;line-height:1.6;max-width:400px}
+.partner-actions{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.partner-button{
+ min-height:48px;padding:0 19px;display:inline-flex;align-items:center;
+ justify-content:center;border:1px solid #d8bd83;border-radius:10px;
+ font-size:11px;font-weight:800;letter-spacing:1px;transition:.2s
+}
+.partner-button:hover{transform:translateY(-2px);box-shadow:0 0 20px #d8bd8340}
+.partner-button.site{background:#d8bd83;color:#100e09}
+.partner-button.telegram{background:#080e1c;color:#f4f0e8}
+@media(max-width:700px){
+ .partner-banner{flex-direction:column;align-items:flex-start;padding:23px}
+ .partner-logo{width:68px;height:68px;font-size:43px}
+ .partner-info{gap:15px}
+ .partner-actions{width:100%}
+ .partner-button{flex:1;padding:0 12px}
+}
+@media(max-width:420px){
+ .partner-actions{flex-direction:column}
+ .partner-button{width:100%}
+}
+
 </style>
 </head>
 
@@ -251,6 +295,7 @@ footer{
   <a href="#hall-of-fame">Зал славы</a>
   <a href="#analytics">Аналитика</a>
   <a href="#academy">Академия</a>
+  <a href="#partners">Партнёры</a>
   <a href="#contacts">Контакты</a>
  </nav>
 </header>
@@ -404,8 +449,33 @@ footer{
  </form>
 </section>
 
+<section id="partners" class="partner-section">
+ <div class="section-label">11 / OUR PARTNERS</div>
+ <h2>Наши <span class="gold">партнёры</span></h2>
+ <p class="partner-description">Компании и проекты, которые поддерживают WAVE TEAM.</p>
+
+ <article class="partner-banner" aria-label="Партнёр NextTier">
+  <div class="partner-info">
+   <div class="partner-logo" aria-label="Логотип NextTier">N</div>
+   <div class="partner-text">
+    <h3>NextTier</h3>
+    <p>Сервис для поиска команды. Найди игроков и двигайся к новым достижениям в CS2.</p>
+   </div>
+  </div>
+
+  <div class="partner-actions">
+   <a class="partner-button site" href="https://nexttier.ru/" target="_blank" rel="noopener noreferrer">
+    НАЙТИ КОМАНДУ ↗
+   </a>
+   <a class="partner-button telegram" href="https://t.me/Next_Tier" target="_blank" rel="noopener noreferrer">
+    TELEGRAM ↗
+   </a>
+  </div>
+ </article>
+</section>
+
 <section id="contacts">
- <div class="section-label">11 / CONTACT</div>
+ <div class="section-label">12 / CONTACT</div>
  <h2>Связь с <span class="gold">нами</span></h2>
  <div class="grid">
   <a class="card" href="https://t.me/cfls66" target="_blank" rel="noopener">
